@@ -4,6 +4,8 @@ using UnityEngine;
 using Microsoft;
 using Microsoft.MixedReality.Toolkit.Utilities;
 using Microsoft.MixedReality.Toolkit.Input;
+using Microsoft.MixedReality.Toolkit;
+using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 
 public class FollowTrackedFingers : MonoBehaviour
 {
@@ -28,6 +30,9 @@ public class FollowTrackedFingers : MonoBehaviour
     MixedRealityPose pose;
 
 
+    IMixedRealitySpatialAwarenessMeshObserver observer;
+
+
     void Start()
     {
         for (int i = 0; i < 5; i++)
@@ -41,6 +46,7 @@ public class FollowTrackedFingers : MonoBehaviour
         wristObjectL = Instantiate(wristObject, this.transform);
         wristObjectR = Instantiate(wristObject, this.transform);
 
+        observer = CoreServices.GetSpatialAwarenessSystemDataProvider<IMixedRealitySpatialAwarenessMeshObserver>();
 
     }
 
@@ -57,53 +63,49 @@ public class FollowTrackedFingers : MonoBehaviour
         wristObjectR.GetComponent<Renderer>().enabled = false;
 
 
-
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbTip, Handedness.Left, out pose))
         {
-            tipsL[0] = pose.Position;
-            fingerObjectsL[0].GetComponent<Renderer>().enabled = true;
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.ThumbTip, Handedness.Left, out pose))
+            {
+                tipsL[0] = pose.Position;
+                fingerObjectsL[0].GetComponent<Renderer>().enabled = true;
+            }
+
+
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Left, out pose))
+            {
+                tipsL[1] = pose.Position;
+                fingerObjectsL[1].GetComponent<Renderer>().enabled = true;
+            }
+
+
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleTip, Handedness.Left, out pose))
+            {
+                tipsL[2] = pose.Position;
+                fingerObjectsL[2].GetComponent<Renderer>().enabled = true;
+            }
+
+
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingTip, Handedness.Left, out pose))
+            {
+                tipsL[3] = pose.Position;
+                fingerObjectsL[3].GetComponent<Renderer>().enabled = true;
+            }
+
+
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyTip, Handedness.Left, out pose))
+            {
+                tipsL[4] = pose.Position;
+                fingerObjectsL[4].GetComponent<Renderer>().enabled = true;
+            }
+
+
+            if (HandJointUtils.TryGetJointPose(TrackedHandJoint.Wrist, Handedness.Left, out pose))
+            {
+                wristL = pose.Position;
+                wristObjectL.GetComponent<Renderer>().enabled = true;
+
+            }
         }
-
-
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.IndexTip, Handedness.Left, out pose))
-        {
-            tipsL[1] = pose.Position;
-            fingerObjectsL[1].GetComponent<Renderer>().enabled = true;
-        }
-
-
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleTip, Handedness.Left, out pose))
-        {
-            tipsL[2] = pose.Position;
-            fingerObjectsL[2].GetComponent<Renderer>().enabled = true;
-        }
-
-
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingTip, Handedness.Left, out pose))
-        {
-            tipsL[3] = pose.Position;
-            fingerObjectsL[3].GetComponent<Renderer>().enabled = true;
-        }
-
-
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyTip, Handedness.Left, out pose))
-        {
-            tipsL[4] = pose.Position;
-            fingerObjectsL[4].GetComponent<Renderer>().enabled = true;
-        }
-
-
-        if (HandJointUtils.TryGetJointPose(TrackedHandJoint.Wrist, Handedness.Left, out pose))
-        {
-            wristL = pose.Position;
-            wristObjectL.GetComponent<Renderer>().enabled = true;
-
-        }
-
-
-
-
-
 
 
 
@@ -117,6 +119,8 @@ public class FollowTrackedFingers : MonoBehaviour
         {
             tipsR[1] = pose.Position;
             fingerObjectsR[1].GetComponent<Renderer>().enabled = true;
+
+            var hit = observer.UpdateInterval;
         }
 
         if (HandJointUtils.TryGetJointPose(TrackedHandJoint.MiddleTip, Handedness.Right, out pose))
@@ -125,13 +129,11 @@ public class FollowTrackedFingers : MonoBehaviour
             fingerObjectsR[2].GetComponent<Renderer>().enabled = true;
         }
 
-
         if (HandJointUtils.TryGetJointPose(TrackedHandJoint.RingTip, Handedness.Right, out pose))
         {
             tipsR[3] = pose.Position;
             fingerObjectsR[3].GetComponent<Renderer>().enabled = true;
         }
-
 
         if (HandJointUtils.TryGetJointPose(TrackedHandJoint.PinkyTip, Handedness.Right, out pose))
         {
@@ -139,15 +141,11 @@ public class FollowTrackedFingers : MonoBehaviour
             fingerObjectsR[4].GetComponent<Renderer>().enabled = true;
         }
 
-
         if (HandJointUtils.TryGetJointPose(TrackedHandJoint.Wrist, Handedness.Right, out pose))
         {
             wristR = pose.Position;
             wristObjectR.GetComponent<Renderer>().enabled = true;
         }
-
-
-
 
 
         for (int i = 0; i < 5; i++)
