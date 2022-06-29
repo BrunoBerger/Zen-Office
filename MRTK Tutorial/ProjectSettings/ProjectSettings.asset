@@ -138,6 +138,10 @@ PlayerSettings:
   preloadedAssets:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: -7042380469543252218, guid: 2b64c0d7294183e46b90b9211b2fdff1, type: 2}
   - {fileID: 1646489048451211820, guid: 30e7f2effcd210b4289c5590c969bcd6, type: 2}
   - {fileID: 0}
@@ -176,7 +180,7 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   keepLoadedShadersAlive: 0
-  StripUnusedMeshComponents: 1
+  StripUnusedMeshComponents: 0
   VertexChannelCompressionMask: 4054
   iPhoneSdkVersion: 988
   iOSTargetOSVersionString: 11.0
@@ -619,7 +623,7 @@ PlayerSettings:
   m_MobileRenderingPath: 1
   metroPackageName: Tutorialv1
   metroPackageVersion: 1.0.0.0
-  metroCertificatePath: Assets\WSATestCertificate.pfx
+  metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
