@@ -9,4 +9,7 @@ Contains the unity project for the first AR-prototypes
 * Build Unity project
 * Go into the resulting build folder
 * Open the visual Studio Solution there
-* deploy
+* Set Mode to Release and Target to arm64 & Device
+* Build > Build MRTK Tutorial
+* Build > Deploy MRTK Tutorial
+* Unplug and Replug HoloLens if not working?
