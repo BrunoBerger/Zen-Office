@@ -58,7 +58,7 @@ public class MeshCopySkript : MonoBehaviour
 
                 meshCopyCollection[i].GetComponent<MeshCollider>().sharedMesh = meshCopyCollection[i].GetComponent<MeshFilter>().mesh;
 
-                
+                //meshCopyCollection[i].GetComponent<MeshRenderer>().material = mat;
 
             }
             
