@@ -58,6 +58,14 @@ public class MeshCopySkript : MonoBehaviour
 
                 meshCopyCollection[i].GetComponent<MeshCollider>().sharedMesh = meshCopyCollection[i].GetComponent<MeshFilter>().mesh;
 
+                Vector3[] vertices = meshCopyCollection[i].GetComponent<MeshFilter>().mesh.vertices;
+                Vector2[] uvs = new Vector2[vertices.Length];
+
+                for (int v = 0; v < uvs.Length; v++)
+                {
+                    uvs[v] = new Vector2(vertices[v].x, vertices[v].z);
+                }
+                meshCopyCollection[i].GetComponent<MeshFilter>().mesh.uv = uvs;
                 //meshCopyCollection[i].GetComponent<MeshRenderer>().material = mat;
 
             }
