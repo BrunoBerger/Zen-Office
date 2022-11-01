@@ -12,7 +12,7 @@ using UnityEngine;
 
 
 
-public class GlobalHandListenerExample : MonoBehaviour,
+public class GestureController : MonoBehaviour,
     IMixedRealitySourceStateHandler, // Handle source detected and lost
     IMixedRealityHandJointHandler // handle joint position updates for hands
 {
@@ -35,25 +35,25 @@ public class GlobalHandListenerExample : MonoBehaviour,
     // IMixedRealitySourceStateHandler interface
     public void OnSourceDetected(SourceStateEventData eventData)
     {
-        Debug.Log("Source detected: none yet");
+        //Debug.Log("Source detected: none yet");
         var hand = eventData.Controller as IMixedRealityHand;
 
         // Only react to articulated hand input sources
         if (hand != null)
         {
-            Debug.Log("Source detected: " + hand.ControllerHandedness);
+            //Debug.Log("Source detected: " + hand.ControllerHandedness);
         }
     }
 
     public void OnSourceLost(SourceStateEventData eventData)
     {
-        Debug.Log("Source lost: none yet");
+        //Debug.Log("Source lost: none yet");
         var hand = eventData.Controller as IMixedRealityHand;
 
         // Only react to articulated hand input sources
         if (hand != null)
         {
-            Debug.Log("Source lost: " + hand.ControllerHandedness);
+            //Debug.Log("Source lost: " + hand.ControllerHandedness);
         }
     }
 
@@ -63,7 +63,7 @@ public class GlobalHandListenerExample : MonoBehaviour,
         MixedRealityPose palmPose;
         if (eventData.InputData.TryGetValue(TrackedHandJoint.Palm, out palmPose))
         {
-            Debug.Log("Hand Joint Palm Updated: " + palmPose.Position);
+            //Debug.Log("Hand Joint Palm Updated: " + palmPose.Position);
         }
     }
 }

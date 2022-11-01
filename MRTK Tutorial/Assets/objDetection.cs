@@ -1,18 +1,19 @@
 //https://learn.microsoft.com/de-de/azure/cognitive-services/Custom-Vision-Service/quickstarts/image-classification?tabs=visual-studio&pivots=programming-language-csharp
 
-/*
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction;
-using Microsoft.Azure.CognitiveServices.Vision.CustomVision.Training;
-using Microsoft.Azure.CognitiveServices.Vision.CustomVision.Training.Models;
+//using Microsoft.Azure.CognitiveServices.Vision.CustomVision.Prediction;
+//using Microsoft.Azure.CognitiveServices.Vision.CustomVision.Training;
+//using Microsoft.Azure.CognitiveServices.Vision.CustomVision.Training.Models;
 using System;
 using System.IO;
 using System.Linq;
 using System.Threading;
 public class objDetection : MonoBehaviour
 {
+    /*
     // You can obtain these values from the Keys and Endpoint page for your Custom Vision resource in the Azure Portal.
     private static string trainingEndpoint = "https://till.cognitiveservices.azure.com/";//"PASTE_YOUR_CUSTOM_VISION_TRAINING_ENDPOINT_HERE";
     private static string trainingKey = "91f737ffb92e41cc8589a8231857b4cf";//"PASTE_YOUR_CUSTOM_VISION_TRAINING_SUBSCRIPTION_KEY_HERE";
@@ -47,5 +48,5 @@ public class objDetection : MonoBehaviour
 
 
     }
+    */
 }
-*/
