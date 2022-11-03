@@ -16,78 +16,69 @@ public class MeshCopySkript : MonoBehaviour
     [HideInInspector]
     public bool gotMesh;
 
-    bool startedToCopyMesh = false;
+    private Transform OpenSMO;
+    private Transform SAS;
+    private List<GameObject> placedObjects;
+
+    // bool startedToCopyMesh = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        placedObjects = new List<GameObject>();
+        mixedRealityPlayspace = GameObject.Find("MixedRealityPlayspace");
+        SAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
+        OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Time.time>5&&!startedToCopyMesh)
+        meshCopyCollection = new GameObject[OpenSMO.childCount];
+        for (int i = 0; i < OpenSMO.childCount - 1; i++)
         {
-            startedToCopyMesh = true;
-            mixedRealityPlayspace = GameObject.Find("MixedRealityPlayspace");
-            Debug.Log("copy log 1");
-            
-            Transform SAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
-            Debug.Log("copy log 11");
-            Transform OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
-            Debug.Log("copy log 111");
-            meshCopyCollection = new GameObject[OpenSMO.childCount];
-            for(int i=0; i< OpenSMO.childCount - 1; i++)
+            GameObject newMeshHolder = Instantiate(meshHolderPrefab, transform);
+            MeshFilter meshFilter = newMeshHolder.GetComponent<MeshFilter>();
+            Mesh newMesh = meshFilter.mesh;
+            Mesh originalMesh = OpenSMO.GetChild(i).GetComponent<MeshFilter>().mesh;
+
+            newMesh.SetVertices(originalMesh.vertices);
+            newMesh.SetNormals(originalMesh.normals);
+            newMesh.SetTriangles(originalMesh.triangles, 0);
+            newMeshHolder.GetComponent<MeshCollider>().sharedMesh = newMesh;
+
+            Vector3[] vertices = newMesh.vertices;
+            Vector2[] uvs = new Vector2[vertices.Length];
+
+            for (int v = 0; v < uvs.Length; v++)
             {
-                //Debug.Log("copy log 3, i = " + i);
-                //meshCopy[i] = Instantiate(OpenSMO.GetChild(i).gameObject);
-
-
-                //meshCopyCollection[i] = new GameObject();
-                //meshCopyCollection[i].AddComponent<MeshFilter>();
-                //meshCopyCollection[i].AddComponent<MeshRenderer>();
-                //meshCopyCollection[i].GetComponent<MeshFilter>().mesh = new Mesh();
-                //meshCopyCollection[i].GetComponent<MeshRenderer>().material = mat;
-
-                meshCopyCollection[i] = Instantiate(meshHolderPrefab, transform);
-
-
-                meshCopyCollection[i].GetComponent<MeshFilter>().mesh.SetVertices(OpenSMO.GetChild(i).GetComponent<MeshFilter>().mesh.vertices);
-                meshCopyCollection[i].GetComponent<MeshFilter>().mesh.SetNormals(OpenSMO.GetChild(i).GetComponent<MeshFilter>().mesh.normals);
-                meshCopyCollection[i].GetComponent<MeshFilter>().mesh.SetTriangles(OpenSMO.GetChild(i).GetComponent<MeshFilter>().mesh.triangles,0);
-
-                meshCopyCollection[i].GetComponent<MeshCollider>().sharedMesh = meshCopyCollection[i].GetComponent<MeshFilter>().mesh;
-
-                Vector3[] vertices = meshCopyCollection[i].GetComponent<MeshFilter>().mesh.vertices;
-                Vector2[] uvs = new Vector2[vertices.Length];
-
-                for (int v = 0; v < uvs.Length; v++)
-                {
-                    uvs[v] = new Vector2(vertices[v].x, vertices[v].z);
-                }
-                meshCopyCollection[i].GetComponent<MeshFilter>().mesh.uv = uvs;
-                //meshCopyCollection[i].GetComponent<MeshRenderer>().material = mat;
-
+                uvs[v] = new Vector2(vertices[v].x, vertices[v].z);
             }
-            
-            Debug.Log("copy log 4");
-            gotMesh = true;
-            /*
-            //testing collision:
-            for(float x = -2; x<=2; x+=0.125f)
+            newMesh.SetUVs(0, uvs);
+            meshCopyCollection[i] = newMeshHolder;
+        }
+
+        //clear all objects
+        foreach (GameObject obj in placedObjects)
+        {
+            Destroy(obj);
+        }
+        placedObjects.RemoveAll(o => o == null);
+ 
+        //testing collision:
+        for (float x = -2; x <= 2; x += 0.125f)
+        {
+            for (float z = -2; z <= 2; z += 0.125f)
             {
-                for (float z = -2; z <= 2; z += 0.125f)
+                RaycastHit hit;
+                if (Physics.Raycast(new Vector3(x, 0f, z), transform.TransformDirection(Vector3.down), out hit, 3, colLayer))
                 {
-                    RaycastHit hit;
-                    if (Physics.Raycast(new Vector3(x, 0f, z), transform.TransformDirection(Vector3.down), out hit, 3, colLayer))
-                    {
-                        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                        //Debug.Log("Did Hit ");
-                        Instantiate(testCupPrefab, hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
-                    }
+                    //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                    //Debug.Log("Did Hit ");
+                    GameObject newObj = Instantiate(testCupPrefab, hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
+                    placedObjects.Add(newObj);
                 }
             }
-            */
         }
     }
 }
