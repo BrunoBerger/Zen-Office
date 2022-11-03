@@ -1,4 +1,4 @@
-//changed, original from https://localjoost.github.io/using-azure-custom-vision-object/ (31.11.2022)
+//changed, original from https://localjoost.github.io/using-azure-custom-vision-object/ (31.10.2022)
 
 using System.Collections;
 using System.Collections.Generic;
@@ -17,9 +17,11 @@ public class ObjectRecognizer : MonoBehaviour
     [SerializeField]
     private string _predictionKey = "<your prediction key here>";
 
+    private ObjectLocalizer localizer;
     private void Start()
     {
         //Messenger.Instance.AddListener<PhotoCaptureMessage>(p => RecognizeObjects(p.Image, p.CameraResolution, p.CameraTransform)); //ME
+        localizer = transform.GetComponent<ObjectLocalizer>();
     }
 
     public virtual void RecognizeObjects(IList<byte> image, Resolution cameraResolution, Transform cameraTransform)
@@ -39,10 +41,18 @@ public class ObjectRecognizer : MonoBehaviour
         var result = JsonConvert.DeserializeObject<CustomVisionResult>(text);
         if (result != null)
         {
-            result.Predictions.RemoveAll(p => p.Probability < 0.7);
+            result.Predictions.RemoveAll(p => p.Probability < 0.2);
             Debug.Log("#Predictions = " + result.Predictions.Count);
+
+            //ME
+            foreach(Prediction p in result.Predictions)
+            {
+                Debug.Log("found prediction of tag: " + p.TagName+"   its relative center is: "+ new Vector2((float)(p.BoundingBox.Left + (0.5 * p.BoundingBox.Width)),
+            (float)(p.BoundingBox.Top + (0.5 * p.BoundingBox.Height))));
+            }
             //Messenger.Instance.Broadcast( //ME
             //    new ObjectRecognitionResultMessage(result.Predictions, cameraResolution, cameraTransform));
+            localizer.LabelObjects(result.Predictions, cameraResolution, cameraTransform);
         }
         else
         {

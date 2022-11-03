@@ -72,7 +72,7 @@ public class MeshCopySkript : MonoBehaviour
             
             Debug.Log("copy log 4");
             gotMesh = true;
-
+            /*
             //testing collision:
             for(float x = -2; x<=2; x+=0.125f)
             {
@@ -87,6 +87,7 @@ public class MeshCopySkript : MonoBehaviour
                     }
                 }
             }
+            */
         }
     }
 }

@@ -1,4 +1,4 @@
-//changed, original from https://localjoost.github.io/using-azure-custom-vision-object/ (31.11.2022)
+//changed, original from https://localjoost.github.io/using-azure-custom-vision-object/ (31.10.2022)
 
 using System.Collections.Generic;
 using System.Linq;
