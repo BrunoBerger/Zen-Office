@@ -1,0 +1,5 @@
+This sample is enhanced in Tessera Pro (http://u3d.as/1Jqi).
+
+It includes more scenes:
+ * GrassPlanet that generates tiles on the surface of a small sphere.
+ * GrassPathsWithMirror has a mirror constraint applied
