@@ -26,6 +26,8 @@ public class MeshCopySkript : MonoBehaviour
     Transform SAS;
     List<GameObject> placedObjects;
     float updateTimer;
+    float floorHeight;
+    public float treeLine;
 
     // bool startedToCopyMesh = false;
 
@@ -35,29 +37,34 @@ public class MeshCopySkript : MonoBehaviour
         placedObjects = new List<GameObject>();
         //Debug.Log(SAS.name);
         updateTimer = -8;
+        floorHeight = float.MaxValue;
+        treeLine = 0.3f;
     }
 
     // Update is called once per frame
     void Update()
     {
         updateTimer += Time.deltaTime;
-        if (updateTimer > 0.5f)
-        {
-            if (permaMeshUpdate || (!updatedOnce))
-            {
-                StartCoroutine(updateMesh());
-                updatedOnce = true;
-            }
-            updateTimer = 0;
 
+        // Setup once
+        if (!updatedOnce && updateTimer > 0)
+        {
+            mixedRealityPlayspace = GameObject.Find("MixedRealityPlayspace");
+            SAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
+            OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
+        }
+        //
+        if (updateTimer > 0.5f && (permaMeshUpdate || !updatedOnce) )
+        {
+            StartCoroutine(updateMesh());
+            updatedOnce = true;
+            updateTimer = 0;
         }
     }
 
     private IEnumerator updateMesh()
     {
-        mixedRealityPlayspace = GameObject.Find("MixedRealityPlayspace");
-        SAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
-        OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
+
 
         foreach (GameObject mesh in meshCopyCollection)
         {
@@ -79,9 +86,15 @@ public class MeshCopySkript : MonoBehaviour
             Vector3[] vertices = newMesh.vertices;
             Vector2[] uvs = new Vector2[vertices.Length];
 
+            // Create UVs and find lowest point as the floor
             for (int v = 0; v < uvs.Length; v++)
             {
                 uvs[v] = new Vector2(vertices[v].x, vertices[v].z);
+                
+                if (vertices[v].y < floorHeight)
+                {
+                    floorHeight = vertices[v].y;
+                }
             }
             newMesh.SetUVs(0, uvs);
             meshCopyCollection[i] = newMeshHolder;
@@ -96,6 +109,7 @@ public class MeshCopySkript : MonoBehaviour
         placedObjects.RemoveAll(o => o == null);
 
         //testing collision:
+
         for (float x = -2; x <= 2; x += 0.25f)
         {
             for (float z = -2; z <= 2; z += 0.25f)
@@ -104,8 +118,10 @@ public class MeshCopySkript : MonoBehaviour
                 if (Physics.Raycast(new Vector3(x, 0f, z), transform.TransformDirection(Vector3.down), out hit, 3, colLayer))
                 {
                     //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                    //Debug.Log("Did Hit ");
-                    if (hit.normal.y > 0.9f)
+                    // Only if flat at not at the ground
+                    Vector3 hp = hit.transform.position;
+                    Mathf.PerlinNoise(hp.x, hp.z);
+                    if (hit.normal.y > 0.9f && hp.y > floorHeight + treeLine)
                     {
                         GameObject newObj = Instantiate(trees[Random.Range(0, trees.Length - 1)], hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
                         placedObjects.Add(newObj);
