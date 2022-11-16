@@ -397,6 +397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 318593113}
   - component: {fileID: 318593112}
+  - component: {fileID: 318593114}
   m_Layer: 0
   m_Name: MeshCopyHolder
   m_TagString: Untagged
@@ -416,8 +417,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5d925fb05d935144a0678c77b1e25b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  permaMeshUpdate: 0
   meshHolderPrefab: {fileID: 4541549713160470440, guid: ab827f2322d82af42a7b2b65927ae4dd, type: 3}
-  testCupPrefab: {fileID: 2519963675099599401, guid: 07db9499afd963c48a21cfa09174abe3, type: 3}
+  testCupPrefab: {fileID: 422976285781115936, guid: 4b1ef93d57e2b3d448bbff69d1c24296, type: 3}
   colLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -440,6 +442,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &318593114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 318593111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb5b80cdbc905c946935d1bbdefe3768, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  meshFilter: {fileID: 0}
+  rocks:
+  - {fileID: 9041915721007377642, guid: 4424833b9b1a4554ea8d0e5b79de6254, type: 3}
+  - {fileID: 8534928126559993321, guid: 8733444fa7bc64a4b9b23d92ada56caf, type: 3}
+  - {fileID: 2282023427223854647, guid: b7f581df6867d6f4b95101e517090f86, type: 3}
+  - {fileID: 5959778637544205077, guid: b0a20ef6b2d32d24a8394b8248db3e0e, type: 3}
+  - {fileID: 3355694962777940926, guid: 93dad8cbf4bdca540ba202758cf814a1, type: 3}
 --- !u!1 &319949018
 GameObject:
   m_ObjectHideFlags: 0
