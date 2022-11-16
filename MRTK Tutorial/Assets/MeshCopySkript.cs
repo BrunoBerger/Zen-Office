@@ -26,7 +26,7 @@ public class MeshCopySkript : MonoBehaviour
     Transform SAS;
     List<GameObject> placedObjects;
     float updateTimer;
-    float floorHeight;
+    public float floorHeight;
     public float treeLine;
 
     // bool startedToCopyMesh = false;
@@ -36,9 +36,9 @@ public class MeshCopySkript : MonoBehaviour
     {
         placedObjects = new List<GameObject>();
         //Debug.Log(SAS.name);
-        updateTimer = -8;
+        updateTimer = -6;
         floorHeight = float.MaxValue;
-        treeLine = 0.3f;
+        treeLine = -0.3f;
     }
 
     // Update is called once per frame
@@ -110,21 +110,26 @@ public class MeshCopySkript : MonoBehaviour
 
         //testing collision:
 
-        for (float x = -2; x <= 2; x += 0.25f)
+        for (float x = -2; x <= 2; x += 0.05f)
         {
-            for (float z = -2; z <= 2; z += 0.25f)
+            for (float z = -2; z <= 2; z += 0.05f)
             {
-                RaycastHit hit;
-                if (Physics.Raycast(new Vector3(x, 0f, z), transform.TransformDirection(Vector3.down), out hit, 3, colLayer))
+                float noiseSample = Mathf.PerlinNoise(x*5, z*5);
+                if(noiseSample > 0.5f)
                 {
-                    //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                    // Only if flat at not at the ground
-                    Vector3 hp = hit.transform.position;
-                    Mathf.PerlinNoise(hp.x, hp.z);
-                    if (hit.normal.y > 0.9f && hp.y > floorHeight + treeLine)
+                    RaycastHit hit;
+                    if (Physics.Raycast(new Vector3(x, 0f, z), transform.TransformDirection(Vector3.down), out hit, 3, colLayer))
                     {
-                        GameObject newObj = Instantiate(trees[Random.Range(0, trees.Length - 1)], hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
-                        placedObjects.Add(newObj);
+                        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                        // Only if flat at not at the ground
+                        Vector3 hp = hit.point;
+
+                        if (hit.normal.y > 0.9f && hp.y > floorHeight + treeLine)
+                        {
+                            Debug.Log("floorHeight: " + floorHeight + "   hitP: " + hp.y);
+                            GameObject newObj = Instantiate(trees[Random.Range(0, trees.Length - 1)], hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
+                            placedObjects.Add(newObj);
+                        }
                     }
                 }
             }
