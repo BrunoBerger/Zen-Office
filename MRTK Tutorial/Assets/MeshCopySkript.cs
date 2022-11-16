@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//using Microsoft.MixedReality.Toolkit.SpatialAwareness;
+
 public class MeshCopySkript : MonoBehaviour
 {
     public GameObject meshHolderPrefab;
@@ -16,9 +19,10 @@ public class MeshCopySkript : MonoBehaviour
     [HideInInspector]
     public bool gotMesh;
 
-    private Transform OpenSMO;
-    private Transform SAS;
-    private List<GameObject> placedObjects;
+    Transform OpenSMO;
+    Transform SAS;
+    List<GameObject> placedObjects;
+    float updateTimer;
 
     // bool startedToCopyMesh = false;
 
@@ -29,10 +33,22 @@ public class MeshCopySkript : MonoBehaviour
         mixedRealityPlayspace = GameObject.Find("MixedRealityPlayspace");
         SAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
         OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
+        //Debug.Log(SAS.name);
+        updateTimer = 0;
     }
 
     // Update is called once per frame
     void Update()
+    {
+        updateTimer += Time.deltaTime;
+        if (updateTimer > 3)
+        {
+            StartCoroutine(updateMesh());
+            updateTimer = 0;
+        }
+    }
+
+    private IEnumerator updateMesh()
     {
         meshCopyCollection = new GameObject[OpenSMO.childCount];
         for (int i = 0; i < OpenSMO.childCount - 1; i++)
@@ -64,7 +80,7 @@ public class MeshCopySkript : MonoBehaviour
             Destroy(obj);
         }
         placedObjects.RemoveAll(o => o == null);
- 
+
         //testing collision:
         for (float x = -2; x <= 2; x += 0.125f)
         {
@@ -80,5 +96,7 @@ public class MeshCopySkript : MonoBehaviour
                 }
             }
         }
+
+        yield return null;
     }
 }
