@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class MeshCopySkript : MonoBehaviour
 {
+    public bool permaMeshUpdate = false;
     public GameObject meshHolderPrefab;
     public GameObject testCupPrefab;
     public LayerMask colLayer;
@@ -18,6 +19,7 @@ public class MeshCopySkript : MonoBehaviour
     public MeshRenderer[] mcRenderer;
     [HideInInspector]
     public bool gotMesh;
+    bool updatedOnce = false;
 
     Transform OpenSMO;
     Transform SAS;
@@ -31,17 +33,22 @@ public class MeshCopySkript : MonoBehaviour
     {
         placedObjects = new List<GameObject>();
         //Debug.Log(SAS.name);
-        updateTimer = 0;
+        updateTimer = -8;
     }
 
     // Update is called once per frame
     void Update()
     {
         updateTimer += Time.deltaTime;
-        if (updateTimer > 3)
+        if (updateTimer > 0.5f)
         {
-            StartCoroutine(updateMesh());
+            if (permaMeshUpdate || (!updatedOnce))
+            {
+                StartCoroutine(updateMesh());
+                updatedOnce = true;
+            }
             updateTimer = 0;
+
         }
     }
 
@@ -51,6 +58,10 @@ public class MeshCopySkript : MonoBehaviour
         SAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
         OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
 
+        foreach (GameObject mesh in meshCopyCollection)
+        {
+            Destroy(mesh);
+        }
         meshCopyCollection = new GameObject[OpenSMO.childCount];
         for (int i = 0; i < OpenSMO.childCount - 1; i++)
         {
@@ -84,17 +95,20 @@ public class MeshCopySkript : MonoBehaviour
         placedObjects.RemoveAll(o => o == null);
 
         //testing collision:
-        for (float x = -2; x <= 2; x += 0.125f)
+        for (float x = -2; x <= 2; x += 0.25f)
         {
-            for (float z = -2; z <= 2; z += 0.125f)
+            for (float z = -2; z <= 2; z += 0.25f)
             {
                 RaycastHit hit;
                 if (Physics.Raycast(new Vector3(x, 0f, z), transform.TransformDirection(Vector3.down), out hit, 3, colLayer))
                 {
                     //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                     //Debug.Log("Did Hit ");
-                    GameObject newObj = Instantiate(testCupPrefab, hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
-                    placedObjects.Add(newObj);
+                    if (hit.normal.y > 0.9f)
+                    {
+                        GameObject newObj = Instantiate(testCupPrefab, hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
+                        placedObjects.Add(newObj);
+                    }
                 }
             }
         }
