@@ -9,7 +9,8 @@ public class MeshCopySkript : MonoBehaviour
 {
     public bool permaMeshUpdate = false;
     public GameObject meshHolderPrefab;
-    public GameObject testCupPrefab;
+    //public GameObject testCupPrefab;
+    public GameObject[] trees;
     public LayerMask colLayer;
     public Material mat;
     public GameObject mixedRealityPlayspace;
@@ -63,7 +64,7 @@ public class MeshCopySkript : MonoBehaviour
             Destroy(mesh);
         }
         meshCopyCollection = new GameObject[OpenSMO.childCount];
-        for (int i = 0; i < OpenSMO.childCount - 1; i++)
+        for (int i = 0; i < OpenSMO.childCount; i++)
         {
             GameObject newMeshHolder = Instantiate(meshHolderPrefab, transform);
             MeshFilter meshFilter = newMeshHolder.GetComponent<MeshFilter>();
@@ -106,13 +107,23 @@ public class MeshCopySkript : MonoBehaviour
                     //Debug.Log("Did Hit ");
                     if (hit.normal.y > 0.9f)
                     {
-                        GameObject newObj = Instantiate(testCupPrefab, hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
+                        GameObject newObj = Instantiate(trees[Random.Range(0, trees.Length - 1)], hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
                         placedObjects.Add(newObj);
                     }
                 }
             }
         }
 
+
+
+
+        //start Rock spawning
+        Mesh[] meshesMesh = new Mesh[meshCopyCollection.Length];
+        for (int i=0; i < meshCopyCollection.Length;i++)
+        {
+            meshesMesh[i] = meshCopyCollection[i].GetComponent<MeshFilter>().mesh;
+        }
+        GetComponent<SpawnRocks>().StartRockSpawning(meshesMesh);
         yield return null;
     }
 }

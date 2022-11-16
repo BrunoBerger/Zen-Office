@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5662898174955678101}
   m_Layer: 0
-  m_Name: slimTree
+  m_Name: slimTree0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
