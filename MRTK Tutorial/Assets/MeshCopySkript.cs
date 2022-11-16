@@ -30,9 +30,6 @@ public class MeshCopySkript : MonoBehaviour
     void Start()
     {
         placedObjects = new List<GameObject>();
-        mixedRealityPlayspace = GameObject.Find("MixedRealityPlayspace");
-        SAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
-        OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
         //Debug.Log(SAS.name);
         updateTimer = 0;
     }
@@ -50,6 +47,10 @@ public class MeshCopySkript : MonoBehaviour
 
     private IEnumerator updateMesh()
     {
+        mixedRealityPlayspace = GameObject.Find("MixedRealityPlayspace");
+        SAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
+        OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
+
         meshCopyCollection = new GameObject[OpenSMO.childCount];
         for (int i = 0; i < OpenSMO.childCount - 1; i++)
         {
@@ -77,6 +78,7 @@ public class MeshCopySkript : MonoBehaviour
         //clear all objects
         foreach (GameObject obj in placedObjects)
         {
+            // Debug.Log("Destroying", obj);
             Destroy(obj);
         }
         placedObjects.RemoveAll(o => o == null);
