@@ -1,3 +1,5 @@
+using Microsoft.MixedReality.Toolkit.SpatialAwareness;
+using Microsoft.MixedReality.Toolkit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +25,7 @@ public class MeshCopySkript : MonoBehaviour
     [HideInInspector]
     public MeshRenderer[] mcRenderer;
     [HideInInspector]
-    public bool gotMesh;
+    bool sasReady =false;
     bool updatedOnce = false;
 
     Transform OpenSMO;
@@ -40,9 +42,11 @@ public class MeshCopySkript : MonoBehaviour
     {
         placedObjects = new List<GameObject>();
         //Debug.Log(SAS.name);
-        updateTimer = -2;
+        updateTimer = -6;
         floorHeight = float.MaxValue;
         treeLine = -0.3f;
+        updatedOnce = false;
+        sasReady = false;
     }
 
     // Update is called once per frame
@@ -51,14 +55,24 @@ public class MeshCopySkript : MonoBehaviour
         updateTimer += Time.deltaTime;
 
         // Setup once
-        if (!updatedOnce && updateTimer > 0)
+        if (!sasReady && updateTimer > 0)
         {
+            // With transforms
             mixedRealityPlayspace = GameObject.Find("MixedRealityPlayspace");
             SAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
             OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
+
+            // 
+            // Use CoreServices to quickly get access to the IMixedRealitySpatialAwarenessSystem
+            var spatialAwarenessService = CoreServices.SpatialAwarenessSystem;
+            // Cast to the IMixedRealityDataProviderAccess to get access to the data providers
+            var dataProviderAccess = spatialAwarenessService as IMixedRealityDataProviderAccess;
+            //var meshObserverName = "Spatial Object Mesh Observer";
+            var meshObserver = dataProviderAccess.GetDataProvider<IMixedRealitySpatialAwarenessMeshObserver>();
+            Debug.Log(meshObserver.Name);
         }
         //
-        if (updateTimer > 7f && (permaMeshUpdate || !updatedOnce) )
+        if (updateTimer > 3f && (permaMeshUpdate || !updatedOnce) )
         {
             StartCoroutine(updateMesh());
             updatedOnce = true;

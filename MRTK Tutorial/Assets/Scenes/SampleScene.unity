@@ -445,7 +445,6 @@ MonoBehaviour:
   mixedRealityPlayspace: {fileID: 12967395}
   meshCopyCollection: []
   mcRenderer: []
-  gotMesh: 0
   floorHeight: 0
   treeLine: 0
 --- !u!4 &318593113
