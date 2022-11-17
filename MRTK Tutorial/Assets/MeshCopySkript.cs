@@ -67,9 +67,9 @@ public class MeshCopySkript : MonoBehaviour
             var spatialAwarenessService = CoreServices.SpatialAwarenessSystem;
             // Cast to the IMixedRealityDataProviderAccess to get access to the data providers
             var dataProviderAccess = spatialAwarenessService as IMixedRealityDataProviderAccess;
-            //var meshObserverName = "Spatial Object Mesh Observer";
-            var meshObserver = dataProviderAccess.GetDataProvider<IMixedRealitySpatialAwarenessMeshObserver>();
-            Debug.Log(meshObserver.Name);
+            var meshObserverName = "Spatial Object Mesh Observer";
+            var meshObserver = dataProviderAccess.GetDataProvider<IMixedRealitySpatialAwarenessMeshObserver>(meshObserverName);
+            Debug.Log("LLLLLLLLLLLLLLLLLLLLLL" + meshObserver.UpdateInterval);
             sasReady = true;
         }
         //

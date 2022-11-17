@@ -429,7 +429,7 @@ MonoBehaviour:
   - {fileID: 3028361654792151009, guid: 16cca2b945489ff4398f586597345e68, type: 3}
   - {fileID: 8759467421804450427, guid: 7b28fd4496224dd4bb8ca7c3bd2890e9, type: 3}
   rockHolder: {fileID: 575580003}
-  doesTreeSpawning: 0
+  doesTreeSpawning: 1
   trees:
   - {fileID: 422976285781115936, guid: 4b1ef93d57e2b3d448bbff69d1c24296, type: 3}
   - {fileID: 8738487454210844930, guid: 20b08fbfe8effda42bb703a5a7b62aa0, type: 3}
