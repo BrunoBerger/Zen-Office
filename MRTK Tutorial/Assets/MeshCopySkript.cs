@@ -11,6 +11,9 @@ public class MeshCopySkript : MonoBehaviour
     public GameObject meshHolderPrefab;
     public GameObject[] bushes;
     public GameObject[] grases;
+    //public GameObject testCupPrefab;
+    public SpawnRocks rockHolder;
+    public bool doesTreeSpawning=true;
     public GameObject[] trees;
     public LayerMask colLayer;
     public Material mat;
@@ -37,7 +40,7 @@ public class MeshCopySkript : MonoBehaviour
     {
         placedObjects = new List<GameObject>();
         //Debug.Log(SAS.name);
-        updateTimer = -6;
+        updateTimer = -2;
         floorHeight = float.MaxValue;
         treeLine = -0.3f;
     }
@@ -55,7 +58,7 @@ public class MeshCopySkript : MonoBehaviour
             OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
         }
         //
-        if (updateTimer > 0.5f && (permaMeshUpdate || !updatedOnce) )
+        if (updateTimer > 7f && (permaMeshUpdate || !updatedOnce) )
         {
             StartCoroutine(updateMesh());
             updatedOnce = true;
@@ -101,35 +104,39 @@ public class MeshCopySkript : MonoBehaviour
             meshCopyCollection[i] = newMeshHolder;
         }
 
-        //clear all objects
-        foreach (GameObject obj in placedObjects)
-        {
-            // Debug.Log("Destroying", obj);
-            Destroy(obj);
-        }
-        placedObjects.RemoveAll(o => o == null);
 
-        //testing collision:
-
-        for (float x = -2; x <= 2; x += 0.05f)
+        if (doesTreeSpawning)
         {
-            for (float z = -2; z <= 2; z += 0.05f)
+            //clear trees
+            foreach (GameObject obj in placedObjects)
             {
-                float noiseSample = Mathf.PerlinNoise(x*5, z*5);
-                if(noiseSample > 0.5f)
-                {
-                    RaycastHit hit;
-                    if (Physics.Raycast(new Vector3(x, 0f, z), transform.TransformDirection(Vector3.down), out hit, 3, colLayer))
-                    {
-                        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-                        // Only if flat at not at the ground
-                        Vector3 hp = hit.point;
+                Destroy(obj);
+            }
+            placedObjects.RemoveAll(o => o == null);
 
-                        if (hit.normal.y > 0.9f && hp.y > floorHeight + treeLine)
+            //spawn trees:
+
+            Vector3 camPos = Camera.main.transform.position;
+            for (float x = -2; x <= 2; x += 0.05f)
+            {
+                for (float z = -2; z <= 2; z += 0.05f)
+                {
+                    float noiseSample = Mathf.PerlinNoise(x * 5, z * 5);
+                    if (noiseSample > 0.5f)
+                    {
+                        RaycastHit hit;
+                        if (Physics.Raycast(new Vector3(camPos.x+x, 0f, camPos.z + z), transform.TransformDirection(Vector3.down), out hit, 3, colLayer))
                         {
-                            Debug.Log("floorHeight: " + floorHeight + "   hitP: " + hp.y);
-                            GameObject newObj = Instantiate(trees[Random.Range(0, trees.Length - 1)], hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
-                            placedObjects.Add(newObj);
+                            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
+                            // Only if flat at not at the ground
+                            Vector3 hp = hit.point;
+
+                            if (hit.normal.y > 0.9f && hp.y > floorHeight + treeLine)
+                            {
+                                //Debug.Log("floorHeight: " + floorHeight + "   hitP: " + hp.y);
+                                GameObject newObj = Instantiate(trees[Random.Range(0, trees.Length - 1)], hit.point, Quaternion.LookRotation(Vector3.forward, hit.normal));
+                                placedObjects.Add(newObj);
+                            }
                         }
                     }
                 }
@@ -140,12 +147,13 @@ public class MeshCopySkript : MonoBehaviour
 
 
         //start Rock spawning
+        rockHolder.DeleteRocks();
         Mesh[] meshesMesh = new Mesh[meshCopyCollection.Length];
         for (int i=0; i < meshCopyCollection.Length;i++)
         {
             meshesMesh[i] = meshCopyCollection[i].GetComponent<MeshFilter>().mesh;
         }
-        GetComponent<SpawnRocks>().StartRockSpawning(meshesMesh);
+        rockHolder.StartRockSpawning(meshesMesh);
         yield return null;
     }
 }

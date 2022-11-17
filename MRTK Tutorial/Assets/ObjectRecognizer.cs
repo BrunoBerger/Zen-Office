@@ -41,7 +41,7 @@ public class ObjectRecognizer : MonoBehaviour
         var result = JsonConvert.DeserializeObject<CustomVisionResult>(text);
         if (result != null)
         {
-            result.Predictions.RemoveAll(p => p.Probability < 0.2);
+            result.Predictions.RemoveAll(p => p.Probability < 0.3);
             Debug.Log("#Predictions = " + result.Predictions.Count);
 
             //ME
