@@ -70,6 +70,7 @@ public class MeshCopySkript : MonoBehaviour
             //var meshObserverName = "Spatial Object Mesh Observer";
             var meshObserver = dataProviderAccess.GetDataProvider<IMixedRealitySpatialAwarenessMeshObserver>();
             Debug.Log(meshObserver.Name);
+            sasReady = true;
         }
         //
         if (updateTimer > 3f && (permaMeshUpdate || !updatedOnce) )
