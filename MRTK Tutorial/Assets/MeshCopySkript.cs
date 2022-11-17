@@ -9,7 +9,8 @@ public class MeshCopySkript : MonoBehaviour
 {
     public bool permaMeshUpdate = false;
     public GameObject meshHolderPrefab;
-    //public GameObject testCupPrefab;
+    public GameObject[] bushes;
+    public GameObject[] grases;
     public GameObject[] trees;
     public LayerMask colLayer;
     public Material mat;

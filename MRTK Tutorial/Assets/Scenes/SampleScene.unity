@@ -420,6 +420,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   permaMeshUpdate: 0
   meshHolderPrefab: {fileID: 4541549713160470440, guid: ab827f2322d82af42a7b2b65927ae4dd, type: 3}
+  bushes:
+  - {fileID: 7827304443752129297, guid: 6cd215c5077817247ab1a362bc5f143f, type: 3}
+  - {fileID: 6134323851043897979, guid: 66633abffa0d497478ad7c33c4fed98c, type: 3}
+  - {fileID: 8951488763798635912, guid: f401fd2934a6aff48a96b124a50b33bd, type: 3}
+  grases:
+  - {fileID: 3694692597833437191, guid: b8bb4f16cff730a46a205868b1822e46, type: 3}
+  - {fileID: 3028361654792151009, guid: 16cca2b945489ff4398f586597345e68, type: 3}
+  - {fileID: 8759467421804450427, guid: 7b28fd4496224dd4bb8ca7c3bd2890e9, type: 3}
   trees:
   - {fileID: 422976285781115936, guid: 4b1ef93d57e2b3d448bbff69d1c24296, type: 3}
   - {fileID: 8738487454210844930, guid: 20b08fbfe8effda42bb703a5a7b62aa0, type: 3}
