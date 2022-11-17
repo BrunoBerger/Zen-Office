@@ -19,6 +19,7 @@ public class MeshCopySkript : MonoBehaviour
     public GameObject[] trees;
     public LayerMask colLayer;
     public Material mat;
+    public Material invisMat;
     public GameObject mixedRealityPlayspace;
     [HideInInspector]
     public GameObject[] meshCopyCollection;
@@ -28,8 +29,12 @@ public class MeshCopySkript : MonoBehaviour
     bool sasReady =false;
     bool updatedOnce = false;
 
-    Transform OpenSMO;
-    Transform SAS;
+    Transform transformOpenSMO;
+    Transform transformSAS;
+    IMixedRealitySpatialAwarenessSystem scriptSpatialAwarenessService;
+    IMixedRealityDataProviderAccess scriptDataProviderAccess;
+    IMixedRealitySpatialAwarenessMeshObserver scriptMeshObserver;
+
     List<GameObject> placedObjects;
     float updateTimer;
     public float floorHeight;
@@ -41,7 +46,7 @@ public class MeshCopySkript : MonoBehaviour
     void Start()
     {
         placedObjects = new List<GameObject>();
-        //Debug.Log(SAS.name);
+        //Debug.Log(transformSAS.name);
         updateTimer = -6;
         floorHeight = float.MaxValue;
         treeLine = -0.3f;
@@ -59,21 +64,24 @@ public class MeshCopySkript : MonoBehaviour
         {
             // With transforms
             mixedRealityPlayspace = GameObject.Find("MixedRealityPlayspace");
-            SAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
-            OpenSMO = SAS.Find("OpenXR Spatial Mesh Observer");
+            transformSAS = mixedRealityPlayspace.transform.Find("Spatial Awareness System");
+            transformOpenSMO = transformSAS.Find("OpenXR Spatial Mesh Observer");
 
-            // 
-            // Use CoreServices to quickly get access to the IMixedRealitySpatialAwarenessSystem
-            var spatialAwarenessService = CoreServices.SpatialAwarenessSystem;
-            // Cast to the IMixedRealityDataProviderAccess to get access to the data providers
-            var dataProviderAccess = spatialAwarenessService as IMixedRealityDataProviderAccess;
+            // with objects
+            scriptSpatialAwarenessService = CoreServices.SpatialAwarenessSystem;
+            scriptDataProviderAccess = scriptSpatialAwarenessService as IMixedRealityDataProviderAccess;
             var meshObserverName = "Spatial Object Mesh Observer";
-            var meshObserver = dataProviderAccess.GetDataProvider<IMixedRealitySpatialAwarenessMeshObserver>(meshObserverName);
-            Debug.Log("LLLLLLLLLLLLLLLLLLLLLL" + meshObserver.UpdateInterval);
+            scriptMeshObserver = scriptDataProviderAccess.GetDataProvider<IMixedRealitySpatialAwarenessMeshObserver>(meshObserverName);
+            Debug.Log("LLLLLLLLLLLLLLLLLLLLLL" + scriptMeshObserver.UpdateInterval);
             sasReady = true;
+
+            //scriptMeshObserver.DisplayOption = ;
+
+            StartCoroutine(updateMesh());
         }
         //
-        if (updateTimer > 3f && (permaMeshUpdate || !updatedOnce) )
+
+        if (updateTimer > 3f && (permaMeshUpdate) )
         {
             StartCoroutine(updateMesh());
             updatedOnce = true;
@@ -89,13 +97,13 @@ public class MeshCopySkript : MonoBehaviour
         {
             Destroy(mesh);
         }
-        meshCopyCollection = new GameObject[OpenSMO.childCount];
-        for (int i = 0; i < OpenSMO.childCount; i++)
+        meshCopyCollection = new GameObject[transformOpenSMO.childCount];
+        for (int i = 0; i < transformOpenSMO.childCount; i++)
         {
             GameObject newMeshHolder = Instantiate(meshHolderPrefab, transform);
             MeshFilter meshFilter = newMeshHolder.GetComponent<MeshFilter>();
             Mesh newMesh = meshFilter.mesh;
-            Mesh originalMesh = OpenSMO.GetChild(i).GetComponent<MeshFilter>().mesh;
+            Mesh originalMesh = transformOpenSMO.GetChild(i).GetComponent<MeshFilter>().mesh;
 
             newMesh.SetVertices(originalMesh.vertices);
             newMesh.SetNormals(originalMesh.normals);
