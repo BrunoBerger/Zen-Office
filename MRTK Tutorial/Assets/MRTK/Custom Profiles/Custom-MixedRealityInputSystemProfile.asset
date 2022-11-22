@@ -108,8 +108,8 @@ MonoBehaviour:
   focusQueryBufferSize: 128
   shouldUseGraphicsRaycast: 1
   focusIndividualCompoundCollider: 0
-  inputActionsProfile: {fileID: 11400000, guid: 723eb97b02944311b92861f473eee53e, type: 2}
-  inputActionRulesProfile: {fileID: 11400000, guid: 03945385d89102f41855bc8f5116b199, type: 2}
+  inputActionsProfile: {fileID: 11400000, guid: 57444dcc450210e47b7db02c22066202, type: 2}
+  inputActionRulesProfile: {fileID: 11400000, guid: e1e9abeb0ff880f44b5f788e22214696, type: 2}
   pointerProfile: {fileID: 11400000, guid: 48aa63a9725047b28d4137fd0834bc31, type: 2}
   gesturesProfile: {fileID: 11400000, guid: f5615f5f52aa745409fb6a71279b0ef5, type: 2}
   speechCommandsProfile: {fileID: 11400000, guid: e8d0393e66374dae9646851a57dc6bc1, type: 2}

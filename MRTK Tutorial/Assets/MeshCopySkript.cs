@@ -70,13 +70,13 @@ public class MeshCopySkript : MonoBehaviour
             // with objects
             scriptSpatialAwarenessService = CoreServices.SpatialAwarenessSystem;
             scriptDataProviderAccess = scriptSpatialAwarenessService as IMixedRealityDataProviderAccess;
-            var meshObserverName = "Spatial Object Mesh Observer";
+            var meshObserverName = "OpenXR Spatial Mesh Observer";
             scriptMeshObserver = scriptDataProviderAccess.GetDataProvider<IMixedRealitySpatialAwarenessMeshObserver>(meshObserverName);
-            //Debug.Log("LLLLLLLLLLLLLLLLLLLLLL" + scriptMeshObserver.UpdateInterval);
+            Debug.Log("LLLLLLLLLLLLLLLLLLLLLL" + scriptMeshObserver.UpdateInterval);
+
+            scriptMeshObserver.DisplayOption = SpatialAwarenessMeshDisplayOptions.None;
+
             sasReady = true;
-
-            //scriptMeshObserver.DisplayOption = ;
-
             StartCoroutine(updateMesh());
         }
         //
