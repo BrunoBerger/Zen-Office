@@ -442,6 +442,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   mat: {fileID: 2100000, guid: 059cceb0ba6e50741bfe6ec2c755d5f4, type: 2}
+  invisMat: {fileID: 0}
   mixedRealityPlayspace: {fileID: 12967395}
   meshCopyCollection: []
   mcRenderer: []
@@ -1943,6 +1944,7 @@ GameObject:
   - component: {fileID: 2142195022}
   - component: {fileID: 2142195024}
   - component: {fileID: 2142195023}
+  - component: {fileID: 2142195025}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -2000,7 +2002,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 907d752b5aac2b6438bfbc853787125d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  makePicEveryFiveSecs: 1
+  makePicEveryFiveSecs: 0
   _debugPane: {fileID: 319949018}
 --- !u!114 &2142195022
 MonoBehaviour:
@@ -2050,6 +2052,28 @@ MonoBehaviour:
   meshCopyLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &2142195025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142195017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf48d3002ba8074787c751d639bf246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floorLevel: 0
+  meshLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  visualDebugging: 1
+  debuggingObjects:
+  - {fileID: 939255720111623296, guid: 027c92223c6df5641b132c585cb3aa55, type: 3}
+  - {fileID: 719342376060115454, guid: a941bd7d8c20e624789460ad2575c0dc, type: 3}
+  - {fileID: 3176075206085866155, guid: 25dc53abf2cb3fa46887c016eb5979a3, type: 3}
+  - {fileID: 4025106884658970586, guid: d933d8938c139504596a13391b1ff707, type: 3}
 --- !u!1001 &2521091775286458340
 PrefabInstance:
   m_ObjectHideFlags: 0
