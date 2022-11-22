@@ -12,7 +12,7 @@ public class MeshCopySkript : MonoBehaviour
     public bool permaMeshUpdate = false;
     public bool doesTreeSpawning=true;
 
-
+    
     public SpawnRocks rockHolder;
     public SpawnPlants spawnPlants;
     public Material mat;
@@ -124,5 +124,9 @@ public class MeshCopySkript : MonoBehaviour
             meshesMesh[i] = meshCopyCollection[i].GetComponent<MeshFilter>().mesh;
         }
         rockHolder.StartRockSpawning(meshesMesh);
+
+
+
+        GetComponent<TableInterpreter>().StartTableInterpretation(floorHeight);
     }
 }
