@@ -70,13 +70,13 @@ public class MeshCopySkript : MonoBehaviour
             // with objects
             scriptSpatialAwarenessService = CoreServices.SpatialAwarenessSystem;
             scriptDataProviderAccess = scriptSpatialAwarenessService as IMixedRealityDataProviderAccess;
-            var meshObserverName = "Spatial Object Mesh Observer";
+            var meshObserverName = "OpenXR Spatial Mesh Observer";
             scriptMeshObserver = scriptDataProviderAccess.GetDataProvider<IMixedRealitySpatialAwarenessMeshObserver>(meshObserverName);
             Debug.Log("LLLLLLLLLLLLLLLLLLLLLL" + scriptMeshObserver.UpdateInterval);
+
+            scriptMeshObserver.DisplayOption = SpatialAwarenessMeshDisplayOptions.None;
+
             sasReady = true;
-
-            //scriptMeshObserver.DisplayOption = ;
-
             StartCoroutine(updateMesh());
         }
         //
@@ -140,9 +140,9 @@ public class MeshCopySkript : MonoBehaviour
             //spawn trees:
 
             Vector3 camPos = Camera.main.transform.position;
-            for (float x = -2; x <= 2; x += 0.05f)
+            for (float x = -2; x <= 2; x += 0.1f)
             {
-                for (float z = -2; z <= 2; z += 0.05f)
+                for (float z = -2; z <= 2; z += 0.1f)
                 {
                     float noiseSample = Mathf.PerlinNoise(x * 5, z * 5);
                     if (noiseSample > 0.5f)
