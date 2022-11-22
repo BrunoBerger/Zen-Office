@@ -43,3 +43,9 @@ MonoBehaviour:
       id: 1
       description: Select
       axisConstraint: 2
+  - description: 
+    gestureType: 0
+    action:
+      id: 0
+      description: 
+      axisConstraint: 0

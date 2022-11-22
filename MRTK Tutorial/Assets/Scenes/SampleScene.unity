@@ -419,35 +419,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   permaMeshUpdate: 0
-  meshHolderPrefab: {fileID: 4541549713160470440, guid: ab827f2322d82af42a7b2b65927ae4dd, type: 3}
-  bushes:
-  - {fileID: 7827304443752129297, guid: 6cd215c5077817247ab1a362bc5f143f, type: 3}
-  - {fileID: 6134323851043897979, guid: 66633abffa0d497478ad7c33c4fed98c, type: 3}
-  - {fileID: 8951488763798635912, guid: f401fd2934a6aff48a96b124a50b33bd, type: 3}
-  grases:
-  - {fileID: 3694692597833437191, guid: b8bb4f16cff730a46a205868b1822e46, type: 3}
-  - {fileID: 3028361654792151009, guid: 16cca2b945489ff4398f586597345e68, type: 3}
-  - {fileID: 8759467421804450427, guid: 7b28fd4496224dd4bb8ca7c3bd2890e9, type: 3}
-  rockHolder: {fileID: 575580003}
   doesTreeSpawning: 1
-  trees:
-  - {fileID: 422976285781115936, guid: 4b1ef93d57e2b3d448bbff69d1c24296, type: 3}
-  - {fileID: 8738487454210844930, guid: 20b08fbfe8effda42bb703a5a7b62aa0, type: 3}
-  - {fileID: 3951676973648154976, guid: b7a0a1992598b084b8aeace017f8888e, type: 3}
-  - {fileID: 3654033801181926522, guid: 1bf320e825143ad41b0b3e72b410e5e9, type: 3}
-  - {fileID: 7859068361545942409, guid: dbb1288fe95d9444eb4d65597f896345, type: 3}
-  - {fileID: 4483661059389355070, guid: 8c79a48c8d7163246b8691e035686c52, type: 3}
-  - {fileID: 8102847651111001386, guid: 9d8abf34ce99027479742b8acee8c402, type: 3}
-  colLayer:
-    serializedVersion: 2
-    m_Bits: 64
+  rockHolder: {fileID: 575580003}
+  spawnPlants: {fileID: 1758612466}
   mat: {fileID: 2100000, guid: 059cceb0ba6e50741bfe6ec2c755d5f4, type: 2}
   invisMat: {fileID: 0}
+  meshHolderPrefab: {fileID: 4541549713160470440, guid: ab827f2322d82af42a7b2b65927ae4dd, type: 3}
   mixedRealityPlayspace: {fileID: 12967395}
   meshCopyCollection: []
-  mcRenderer: []
   floorHeight: 0
-  treeLine: 0
 --- !u!4 &318593113
 Transform:
   m_ObjectHideFlags: 0
@@ -1624,6 +1604,64 @@ Transform:
   - {fileID: 523225251}
   m_Father: {fileID: 0}
   m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1758612465
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1758612467}
+  - component: {fileID: 1758612466}
+  m_Layer: 0
+  m_Name: TreeHolder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1758612466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758612465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c0b76151d02ad143b22d23e15a26e8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bushes: []
+  grases: []
+  trees:
+  - {fileID: 422976285781115936, guid: 4b1ef93d57e2b3d448bbff69d1c24296, type: 3}
+  - {fileID: 8738487454210844930, guid: 20b08fbfe8effda42bb703a5a7b62aa0, type: 3}
+  - {fileID: 3951676973648154976, guid: b7a0a1992598b084b8aeace017f8888e, type: 3}
+  - {fileID: 3654033801181926522, guid: 1bf320e825143ad41b0b3e72b410e5e9, type: 3}
+  - {fileID: 7859068361545942409, guid: dbb1288fe95d9444eb4d65597f896345, type: 3}
+  - {fileID: 4483661059389355070, guid: 8c79a48c8d7163246b8691e035686c52, type: 3}
+  - {fileID: 8102847651111001386, guid: 9d8abf34ce99027479742b8acee8c402, type: 3}
+  currentlySpawningTrees: 1
+  treeLine: -3
+  colLayer:
+    serializedVersion: 2
+    m_Bits: 64
+--- !u!4 &1758612467
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1758612465}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -17.685911, y: -6.076879, z: 1.403669}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1801449374
 PrefabInstance:
