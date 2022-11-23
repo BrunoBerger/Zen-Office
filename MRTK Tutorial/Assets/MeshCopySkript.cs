@@ -109,13 +109,9 @@ public class MeshCopySkript : MonoBehaviour
             meshCopyCollection[i] = newMeshHolder;
         }
 
-
         if (doesTreeSpawning && !spawnPlants.currentlySpawningTrees)
-        {
             StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
-        }
 
- 
         //start Rock spawning
         rockHolder.DeleteRocks();
         Mesh[] meshesMesh = new Mesh[meshCopyCollection.Length];
