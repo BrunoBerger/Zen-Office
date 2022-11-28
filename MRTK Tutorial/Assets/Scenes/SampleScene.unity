@@ -489,12 +489,15 @@ MonoBehaviour:
   meshLayer:
     serializedVersion: 2
     m_Bits: 64
-  visualDebugging: 4
+  visualDebugging: 2
+  DebugClusterInfo: 1
+  DebugRaysOnEdges: 1
   debuggingObjects:
   - {fileID: 939255720111623296, guid: 027c92223c6df5641b132c585cb3aa55, type: 3}
   - {fileID: 719342376060115454, guid: a941bd7d8c20e624789460ad2575c0dc, type: 3}
   - {fileID: 3176075206085866155, guid: 25dc53abf2cb3fa46887c016eb5979a3, type: 3}
   - {fileID: 4025106884658970586, guid: d933d8938c139504596a13391b1ff707, type: 3}
+  heightDebugCube: {fileID: 3176075206085866155, guid: 01891bb7e3c27824d9c28599709963bb, type: 3}
 --- !u!1 &319949018
 GameObject:
   m_ObjectHideFlags: 0
