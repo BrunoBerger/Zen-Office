@@ -6,38 +6,45 @@ using UnityEngine.InputSystem.XInput;
 
 public class TableInterpreter : MonoBehaviour
 {
-    [HideInInspector] public float floorLevel;
+    //layer of the copy from HoloLens' recognized Mesh
     public LayerMask meshLayer;
+
+    //Visual-Debugging objects and settings
     public VisualDebugging visualDebugging;
     public bool DebugClusterInfo;
     public bool DebugRaysOnEdges;
     public GameObject[] debuggingObjects;
     public GameObject heightDebugCube;
-    float rayInterval = 0.025f;
-    int firstAbstraction = 6;
-    int rayDimension;
-    float gridRadius = 3;
-    int _clusterIndex = 1;
-    Tile[,] tileHolder;
-    List<List<TwoInt>> tileClusters;
-    List<ExtraClusterInfo> extraClustersInfo;
+
+    //settings
+    [HideInInspector] public readonly float rayInterval = 0.025f;
+    [HideInInspector] public readonly int firstAbstraction = 6;
+    [HideInInspector] public readonly float gridRadius = 3;
+    [HideInInspector] public int rayDimension { get; private set; }
+    [HideInInspector] public float floorLevel { get; private set; }
+
+    //storage, calculated Tile infrastructure
+    [HideInInspector] public Tile[,] TileHolder { get; private set; }
+    [HideInInspector] public List<List<TwoInt>> TileClusters { get; private set; }
+    [HideInInspector] public List<ExtraClusterInfo> ExtraClustersInfo { get; private set; }
+
+    //computing vars
     List<TwoInt> currentCluster;
     ExtraClusterInfo currentExtraInfo;
-    //bool[,] roughChecked;
-    //List<int> densesRefs;
+    int _clusterIndex = 1;
     List<TwoInt> toCheck0;
     List<TwoInt> toCheck1;
     int currentlyCleared = 0;
     bool[,] TriedToAddOnce;
 
-    // Start is called before the first frame update
+    //setup of lists and vars
     void Start()
     {
         rayDimension = (int)(2 * gridRadius / rayInterval);
-        tileHolder = new Tile[rayDimension, rayDimension];
-        tileClusters = new List<List<TwoInt>>();
+        TileHolder = new Tile[rayDimension, rayDimension];
+        TileClusters = new List<List<TwoInt>>();
         currentCluster = new List<TwoInt>();
-        extraClustersInfo = new List<ExtraClusterInfo>();
+        ExtraClustersInfo = new List<ExtraClusterInfo>();
         currentExtraInfo = new ExtraClusterInfo();
         toCheck0 = new List<TwoInt>();
         toCheck1 = new List<TwoInt>();
@@ -45,10 +52,10 @@ public class TableInterpreter : MonoBehaviour
         //Debug.Log("holder.length is: " + tileHolder[].Length+"    and should be: "+holderSize);
     }
 
-    // Update is called once per frame
     public void StartTableInterpretation(float floorlevel)
     {
         floorLevel = floorlevel;
+        //a rough grid searches for Parts of a Table. If it finds a Part, a cluster of fine tiles is spread from its position and registers correlation
         for(int xRough=0; xRough < rayDimension; xRough += firstAbstraction)
         {
             for (int zRough = 0; zRough < rayDimension; zRough += firstAbstraction)
@@ -76,13 +83,13 @@ public class TableInterpreter : MonoBehaviour
                 }
                 if (currentCluster.Count > 0)
                 {
-                    tileClusters.Add(new List<TwoInt>(currentCluster));
+                    TileClusters.Add(new List<TwoInt>(currentCluster));
                     int elementCount = currentCluster.Count;
                     currentExtraInfo.SetAverageX(currentExtraInfo.addedXi / elementCount * rayInterval - gridRadius);
                     currentExtraInfo.SetAverageZ(currentExtraInfo.addedZi / elementCount * rayInterval - gridRadius);
                     currentExtraInfo.SetAverageH(currentExtraInfo.addedH / elementCount);
                     //(note: unlike classes structs always return copies and not references)
-                    extraClustersInfo.Add(currentExtraInfo);
+                    ExtraClustersInfo.Add(currentExtraInfo);
                     currentCluster.Clear();
                     currentExtraInfo = new ExtraClusterInfo();
                     Debug.Log("created new cluster: " + _clusterIndex);
@@ -90,10 +97,13 @@ public class TableInterpreter : MonoBehaviour
                 }
             }
         }
-        CalcAllEdgenessesEtc();
 
+        //tile clusters were detected,
+        //this now calculates further properties of the tiles within those clusters
+        CalcAllEdgenessesEtc();
         CalcEdgeDistEtc();
 
+        //visual Debugging
         if (visualDebugging != VisualDebugging.no) VisualyDebugAll();
         if (DebugClusterInfo) VisualyDebugClusterInfo();
     }
@@ -106,7 +116,7 @@ public class TableInterpreter : MonoBehaviour
             //bool byHill = (i == 0);
             TriedToAddOnce = new bool[rayDimension, rayDimension];
             int clusterIndex = 0;
-            foreach (List<TwoInt> cluster in tileClusters)
+            foreach (List<TwoInt> cluster in TileClusters)
             {
                 currentlyCleared = 0;
                 int maxDist = -1; //this can be the maximum distToHill or distToRift
@@ -115,15 +125,15 @@ public class TableInterpreter : MonoBehaviour
                     int xi = tile.xi;
                     int zi = tile.zi;
                     
-                    //Add Tiles on Hills/Rifts into the "to-check"-list
-                    if (tileHolder[xi, zi].edgeness > 0 && borderType==0 || tileHolder[xi, zi].hillness > 0 && borderType ==1 || tileHolder[xi, zi].riftness >0 && borderType ==2)
+                    //Add Tiles on Edges/Hills/Rifts into the "to-check"-list
+                    if (TileHolder[xi, zi].edgeness > 0 && borderType==0 || TileHolder[xi, zi].hillness > 0 && borderType ==1 || TileHolder[xi, zi].riftness >0 && borderType ==2)
                     {
 
                         if (DebugRaysOnEdges)
                         {
-                            int c = tileHolder[xi, zi].clusterIndex % 4;
+                            int c = TileHolder[xi, zi].clusterIndex % 4;
                             Color clusterColor = c == 0 ? Color.gray : c == 1 ? Color.green : c == 2 ? Color.blue : Color.red;
-                            Debug.DrawRay(new Vector3(xi * rayInterval - gridRadius, tileHolder[xi, zi].h + floorLevel, zi * rayInterval - gridRadius), Vector3.up, clusterColor, 1000000);
+                            Debug.DrawRay(new Vector3(xi * rayInterval - gridRadius, TileHolder[xi, zi].h + floorLevel, zi * rayInterval - gridRadius), Vector3.up, clusterColor, 1000000);
                         }
 
                         toCheck0.Add(new TwoInt(xi, zi));
@@ -152,13 +162,13 @@ public class TableInterpreter : MonoBehaviour
                         currentlyCleared = 0;
                     }
                 }
-                ExtraClusterInfo extraInfo = extraClustersInfo[clusterIndex];
+                ExtraClusterInfo extraInfo = ExtraClustersInfo[clusterIndex];
 
                 Debug.Log("maxDist of Cluster " + clusterIndex + " is " + maxDist);
                 if (borderType == 0) extraInfo.maxEdgeDist = maxDist;
                 else if(borderType == 1) extraInfo.maxHillDist=maxDist;
                 else if (borderType == 2) extraInfo.maxRiftDist = maxDist;
-                extraClustersInfo[clusterIndex] = extraInfo;
+                ExtraClustersInfo[clusterIndex] = extraInfo;
                 //Debug.Log("recheck:" + (byHill?extraClustersInfo[clusterIndex].maxHillDist: extraClustersInfo[clusterIndex].maxRiftDist));
                 clusterIndex++;
             }
@@ -194,9 +204,9 @@ public class TableInterpreter : MonoBehaviour
         int xi = xz.xi;
         int zi = xz.zi;
 
-        int dist = borderType == 0 ? tileHolder[xi, zi].distEdge:
-                   borderType == 1 ? tileHolder[xi, zi].distHill 
-                                   : tileHolder[xi, zi].distRift;
+        int dist = borderType == 0 ? TileHolder[xi, zi].distEdge:
+                   borderType == 1 ? TileHolder[xi, zi].distHill 
+                                   : TileHolder[xi, zi].distRift;
 
         TryToAddForDist(dist, borderType, xi + 1, zi);
         TryToAddForDist(dist, borderType, xi - 1, zi);
@@ -216,11 +226,11 @@ public class TableInterpreter : MonoBehaviour
             if (!TriedToAddOnce[xi, zi])
             {
                 TriedToAddOnce[xi, zi] = true;
-                if (tileHolder[xi, zi].state == State.fine)
+                if (TileHolder[xi, zi].state == State.fine)
                 {
-                    if (borderType == 0) tileHolder[xi, zi].distEdge = prevIndex + 1;
-                    if (borderType == 1) tileHolder[xi, zi].distHill = prevIndex + 1;
-                    else tileHolder[xi, zi].distRift = prevIndex + 1;
+                    if (borderType == 0) TileHolder[xi, zi].distEdge = prevIndex + 1;
+                    if (borderType == 1) TileHolder[xi, zi].distHill = prevIndex + 1;
+                    else TileHolder[xi, zi].distRift = prevIndex + 1;
 
                     //this two lists swap with clearing and filling each other
                     if (currentlyCleared == 1) toCheck0.Add(new TwoInt(xi, zi));
@@ -267,7 +277,7 @@ public class TableInterpreter : MonoBehaviour
             if (!TriedToAddOnce[xi, zi])
             {
                 TriedToAddOnce[xi, zi] = true;
-                if (!tileHolder[xi, zi].tested)
+                if (!TileHolder[xi, zi].tested)
                 {
                     //Debug.Log("tryToAdd: " + xi + "," + zi + "   currentlyCleared is " + currentlyCleared);
                     if (currentlyCleared == 1) toCheck0.Add(new TwoInt(xi, zi));
@@ -284,7 +294,7 @@ public class TableInterpreter : MonoBehaviour
         //Debug.Log("checktile at " + xi + "," + zi);
         if (IsOutOfBounds(xi,zi)) return null; //prevent index out of bounds
         //Debug.Log("in bound checktile at " + xi + "," + zi);
-        if (tileHolder[xi, zi].tested) return null;
+        if (TileHolder[xi, zi].tested) return null;
         //Debug.Log("untested tile at " + xi + "," + zi);
         RaycastHit hitInfo;
 
@@ -292,7 +302,7 @@ public class TableInterpreter : MonoBehaviour
         {
             //Debug.Log("try create tile at " + xi + "," + zi);
             Tile testedTile = new Tile(hitInfo.point.y - floorLevel, xi, zi, _clusterIndex);
-            tileHolder[xi, zi] = testedTile;
+            TileHolder[xi, zi] = testedTile;
             if (testedTile.state == State.fine)
             {
                 //Debug.Log("try visualyDebug tile at " + xi + "," + zi);
@@ -327,7 +337,7 @@ public class TableInterpreter : MonoBehaviour
 
     void CalcAllEdgenessesEtc()
     {
-        foreach(List<TwoInt> cluster in tileClusters)
+        foreach(List<TwoInt> cluster in TileClusters)
         {
             foreach(TwoInt tile in cluster)
             {
@@ -346,27 +356,27 @@ public class TableInterpreter : MonoBehaviour
     {
         int neighbourX = xi + changeX;
         int neighbourZ = zi + changeZ;
-        Tile tile = tileHolder[xi, zi];
-        if (IsOutOfBounds(neighbourX, neighbourZ)) tileHolder[xi, zi].edgeness++;
+        Tile tile = TileHolder[xi, zi];
+        if (IsOutOfBounds(neighbourX, neighbourZ)) TileHolder[xi, zi].edgeness++;
         else
         {
-            if (tileHolder[neighbourX, neighbourZ].state == State.tooHigh)
+            if (TileHolder[neighbourX, neighbourZ].state == State.tooHigh)
             {
-                tileHolder[xi, zi].edgeness++;
-                tileHolder[xi, zi].hillness++;
+                TileHolder[xi, zi].edgeness++;
+                TileHolder[xi, zi].hillness++;
                 //Debug.Log("Set hillness to: "+ tileHolder[xi, zi].hillness);
             }
-            else if (tileHolder[neighbourX, neighbourZ].state == State.tooLow)
+            else if (TileHolder[neighbourX, neighbourZ].state == State.tooLow)
             {
-                tileHolder[xi, zi].edgeness++;
-                tileHolder[xi, zi].riftness++;
+                TileHolder[xi, zi].edgeness++;
+                TileHolder[xi, zi].riftness++;
                 //Debug.Log("Set riftness to: " + tileHolder[xi, zi].riftness);
                 
             }
             //this happens when there was no terrain at the tiles position because of gaps in the Mesh from HoloLens
-            else if (tileHolder[neighbourX, neighbourZ].state == State.notTested) 
+            else if (TileHolder[neighbourX, neighbourZ].state == State.notTested) 
             {
-                tileHolder[xi, zi].edgeness++;
+                TileHolder[xi, zi].edgeness++;
                 //Debug.LogError("Checking unchecked Tile as neighbour");
             }
         }
@@ -375,7 +385,7 @@ public class TableInterpreter : MonoBehaviour
 
     void VisuallyDebugTile(int xi, int zi)
     {
-        Tile tile = tileHolder[xi,zi];
+        Tile tile = TileHolder[xi,zi];
         int selectIndex = 0;
         if (visualDebugging == VisualDebugging.byCluster)
         {
@@ -410,7 +420,7 @@ public class TableInterpreter : MonoBehaviour
 
     void VisualyDebugAll()
     {
-        foreach (List<TwoInt> cluster in tileClusters)
+        foreach (List<TwoInt> cluster in TileClusters)
         {
             foreach (TwoInt tile in cluster)
             {
@@ -421,7 +431,7 @@ public class TableInterpreter : MonoBehaviour
         if (DebugClusterInfo)
         {
             int maxDist=-1;
-            foreach (ExtraClusterInfo clusterInfo in extraClustersInfo)
+            foreach (ExtraClusterInfo clusterInfo in ExtraClustersInfo)
             {
                 ExtraClusterInfo info = clusterInfo;
                 if (visualDebugging == VisualDebugging.byEdgeDist) maxDist = info.maxEdgeDist;
@@ -439,7 +449,7 @@ public class TableInterpreter : MonoBehaviour
 
     void VisualyDebugClusterInfo()
     {
-        foreach(ExtraClusterInfo info in extraClustersInfo)
+        foreach(ExtraClusterInfo info in ExtraClustersInfo)
         {
             int height = info.maxEdgeDist;
             for(int i = height; i>=0; i--)
@@ -449,7 +459,58 @@ public class TableInterpreter : MonoBehaviour
         }
     }
 
-    struct Tile
+    public float IAsF(int i)
+    {
+        return i * rayInterval - gridRadius;
+    }
+
+
+
+    //for parameters "towards" and "avoid" following int has following meaning:
+    //-1 = nothing
+    // 0 = edge
+    // 1 = hill
+    // 2 = rift
+    public List<TwoInt> FindPathOut(TwoInt startingPoint, int towards, int avoid, TwoInt? preferredDir)
+    {
+        bool hasPrefDir = (preferredDir != null);
+        int prevDir = -1; //-1=noPrevDir 0=up, 1=right, 2=down, 3=left
+        List<TwoInt> path = new List<TwoInt>();
+        int currentRiftDist = TileHolder[startingPoint.xi, startingPoint.zi].distRift;
+
+        path.Add(startingPoint);
+        TwoInt[] neighbours = new TwoInt[4];
+        
+        bool reachedEdge = false;
+        while (!reachedEdge)
+        {
+            bool[] options = new bool[] {true,true,true,true};
+            if(prevDir>-1)options[prevDir] = false;
+
+
+
+
+
+
+
+
+            prevDir = 0; //REPLACE 0 LATER!!!!
+        }
+
+
+
+
+
+
+
+
+        return new List<TwoInt>();//REPLACE LATER!!!
+    }
+
+
+
+
+    public struct Tile
     {
         public bool tested;
         public float h;
@@ -492,7 +553,7 @@ public class TableInterpreter : MonoBehaviour
         }
     }
 
-    struct TwoInt
+    public struct TwoInt
     {
         public int xi;
         public int zi;
@@ -534,7 +595,7 @@ public class TableInterpreter : MonoBehaviour
         public void SetAverageH(float h) { averageH = h; }
     }
 
-    enum State
+    public enum State
     {
         notTested,
         fine,
