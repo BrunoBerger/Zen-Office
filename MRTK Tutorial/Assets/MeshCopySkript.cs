@@ -16,7 +16,6 @@ public class MeshCopySkript : MonoBehaviour
     public SpawnRocks rockHolder;
     public SpawnPlants spawnPlants;
     public Material mat;
-    public Material invisMat;
 
     public GameObject meshHolderPrefab;
     public GameObject mixedRealityPlayspace;
