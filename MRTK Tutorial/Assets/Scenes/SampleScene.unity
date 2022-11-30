@@ -223,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 682302dfcf28aac42b9472331a1e1430, type: 2}
     - target: {fileID: 8144947649032303016, guid: cf3153b9aa5db0d41b3782cf5cd4f6cd, type: 3}
       propertyPath: m_Name
-      value: MaskingCube
+      value: DebugCube
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cf3153b9aa5db0d41b3782cf5cd4f6cd, type: 3}
@@ -2040,6 +2040,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3950242930111171463, guid: ad23ab5ed51efce439d463f9935ea109, type: 3}
   m_PrefabInstance: {fileID: 2089751338}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2112608582 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8144947649032303016, guid: cf3153b9aa5db0d41b3782cf5cd4f6cd, type: 3}
+  m_PrefabInstance: {fileID: 152544734}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2114660243
 GameObject:
   m_ObjectHideFlags: 0
@@ -2069,10 +2074,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3a21bcfb173d5e48b9c246ab4194ed5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  debugTarget: {fileID: 0}
+  debugTarget: {fileID: 2112608582}
+  currentlySpawningMask: 0
   minTipHoldTime: 2
   minTipDistance: 0.04
   maskPrefab: {fileID: 8144947648614899864}
+  leftIndexThumbDistance: 0
+  rightIndexThumbDistance: 0
 --- !u!4 &2114660245
 Transform:
   m_ObjectHideFlags: 0
