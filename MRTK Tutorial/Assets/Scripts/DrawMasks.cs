@@ -62,7 +62,7 @@ public class DrawMasks : MonoBehaviour
                 GameObject newMask = Instantiate(
                     original: maskPrefab,
                     position: leftFingerTip.position,
-                    rotation: cameraTransf.rotation,
+                    rotation: new Quaternion(0,0,0,0),
                     parent: transform
                 );
                 newMask.GetComponent<NearInteractionGrabbable>().enabled = false;
@@ -77,8 +77,11 @@ public class DrawMasks : MonoBehaviour
 
     IEnumerator ScaleMask(GameObject mask)
     {
-        Vector3 startPos = mask.transform.position;
-        Transform tmpParent = mask.transform;
+        Vector3 startPos = leftFingerTip.position;
+        var tempGameObject = new GameObject();
+        Transform tmpParent = tempGameObject.transform;
+
+        tmpParent.position = startPos - mask.transform.localScale * 0.5f;
         mask.transform.parent = tmpParent;
 
 
@@ -88,16 +91,17 @@ public class DrawMasks : MonoBehaviour
             Vector3 vecToLeft = leftFingerTip.position - startPos;
             Vector3 vecToRight = rightFingerTip.position - startPos;
             Vector3 direction = Vector3.Cross(vecToLeft, vecToRight);
-            float leftHandDistanceToStart = Vector3.Magnitude(vecToLeft);
-            float rightHandDistanceToStart = Vector3.Magnitude(vecToRight);
+            //float leftHandDistanceToStart = Vector3.Magnitude(vecToLeft);
+            //float rightHandDistanceToStart = Vector3.Magnitude(vecToRight);
 
-            tmpParent.localScale = new Vector3(rightHandDistanceToStart, tmpParent.localScale.y, tmpParent.localScale.z);
+            tmpParent.localScale = new Vector3(vecToRight.x, vecToRight.y, vecToRight.z);
             //tmpParent.position = rightFingerTip.position;
 
 
             yield return null;
         }
         mask.transform.parent = null;
+        Destroy(tempGameObject);
         currentlySpawningMask = false;
 
         yield return new WaitForSeconds(1); // to not immediatly trigger a new interaktion
