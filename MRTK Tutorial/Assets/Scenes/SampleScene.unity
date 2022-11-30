@@ -428,6 +428,8 @@ MonoBehaviour:
   meshHolderPrefab: {fileID: 4541549713160470440, guid: ab827f2322d82af42a7b2b65927ae4dd, type: 3}
   mixedRealityPlayspace: {fileID: 12967395}
   meshCopyCollection: []
+  meshesMeshCollection: []
+  meshFilterCollection: []
   floorHeight: 0
 --- !u!4 &318593113
 Transform:
@@ -473,6 +475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4ce700d83a18e448a9d916daa19a6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  water: {fileID: 100000, guid: 780611a67e8e941a2b3aa96e5915a793, type: 3}
 --- !u!114 &318593116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -485,11 +488,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebf48d3002ba8074787c751d639bf246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  floorLevel: 0
   meshLayer:
     serializedVersion: 2
     m_Bits: 64
-  visualDebugging: 2
+  visualDebugging: 0
   DebugClusterInfo: 1
   DebugRaysOnEdges: 1
   debuggingObjects:

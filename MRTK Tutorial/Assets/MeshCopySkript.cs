@@ -12,7 +12,6 @@ public class MeshCopySkript : MonoBehaviour
     public bool permaMeshUpdate = false;
     public bool doesTreeSpawning=true;
 
-    
     public SpawnRocks rockHolder;
     public SpawnPlants spawnPlants;
     public Material mat;
@@ -22,6 +21,10 @@ public class MeshCopySkript : MonoBehaviour
     public GameObject mixedRealityPlayspace;
     [HideInInspector]
     public GameObject[] meshCopyCollection;
+    [HideInInspector]
+    public Mesh[] meshesMeshCollection;
+    [HideInInspector]
+    public MeshFilter[] meshFilterCollection;
     bool sasReady = false;
 
     Transform transformOpenSMO;
@@ -105,8 +108,17 @@ public class MeshCopySkript : MonoBehaviour
                     floorHeight = vertices[v].y;
                 }
             }
+            Debug.Log("floorHeight is: " + floorHeight);
             newMesh.SetUVs(0, uvs);
             meshCopyCollection[i] = newMeshHolder;
+            
+        }
+        meshesMeshCollection = new Mesh[meshCopyCollection.Length];
+        meshFilterCollection = new MeshFilter[meshCopyCollection.Length];
+        for (int j = 0; j < meshCopyCollection.Length; j++)
+        {
+            meshFilterCollection[j] = meshCopyCollection[j].GetComponent<MeshFilter>();
+            meshesMeshCollection[j] = meshFilterCollection[j].mesh;
         }
 
 
@@ -118,15 +130,13 @@ public class MeshCopySkript : MonoBehaviour
  
         //start Rock spawning
         rockHolder.DeleteRocks();
-        Mesh[] meshesMesh = new Mesh[meshCopyCollection.Length];
-        for (int i=0; i < meshCopyCollection.Length;i++)
-        {
-            meshesMesh[i] = meshCopyCollection[i].GetComponent<MeshFilter>().mesh;
-        }
-        rockHolder.StartRockSpawning(meshesMesh);
+        
+        rockHolder.StartRockSpawning(meshesMeshCollection);
 
 
 
         GetComponent<TableInterpreter>().StartTableInterpretation(floorHeight);
+
+        GetComponent<SpawnPond>().StartPondSpawning();
     }
 }

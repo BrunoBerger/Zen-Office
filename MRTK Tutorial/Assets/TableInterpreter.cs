@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem.XInput;
+using Random = UnityEngine.Random;
 
 public class TableInterpreter : MonoBehaviour
 {
@@ -92,7 +93,7 @@ public class TableInterpreter : MonoBehaviour
                     ExtraClustersInfo.Add(currentExtraInfo);
                     currentCluster.Clear();
                     currentExtraInfo = new ExtraClusterInfo();
-                    Debug.Log("created new cluster: " + _clusterIndex);
+                    //Debug.Log("created new cluster: " + _clusterIndex);
                     _clusterIndex++;
                 }
             }
@@ -164,7 +165,7 @@ public class TableInterpreter : MonoBehaviour
                 }
                 ExtraClusterInfo extraInfo = ExtraClustersInfo[clusterIndex];
 
-                Debug.Log("maxDist of Cluster " + clusterIndex + " is " + maxDist);
+                //Debug.Log("maxDist of Cluster " + clusterIndex + " is " + maxDist);
                 if (borderType == 0) extraInfo.maxEdgeDist = maxDist;
                 else if(borderType == 1) extraInfo.maxHillDist=maxDist;
                 else if (borderType == 2) extraInfo.maxRiftDist = maxDist;
@@ -471,30 +472,112 @@ public class TableInterpreter : MonoBehaviour
     // 0 = edge
     // 1 = hill
     // 2 = rift
-    public List<TwoInt> FindPathOut(TwoInt startingPoint, int towards, int avoid, TwoInt? preferredDir)
+    public List<TwoInt> FindPathOut(TwoInt startingPoint, int towards, int avoid)//, TwoInt? preferredDir)
     {
-        bool hasPrefDir = (preferredDir != null);
+        //bool hasPrefDir = (preferredDir != null);
         int prevDir = -1; //-1=noPrevDir 0=up, 1=right, 2=down, 3=left
         List<TwoInt> path = new List<TwoInt>();
-        int currentRiftDist = TileHolder[startingPoint.xi, startingPoint.zi].distRift;
-
+        int currentDist = towards==0? TileHolder[startingPoint.xi, startingPoint.zi].distEdge:
+                          towards==1? TileHolder[startingPoint.xi, startingPoint.zi].distHill:
+                                      TileHolder[startingPoint.xi, startingPoint.zi].distRift;
+        //currentDist--;
         path.Add(startingPoint);
+        TwoInt prevTile = startingPoint;
         TwoInt[] neighbours = new TwoInt[4];
         
-        bool reachedEdge = false;
-        while (!reachedEdge)
+        //bool reachedEdge = false;
+        while (currentDist>0) //MAYBE CHANGE TO 0 AND SEARCH FOR OTHER ERROER!!!!!!!!!!!!!!!!!!!!!!
         {
+            Debug.Log("current dist at pathOutFinding: " + currentDist);
             bool[] options = new bool[] {true,true,true,true};
-            if(prevDir>-1)options[prevDir] = false;
+            //filter out previous direction from possible directions
+            if (prevDir > -1) options[prevDir] = false;
 
+            //filter out directions which are not going towards goal or are out of bounds
+            int invalidOptions = 0;
+            for(int i=0; i<4; i++)
+            {
+                if (options[i])
+                {
+                    TwoInt dir = Dir(i);
+                    TwoInt pos = new TwoInt(prevTile.xi + dir.xi, prevTile.zi + dir.zi);
+                    neighbours[i] = pos;
+                    if (IsOutOfBounds(pos.xi, pos.zi))
+                    {
+                        options[i] = false;
+                        invalidOptions++;
+                    }
+                    else
+                    {
+                        int checkedDist = towards == 0 ? TileHolder[pos.xi, pos.zi].distEdge :
+                                          towards == 1 ? TileHolder[pos.xi, pos.zi].distHill :
+                                                         TileHolder[pos.xi, pos.zi].distRift;
 
+                        if (checkedDist > currentDist-1)
+                        {
+                            options[i] = false;
+                            invalidOptions++;
+                        }
+                    }
+                }
+                else invalidOptions++;
+            }
 
+            if (invalidOptions > 3) Debug.LogError("Something went wrong with finding a pathing out of a cluster");
 
+            //filter out directions by avoiding something (like: try to keep distance to hills high)
+            if (avoid > -1)
+            {
+                int highestAvoidRating = 0;
+                for (int i = 0; i < 4; i++)
+                {
+                    if (options[i])
+                    {
+                        Tile checkedTile = TileHolder[neighbours[i].xi, neighbours[i].zi];
+                        int rating = avoid == 0 ? checkedTile.distEdge :
+                                     avoid == 1 ? checkedTile.distHill :
+                                                  checkedTile.distRift;
+                        if (rating > highestAvoidRating) highestAvoidRating = rating;
+                    }
+                }
+                for (int i = 0; i < 4; i++)
+                {
+                    if (options[i])
+                    {
+                        Tile checkedTile = TileHolder[neighbours[i].xi, neighbours[i].zi];
+                        int rating = avoid == 0 ? checkedTile.distEdge :
+                                     avoid == 1 ? checkedTile.distHill :
+                                                  checkedTile.distRift;
+                        if(rating < highestAvoidRating)
+                        {
+                            options[i] = false;
+                            invalidOptions++;
+                        }
+                    }
+                }
+            }
+            if (invalidOptions > 3) Debug.LogError("Something went wrong with at rating the avoid options for pathing out of a cluster");
 
+            List<int> leftoverDirs = new List<int>();
+            for (int i = 0; i < 4; i++)
+            {
+                if (options[i])
+                {
+                    leftoverDirs.Add(i);
+                }
+            }
+            int chosenDir = leftoverDirs[Random.Range(0, leftoverDirs.Count)];
+            path.Add(neighbours[chosenDir]);
+            prevTile = neighbours[chosenDir];
+            switch (chosenDir)
+            {
+                case 0: prevDir = 2;break;
+                case 1: prevDir = 3;break;
+                case 2: prevDir = 0;break;
+                case 3: prevDir = 1;break;
+            }
 
-
-
-            prevDir = 0; //REPLACE 0 LATER!!!!
+            currentDist--;
         }
 
 
@@ -504,10 +587,14 @@ public class TableInterpreter : MonoBehaviour
 
 
 
-        return new List<TwoInt>();//REPLACE LATER!!!
+        return path;
     }
 
-
+    TwoInt Dir(int dirInt)
+    {
+        //returned directions depending on dirInt:  0=up, 1=right, 2=down, 3=left
+        return new TwoInt(dirInt == 1 ? 1 : dirInt == 3 ? -1 : 0, dirInt == 0 ? -1 : dirInt == 2 ? 1 : 0);
+    }
 
 
     public struct Tile
@@ -538,7 +625,7 @@ public class TableInterpreter : MonoBehaviour
             this.zi = zi;
             //this.fromX = fromX;
             //this.fromZ = fromZ;
-            state = h < 0.65f ? State.tooLow : h < 0.8f ? State.fine : State.tooHigh;
+            state = h < 0.65f ? State.tooLow : h < 1.0f ? State.fine : State.tooHigh;
             valid = (state == State.fine);
             //distToEdge = -1;
             this.clusterIndex = clusterIndex;
@@ -571,18 +658,18 @@ public class TableInterpreter : MonoBehaviour
         public float addedZi, averageZ;
         public float addedH, averageH;
 
-        public void TrySetMaxEdgeDist(int testedDist)
-        {
-            if (testedDist > maxEdgeDist) maxEdgeDist = testedDist;
-        }
-        public void TrySetMaxHillDist(int testedDist)
-        {
-            if (testedDist > maxHillDist) maxHillDist = testedDist;
-        }
-        public void TrySetMaxRiftDist(int testedDist)
-        {
-            if (testedDist > maxRiftDist) maxRiftDist = testedDist;
-        }
+        //public void TrySetMaxEdgeDist(int testedDist)
+        //{
+        //    if (testedDist > maxEdgeDist) maxEdgeDist = testedDist;
+        //}
+        //public void TrySetMaxHillDist(int testedDist)
+        //{
+        //    if (testedDist > maxHillDist) maxHillDist = testedDist;
+        //}
+        //public void TrySetMaxRiftDist(int testedDist)
+        //{
+        //    if (testedDist > maxRiftDist) maxRiftDist = testedDist;
+        //}
         public void SetMaxEdgeDist(int dist) { maxEdgeDist = dist; }
         public void SetMaxHillDist(int dist) { maxHillDist = dist; }
         public void SetMaxRiftDist(int dist) { maxRiftDist = dist; }
