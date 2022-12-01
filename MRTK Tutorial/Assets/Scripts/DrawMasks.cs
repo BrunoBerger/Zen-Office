@@ -8,7 +8,7 @@ using UnityEngine;
 
 public class DrawMasks : MonoBehaviour
 {
-    public bool currentlySpawningMask;
+    public bool currentlyScalingMask;
     float tipHoldTime;
     [SerializeField, Range(0, 5)] float minTipHoldTime;
     [SerializeField, Range(0f, 0.1f)] float minTipDistance;
@@ -29,7 +29,7 @@ public class DrawMasks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentlySpawningMask = false;
+        currentlyScalingMask = false;
         tipHoldTime = 0;
         placedMasks = new List<GameObject>();
     }
@@ -55,33 +55,38 @@ public class DrawMasks : MonoBehaviour
             if (tipDistance < minTipDistance)
                 tipHoldTime += Time.deltaTime;
 
-            if (!currentlySpawningMask && tipHoldTime > minTipHoldTime)
+            if (!currentlyScalingMask && tipHoldTime > minTipHoldTime)
             {
-                currentlySpawningMask = true;
-                Transform cameraTransf = Camera.main.transform;
-                GameObject newMask = Instantiate(
-                    original: maskPrefab,
-                    position: leftFingerTip.position,
-                    rotation: new Quaternion(0,0,0,0),
-                    parent: transform
-                );
+                GameObject newMask = SpawnMask();
+
                 newMask.GetComponent<NearInteractionGrabbable>().enabled = false;
                 newMask.GetComponent<ObjectManipulator>().enabled = false;
-                placedMasks.Add(newMask);
                 StartCoroutine(ScaleMask(newMask));
                 tipHoldTime = 0;
             }
 
         }
     }
+    public GameObject SpawnMask()
+    {
+        GameObject newMask = Instantiate(
+            original: maskPrefab,
+            position: leftFingerTip.position,
+            rotation: new Quaternion(0, 0, 0, 0),
+            parent: transform
+        );
+        placedMasks.Add(newMask);
+        return newMask;
+    }
 
     IEnumerator ScaleMask(GameObject mask)
     {
+        currentlyScalingMask = true;
         Vector3 startPos = leftFingerTip.position;
         var tempGameObject = new GameObject();
         Transform tmpParent = tempGameObject.transform;
 
-        tmpParent.position = startPos - mask.transform.localScale * 0.5f;
+        tmpParent.position = startPos - mask.transform.lossyScale * 0.5f;
         mask.transform.parent = tmpParent;
 
 
@@ -102,7 +107,7 @@ public class DrawMasks : MonoBehaviour
         }
         mask.transform.parent = null;
         Destroy(tempGameObject);
-        currentlySpawningMask = false;
+        currentlyScalingMask = false;
 
         yield return new WaitForSeconds(1); // to not immediatly trigger a new interaktion
         mask.GetComponent<NearInteractionGrabbable>().enabled = true;

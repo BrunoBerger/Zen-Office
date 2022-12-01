@@ -7,9 +7,14 @@ using UnityEngine;
 public class HandMenu : MonoBehaviour
 {
     public DrawMasks drawMasks; 
-    public void DeleteButton()
+    public void DeleteMasks()
     {
         Debug.LogWarning("Deleting Masks");
         drawMasks.DeleteMasks();
+    }
+
+    public void SpawnMask()
+    {
+        drawMasks.SpawnMask();
     }
 }
