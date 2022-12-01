@@ -6,7 +6,9 @@ using UnityEngine;
 
 public class HandMenu : MonoBehaviour
 {
-    public DrawMasks drawMasks; 
+    public DrawMasks drawMasks;
+    public MeshCopySkript meshCopySkript;
+
     public void DeleteMasks()
     {
         Debug.LogWarning("Deleting Masks");
@@ -16,5 +18,10 @@ public class HandMenu : MonoBehaviour
     public void SpawnMask()
     {
         drawMasks.SpawnMask();
+    }
+
+    public void UpdateMesh()
+    {
+        meshCopySkript.UpdateMesh();
     }
 }

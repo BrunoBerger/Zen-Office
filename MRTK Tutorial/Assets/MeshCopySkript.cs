@@ -72,7 +72,7 @@ public class MeshCopySkript : MonoBehaviour
         }
     }
 
-    void UpdateMesh()
+    public void UpdateMesh()
     {
         foreach (GameObject mesh in meshCopyCollection)
         {
