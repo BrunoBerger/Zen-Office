@@ -88,6 +88,7 @@ public class DrawMasks : MonoBehaviour
 
         tmpParent.position = startPos - mask.transform.lossyScale * 0.5f;
         mask.transform.parent = tmpParent;
+        tmpParent.position = startPos;
 
 
         while (leftIndexThumbDistance < minTipDistance && rightIndexThumbDistance < minTipDistance)
@@ -95,13 +96,14 @@ public class DrawMasks : MonoBehaviour
             tipHoldTime = 0; // to keep from spawning new masks at the same time
             Vector3 vecToLeft = leftFingerTip.position - startPos;
             Vector3 vecToRight = rightFingerTip.position - startPos;
-            Vector3 direction = Vector3.Cross(vecToLeft, vecToRight);
-            //float leftHandDistanceToStart = Vector3.Magnitude(vecToLeft);
-            //float rightHandDistanceToStart = Vector3.Magnitude(vecToRight);
 
-            tmpParent.localScale = new Vector3(vecToRight.x, vecToRight.y, vecToRight.z);
-            //tmpParent.position = rightFingerTip.position;
+            // no idea why five works perfectly
+            tmpParent.localScale = new Vector3(vecToRight.x, vecToRight.y, vecToRight.z) * 5;
 
+
+            //Vector3 direction = Vector3.Cross(vecToRight, vecToLeft);
+            //Debug.Log("direction" + direction);
+            //tmpParent.LookAt(-direction);
 
             yield return null;
         }
