@@ -16,7 +16,6 @@ public class MeshCopySkript : MonoBehaviour
     public SpawnRocks rockHolder;
     public SpawnPlants spawnPlants;
     public Material mat;
-    public Material invisMat;
 
     public GameObject meshHolderPrefab;
     public GameObject mixedRealityPlayspace;
@@ -73,7 +72,7 @@ public class MeshCopySkript : MonoBehaviour
         }
     }
 
-    void UpdateMesh()
+    public void UpdateMesh()
     {
         foreach (GameObject mesh in meshCopyCollection)
         {
@@ -109,13 +108,9 @@ public class MeshCopySkript : MonoBehaviour
             meshCopyCollection[i] = newMeshHolder;
         }
 
-
         if (doesTreeSpawning && !spawnPlants.currentlySpawningTrees)
-        {
             StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
-        }
 
- 
         //start Rock spawning
         rockHolder.DeleteRocks();
         Mesh[] meshesMesh = new Mesh[meshCopyCollection.Length];

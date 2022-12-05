@@ -47,9 +47,8 @@ public class SpawnPlants : MonoBehaviour
             {
                 float noiseSample = Mathf.PerlinNoise(x * 5, z * 5);
                 if (noiseSample < 0.5f)
-                {
                     continue;
-                }
+
                 if (Physics.Raycast(new Vector3(camPos.x + x, 0f, camPos.z + z), transform.TransformDirection(Vector3.down), out RaycastHit hit, 3, colLayer))
                 {
                     //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
