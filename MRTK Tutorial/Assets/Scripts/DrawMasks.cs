@@ -100,10 +100,9 @@ public class DrawMasks : MonoBehaviour
             // no idea why five works perfectly
             tmpParent.localScale = new Vector3(vecToRight.x, vecToRight.y, vecToRight.z) * 5;
 
-
-            //Vector3 direction = Vector3.Cross(vecToRight, vecToLeft);
-            //Debug.Log("direction" + direction);
-            //tmpParent.LookAt(-direction);
+            //Vector3 direction = Vector3.Cross(rightFingerTip.position, leftFingerTip.position);
+            //tmpParent.LookAt(direction * 360 * Mathf.PI);
+            //tmpParent.transform.eulerAngles = new Vector3(50, 50, 50);
 
             yield return null;
         }
