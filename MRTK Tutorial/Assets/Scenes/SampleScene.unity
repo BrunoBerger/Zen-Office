@@ -6684,6 +6684,7 @@ MonoBehaviour:
   colLayer:
     serializedVersion: 2
     m_Bits: 64
+  spawnProfile: {fileID: 0}
 --- !u!4 &1758612467
 Transform:
   m_ObjectHideFlags: 0

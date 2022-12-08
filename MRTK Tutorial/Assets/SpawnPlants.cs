@@ -14,6 +14,8 @@ public class SpawnPlants : MonoBehaviour
     [SerializeField] float treeLine;
     [SerializeField] LayerMask colLayer;
 
+    [SerializeField] SpawnProfile spawnProfile;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,7 @@ public class SpawnPlants : MonoBehaviour
             Destroy(obj);
         }
         placedObjects.RemoveAll(o => o == null);
-
+        Debug.Log(spawnProfile.speed);
 
         //spawn trees in grid around player:
         Vector3 camPos = Camera.main.transform.position;
