@@ -74,6 +74,11 @@ public class MeshCopySkript : MonoBehaviour
 
     public void UpdateMesh()
     {
+        if (!sasReady)
+        {
+            Debug.Log("SAS not ready yet");
+            return;
+        }
         foreach (GameObject mesh in meshCopyCollection)
         {
             Destroy(mesh);
