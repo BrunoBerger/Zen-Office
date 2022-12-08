@@ -12,6 +12,7 @@ public class SpawnPond : MonoBehaviour
     List<List<TwoInt>> pathsToEdge;
     List<float> pondRadii;
     List<int> candidateIndices;
+    bool[,] isWater;
 
     //settings
     int minDistToEdge = 8;
@@ -53,6 +54,7 @@ public class SpawnPond : MonoBehaviour
         tileHolder = TI.TileHolder;
         tileClusters = TI.TileClusters;
         extraClustersInfo = TI.ExtraClustersInfo;
+        isWater = new bool[TI.rayDimension, TI.rayDimension];
     }
 
     void FindClusterCandidates()
@@ -116,14 +118,15 @@ public class SpawnPond : MonoBehaviour
     {
         for(int i=0; i< pathsToEdge.Count;i++)
         {
-            ExtraClusterInfo cInfo = extraClustersInfo[candidateIndices[i]];
+            int clusterIndex = candidateIndices[i];
+            ExtraClusterInfo cInfo = extraClustersInfo[clusterIndex];
             float h = cInfo.averageH + meshCopySkript.floorHeight;
             float brookRad = pondRadii[i] / 2;
             float brookMinDist = brookRad / rayInterval *2;
             float secondElmToPondMinDist = pondRadii[i] * 1.5f / rayInterval;
 
             TwoInt firstElement = pathsToEdge[i][0];
-            CraveHoleWithWater(pondRadii[i], new Vector3(TI.IAsF(firstElement.xi), h, TI.IAsF(firstElement.zi)), true);
+            CraveHoleWithWater(pondRadii[i], firstElement.xi, firstElement.zi, h, true, clusterIndex);
 
 
             TwoInt prevElm = firstElement;
@@ -146,24 +149,26 @@ public class SpawnPond : MonoBehaviour
                 if(distToPrev>=secondElmToPondMinDist || spawnedSecondElm && distToPrev >= brookMinDist)
                 {
                     spawnedSecondElm = true;
-                    CraveHoleWithWater(brookRad, new Vector3(TI.IAsF(partOfPath.xi), h, TI.IAsF(partOfPath.zi)), true);
+                    CraveHoleWithWater(brookRad, partOfPath.xi, partOfPath.zi, h, true, clusterIndex);
                     prevElm = partOfPath;
                 }
 
             }
 
             TwoInt lastElm = pathsToEdge[i][pathsToEdge[i].Count-1];
-            CraveHoleWithWater(brookRad, new Vector3(TI.IAsF(lastElm.xi), h, TI.IAsF(lastElm.zi)), false);
+            CraveHoleWithWater(brookRad, lastElm.xi, lastElm.zi, h, true, clusterIndex);
 
         }
     }
 
 
 
-    void CraveHoleWithWater(float radius, Vector3 pos , bool withwWater)
+    void CraveHoleWithWater(float radius, int middleXI, int middleZI , float h, bool withwWater, int clusterIndex)
     {
+        Vector3 pos = new Vector3(TI.IAsF(middleXI), h, TI.IAsF(middleZI));
+
         radius *= 2;
-        float h = pos.y; //MAYBE SET WATER LEVEL LOWER LATER!!!!!!!!!
+        //float h = pos.y; //MAYBE SET WATER LEVEL LOWER LATER!!!!!!!!!
         Vector3 spherePos = pos + Vector3.up * radius / 5;
         float maxChangeY = radius * 2 / 3;
         //MeshFilter[] meshFilters = transform.parent.GetComponentsInChildren<MeshFilter>();
@@ -191,8 +196,34 @@ public class SpawnPond : MonoBehaviour
 
             if (withwWater)
             {
-                GameObject placedWater = Instantiate(water, pos, Quaternion.identity);
-                placedWater.transform.localScale *= radius; //Maybe Change radius here or adapt prefab!!!!!!!!!!!!!!!
+                //GameObject placedWater = Instantiate(water, pos, Quaternion.identity);
+                //placedWater.transform.localScale *= radius; //Maybe Change radius here or adapt prefab!!!!!!!!!!!!!!!
+                
+                float radTileScaledFloat = radius / TI.rayInterval;
+                int radTilescaled = (int)Mathf.Round(radTileScaledFloat);
+                int maxXi = middleXI + radTilescaled;
+                int maxZi = middleZI + radTilescaled;
+
+                for(int xi=middleXI-radTilescaled; xi<=maxXi; xi++)
+                {
+                    for (int zi = middleZI - radTilescaled; zi <= maxZi; zi++)
+                    {
+                        float xiDist = xi - middleXI;
+                        float ziDist = zi - middleZI;
+                        if (Mathf.Sqrt(xiDist * xiDist + ziDist * ziDist) <= radTileScaledFloat)
+                        {
+                            if (!TI.IsOutOfBounds(xi, zi))
+                            {
+                                if(tileHolder[xi,zi].clusterIndex == clusterIndex)
+                                {
+                                    Instantiate(water, pos, Quaternion.identity);
+                                }
+                            }
+                        }
+                    }
+                }
+
+
             }
             
             deformingMesh.RecalculateNormals();

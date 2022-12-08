@@ -329,7 +329,7 @@ public class TableInterpreter : MonoBehaviour
         }
     }
 
-    bool IsOutOfBounds(int xi, int zi)
+    public bool IsOutOfBounds(int xi, int zi)
     {
         if (xi < 0 || zi < 0 || xi > rayDimension-1 || zi > rayDimension-1) return true;
         else return false;
@@ -465,6 +465,10 @@ public class TableInterpreter : MonoBehaviour
         return i * rayInterval - gridRadius;
     }
 
+    public int FAsI(float f)
+    {
+        return (int)Mathf.Round((f+gridRadius)/rayInterval);
+    }
 
 
     //for parameters "towards" and "avoid" following int has following meaning:
