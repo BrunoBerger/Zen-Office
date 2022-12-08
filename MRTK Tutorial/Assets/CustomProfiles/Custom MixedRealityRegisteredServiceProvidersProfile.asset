@@ -21,3 +21,10 @@ MonoBehaviour:
     priority: 10
     runtimePlatform: -1
     configurationProfile: {fileID: 11400000, guid: 76f46397735a5724098239aaa66f94cf, type: 2}
+  - componentType:
+      reference: Microsoft.MixedReality.Toolkit.Extensions.Tracking.LostTrackingService,
+        Microsoft.MixedReality.Toolkit.Extensions.Tracking
+    componentName: New Configuration 1
+    priority: 10
+    runtimePlatform: -1
+    configurationProfile: {fileID: 11400000, guid: ca4cf43746ee4df408016e5a305f9b1d, type: 2}
