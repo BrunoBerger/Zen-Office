@@ -14,6 +14,8 @@ public class SpawnPlants : MonoBehaviour
     [SerializeField] float treeLine;
     [SerializeField] LayerMask colLayer;
 
+    [SerializeField] SpawnProfile spawnProfile;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,7 +39,7 @@ public class SpawnPlants : MonoBehaviour
             Destroy(obj);
         }
         placedObjects.RemoveAll(o => o == null);
-
+        Debug.Log(spawnProfile.speed);
 
         //spawn trees in grid around player:
         Vector3 camPos = Camera.main.transform.position;
@@ -47,9 +49,8 @@ public class SpawnPlants : MonoBehaviour
             {
                 float noiseSample = Mathf.PerlinNoise(x * 5, z * 5);
                 if (noiseSample < 0.5f)
-                {
                     continue;
-                }
+
                 if (Physics.Raycast(new Vector3(camPos.x + x, 0f, camPos.z + z), transform.TransformDirection(Vector3.down), out RaycastHit hit, 3, colLayer))
                 {
                     //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);

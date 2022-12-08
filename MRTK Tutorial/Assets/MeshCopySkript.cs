@@ -15,7 +15,6 @@ public class MeshCopySkript : MonoBehaviour
     public SpawnRocks rockHolder;
     public SpawnPlants spawnPlants;
     public Material mat;
-    public Material invisMat;
 
     public GameObject meshHolderPrefab;
     public GameObject mixedRealityPlayspace;
@@ -76,8 +75,13 @@ public class MeshCopySkript : MonoBehaviour
         }
     }
 
-    void UpdateMesh()
+    public void UpdateMesh()
     {
+        if (!sasReady)
+        {
+            Debug.Log("SAS not ready yet");
+            return;
+        }
         foreach (GameObject mesh in meshCopyCollection)
         {
             Destroy(mesh);
@@ -121,13 +125,9 @@ public class MeshCopySkript : MonoBehaviour
             meshesMeshCollection[j] = meshFilterCollection[j].mesh;
         }
 
-
         if (doesTreeSpawning && !spawnPlants.currentlySpawningTrees)
-        {
             StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
-        }
 
- 
         //start Rock spawning
         rockHolder.DeleteRocks();
         
