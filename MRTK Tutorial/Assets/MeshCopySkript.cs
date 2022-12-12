@@ -34,6 +34,7 @@ public class MeshCopySkript : MonoBehaviour
 
     float updateTimer;
     public float floorHeight;
+    public float tableHeight;
 
     // Start is called before the first frame update
     void Start()
@@ -62,6 +63,7 @@ public class MeshCopySkript : MonoBehaviour
             var meshObserverName = "OpenXR Spatial Mesh Observer";
             scriptMeshObserver = scriptDataProviderAccess.GetDataProvider<IMixedRealitySpatialAwarenessMeshObserver>(meshObserverName);
 
+            scriptSpatialAwarenessService.ClearObservations();
             scriptMeshObserver.DisplayOption = SpatialAwarenessMeshDisplayOptions.None;
             sasReady = true;
             UpdateMesh();
