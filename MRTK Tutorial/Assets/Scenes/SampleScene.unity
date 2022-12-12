@@ -1816,12 +1816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5b80cdbc905c946935d1bbdefe3768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocks:
-  - {fileID: 9041915721007377642, guid: 4424833b9b1a4554ea8d0e5b79de6254, type: 3}
-  - {fileID: 8534928126559993321, guid: 8733444fa7bc64a4b9b23d92ada56caf, type: 3}
-  - {fileID: 2282023427223854647, guid: b7f581df6867d6f4b95101e517090f86, type: 3}
-  - {fileID: 5959778637544205077, guid: b0a20ef6b2d32d24a8394b8248db3e0e, type: 3}
-  - {fileID: 3355694962777940926, guid: 93dad8cbf4bdca540ba202758cf814a1, type: 3}
+  sp: {fileID: 0}
 --- !u!114 &318593115
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3351,7 +3346,7 @@ GameObject:
   - component: {fileID: 547024359}
   - component: {fileID: 547024354}
   m_Layer: 0
-  m_Name: Cube
+  m_Name: Physics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3549,12 +3544,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb5b80cdbc905c946935d1bbdefe3768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rocks:
-  - {fileID: 9041915721007377642, guid: 4424833b9b1a4554ea8d0e5b79de6254, type: 3}
-  - {fileID: 8534928126559993321, guid: 8733444fa7bc64a4b9b23d92ada56caf, type: 3}
-  - {fileID: 2282023427223854647, guid: b7f581df6867d6f4b95101e517090f86, type: 3}
-  - {fileID: 5959778637544205077, guid: b0a20ef6b2d32d24a8394b8248db3e0e, type: 3}
-  - {fileID: 3355694962777940926, guid: 93dad8cbf4bdca540ba202758cf814a1, type: 3}
+  sp: {fileID: 11400000, guid: 70427cecb4ddb0845b339c5b365ae9a8, type: 2}
 --- !u!4 &575580004
 Transform:
   m_ObjectHideFlags: 0
@@ -11254,22 +11244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c0b76151d02ad143b22d23e15a26e8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bushes: []
-  grases: []
-  trees:
-  - {fileID: 422976285781115936, guid: 4b1ef93d57e2b3d448bbff69d1c24296, type: 3}
-  - {fileID: 8738487454210844930, guid: 20b08fbfe8effda42bb703a5a7b62aa0, type: 3}
-  - {fileID: 3951676973648154976, guid: b7a0a1992598b084b8aeace017f8888e, type: 3}
-  - {fileID: 3654033801181926522, guid: 1bf320e825143ad41b0b3e72b410e5e9, type: 3}
-  - {fileID: 7859068361545942409, guid: dbb1288fe95d9444eb4d65597f896345, type: 3}
-  - {fileID: 4483661059389355070, guid: 8c79a48c8d7163246b8691e035686c52, type: 3}
-  - {fileID: 8102847651111001386, guid: 9d8abf34ce99027479742b8acee8c402, type: 3}
+  sp: {fileID: 11400000, guid: 70427cecb4ddb0845b339c5b365ae9a8, type: 2}
   currentlySpawningTrees: 1
-  treeLine: -3
-  colLayer:
-    serializedVersion: 2
-    m_Bits: 64
-  spawnProfile: {fileID: 11400000, guid: 70427cecb4ddb0845b339c5b365ae9a8, type: 2}
 --- !u!4 &1758612467
 Transform:
   m_ObjectHideFlags: 0
@@ -14427,7 +14403,7 @@ Transform:
   m_GameObject: {fileID: 8379340052565481654}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.003, z: 0.001}
-  m_LocalScale: {x: 0.2680176, y: 0.05681567, z: 2.144}
+  m_LocalScale: {x: 0.1720509, y: 0.03731775, z: 1}
   m_Children: []
   m_Father: {fileID: 8377719220444199110}
   m_RootOrder: 1
@@ -14582,7 +14558,7 @@ MonoBehaviour:
     position: {x: -0.0011769468, y: 0.24947225, z: -0.00067149}
     rotation: {x: 0, y: 0, z: 0, w: 1}
   endPoint:
-    position: {x: 0.13972437, y: 0.39787725, z: 0.23207228}
+    position: {x: 0.06916033, y: 0.38165042, z: 0.23207228}
     rotation: {x: 0, y: 0, z: 0, w: 1}
 --- !u!114 &8492359986797276112
 MonoBehaviour:
@@ -14798,7 +14774,7 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0.1117612, y: 0.09301036, z: 0.62474966}
-  - {x: 0.16429321, y: 0.14833997, z: 0.7115232}
+  - {x: 0.13798493, y: 0.14229015, z: 0.7115232}
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 0.01

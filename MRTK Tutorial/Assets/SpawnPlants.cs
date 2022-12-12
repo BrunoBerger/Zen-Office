@@ -4,24 +4,16 @@ using UnityEngine;
 
 public class SpawnPlants : MonoBehaviour
 {
-    public GameObject[] bushes;
-    public GameObject[] grases;
-    public GameObject[] trees;
-
+    [SerializeField] SpawnProfile sp;
     List<GameObject> placedObjects;
 
     public bool currentlySpawningTrees;
-    [SerializeField] float treeLine;
-    [SerializeField] LayerMask colLayer;
-
-    [SerializeField] SpawnProfile spawnProfile;
 
     // Start is called before the first frame update
     void Start()
     {
         placedObjects = new List<GameObject>();
         currentlySpawningTrees = false;
-        treeLine = -0.3f;
     }
 
     // Update is called once per frame
@@ -39,28 +31,27 @@ public class SpawnPlants : MonoBehaviour
             Destroy(obj);
         }
         placedObjects.RemoveAll(o => o == null);
-        Debug.Log(spawnProfile.speed);
 
         //spawn trees in grid around player:
         Vector3 camPos = Camera.main.transform.position;
-        for (float x = -2; x <= 2; x += 0.1f)
+        for (float x = -sp.treeGridSize; x <= sp.treeGridSize; x += sp.treeGridResolution)
         {
-            for (float z = -2; z <= 2; z += 0.1f)
+            for (float z = -sp.treeGridSize; z <= sp.treeGridSize; z += sp.treeGridResolution)
             {
-                float noiseSample = Mathf.PerlinNoise(x * 5, z * 5);
-                if (noiseSample < 0.5f)
+                float noiseSample = Mathf.PerlinNoise(x * sp.perlinNoiseOffset, z * sp.perlinNoiseOffset);
+                if (noiseSample < sp.spawnThreshold)
                     continue;
 
-                if (Physics.Raycast(new Vector3(camPos.x + x, 0f, camPos.z + z), transform.TransformDirection(Vector3.down), out RaycastHit hit, 3, colLayer))
+                if (Physics.Raycast(new Vector3(camPos.x + x, 0f, camPos.z + z), transform.TransformDirection(Vector3.down), out RaycastHit hit, 3, sp.colLayer))
                 {
                     //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
                     // Only if flat at not at the ground
                     Vector3 hp = hit.point;
 
-                    if (hit.normal.y > 0.9f && hp.y > floorHeight + treeLine)
+                    if (hit.normal.y > 0.9f && hp.y > floorHeight + sp.treeLine)
                     {
                         GameObject newObj = Instantiate(
-                            original: trees[Random.Range(0, trees.Length - 1)],
+                            original: sp.trees[Random.Range(0, sp.trees.Length - 1)],
                             position: hit.point,
                             rotation: Quaternion.LookRotation(Vector3.forward, hit.normal),
                             parent: transform
