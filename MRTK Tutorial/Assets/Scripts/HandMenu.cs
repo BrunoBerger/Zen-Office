@@ -8,6 +8,7 @@ public class HandMenu : MonoBehaviour
 {
     public DrawMasks drawMasks;
     public MeshCopySkript meshCopySkript;
+    public GameObject introCup;
 
     public void DeleteMasks()
     {
@@ -23,5 +24,10 @@ public class HandMenu : MonoBehaviour
     public void UpdateMesh()
     {
         meshCopySkript.UpdateMesh();
+    }
+
+    public void SetTableHeight()
+    {
+        meshCopySkript.tableHeight = introCup.transform.position.y;
     }
 }

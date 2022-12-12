@@ -1,12 +1,9 @@
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-
-//using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 
 public class MeshCopySkript : MonoBehaviour
 {
@@ -35,6 +32,7 @@ public class MeshCopySkript : MonoBehaviour
 
     float updateTimer;
     public float floorHeight;
+    public float tableHeight;
     public List<float> verticiHeights;
 
     // Start is called before the first frame update
@@ -65,6 +63,7 @@ public class MeshCopySkript : MonoBehaviour
             var meshObserverName = "OpenXR Spatial Mesh Observer";
             scriptMeshObserver = scriptDataProviderAccess.GetDataProvider<IMixedRealitySpatialAwarenessMeshObserver>(meshObserverName);
 
+            scriptSpatialAwarenessService.ClearObservations();
             scriptMeshObserver.DisplayOption = SpatialAwarenessMeshDisplayOptions.None;
             sasReady = true;
             UpdateMesh();

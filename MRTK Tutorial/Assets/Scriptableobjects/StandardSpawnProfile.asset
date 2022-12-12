@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 148abb3704d7f7a4bb0915f5ea4ea296, type: 3}
+  m_Name: StandardSpawnProfile
+  m_EditorClassIdentifier: 
+  treeGridResolution: 0.1
+  treeLine: -0.3
+  treeGridSize: 2
+  perlinNoiseOffset: 5
+  spawnThreshold: 0.5
+  colLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  trees:
+  - {fileID: 422976285781115936, guid: 4b1ef93d57e2b3d448bbff69d1c24296, type: 3}
+  - {fileID: 8738487454210844930, guid: 20b08fbfe8effda42bb703a5a7b62aa0, type: 3}
+  - {fileID: 3951676973648154976, guid: b7a0a1992598b084b8aeace017f8888e, type: 3}
+  - {fileID: 3654033801181926522, guid: 1bf320e825143ad41b0b3e72b410e5e9, type: 3}
+  - {fileID: 7859068361545942409, guid: dbb1288fe95d9444eb4d65597f896345, type: 3}
+  - {fileID: 4483661059389355070, guid: 8c79a48c8d7163246b8691e035686c52, type: 3}
+  - {fileID: 8102847651111001386, guid: 9d8abf34ce99027479742b8acee8c402, type: 3}
+  bushes: []
+  grases: []
+  rocks:
+  - {fileID: 9041915721007377642, guid: 4424833b9b1a4554ea8d0e5b79de6254, type: 3}
+  - {fileID: 8534928126559993321, guid: 8733444fa7bc64a4b9b23d92ada56caf, type: 3}
+  - {fileID: 2282023427223854647, guid: b7f581df6867d6f4b95101e517090f86, type: 3}
+  - {fileID: 5959778637544205077, guid: b0a20ef6b2d32d24a8394b8248db3e0e, type: 3}
+  - {fileID: 3355694962777940926, guid: 93dad8cbf4bdca540ba202758cf814a1, type: 3}
