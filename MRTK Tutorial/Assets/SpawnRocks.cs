@@ -20,7 +20,9 @@ public class SpawnRocks : MonoBehaviour
     public void StartRockSpawning(Mesh[] meshes)
     {
         FillTriangles(meshes);
+        Debug.Log("TIMEafterRockFillTriangles " + Time.realtimeSinceStartup);
         SpawnObjAtTriangles();
+        Debug.Log("TIMEspawnRockAtTriangle " + Time.realtimeSinceStartup);
     }
 
     public void DeleteRocks()
@@ -43,13 +45,17 @@ public class SpawnRocks : MonoBehaviour
             int index = 0;
             //Debug.Log("tr: " + index);
             //Debug.Log("i vorher: " + index);
+            //Debug.Log("TIMEbeforeWhile " + Time.realtimeSinceStartup);
+            Vector3[] vArray = meshes[i].vertices;
+            int[] iArray = meshes[i].triangles;
             while (index < meshes[i].triangles.Length)
             {
-                // Debug.Log("i vorher: " + index);
-                trianglesListholder[i][(int)(index / 3)] = new Triangle(meshes[i].vertices[meshes[i].triangles[index++]], meshes[i].vertices[meshes[i].triangles[index++]], meshes[i].vertices[meshes[i].triangles[index++]]);
+                //trianglesListholder[i][(int)(index / 3)] = new Triangle(meshes[i].vertices[meshes[i].triangles[index++]], meshes[i].vertices[meshes[i].triangles[index++]], meshes[i].vertices[meshes[i].triangles[index++]]);
+                trianglesListholder[i][(int)(index / 3)] = new Triangle(vArray[iArray[index++]], vArray[iArray[index++]], vArray[iArray[index++]]);
                 //Debug.Log("i nachher: " + index);
-            }
 
+            }
+            //Debug.Log("TIMEafterWhile " + Time.realtimeSinceStartup);
         }
     }
 

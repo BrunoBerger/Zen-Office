@@ -40,11 +40,15 @@ public class SpawnPond : MonoBehaviour
     public void StartPondSpawning()
     {
         AccessTileInformation();
+        Debug.Log("TIME afterPondAccessTileInfo " + Time.realtimeSinceStartup);
         FindClusterCandidates();
+        Debug.Log("TIME afterFindClusterCandidates " + Time.realtimeSinceStartup);
         if (candidateIndices.Count > 0)
         {
             CreatePondInfo();
+            Debug.Log("TIME afterCreatePondInfo " + Time.realtimeSinceStartup);
             SpawnPonds();
+            Debug.Log("TIME afterSpawnPonds " + Time.realtimeSinceStartup);
         }
         
     }
@@ -167,10 +171,10 @@ public class SpawnPond : MonoBehaviour
     {
         Vector3 pos = new Vector3(TI.IAsF(middleXI), h, TI.IAsF(middleZI));
 
-        radius *= 2;
+        radius *= 3;
         //float h = pos.y; //MAYBE SET WATER LEVEL LOWER LATER!!!!!!!!!
-        Vector3 spherePos = pos + Vector3.up * radius / 5;
-        float maxChangeY = radius * 2 / 3;
+        Vector3 spherePos = pos + Vector3.up * radius / 10;
+        float maxChangeY = radius * 3 / 3;
         //MeshFilter[] meshFilters = transform.parent.GetComponentsInChildren<MeshFilter>();
         foreach (MeshFilter meshFilter in meshCopySkript.meshFilterCollection)
         {
@@ -214,9 +218,9 @@ public class SpawnPond : MonoBehaviour
                         {
                             if (!TI.IsOutOfBounds(xi, zi))
                             {
-                                if(tileHolder[xi,zi].clusterIndex == clusterIndex)
+                                if (tileHolder[xi,zi].clusterIndex == clusterIndex)
                                 {
-                                    Instantiate(water, pos, Quaternion.identity);
+                                    Instantiate(water, new Vector3(TI.IAsF(xi), h-0.07f, TI.IAsF(zi)), Quaternion.Euler(90,180,0));
                                 }
                             }
                         }

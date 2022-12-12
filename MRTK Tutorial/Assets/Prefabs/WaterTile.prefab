@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 764020698721021934}
   - component: {fileID: 764020698721021933}
   - component: {fileID: 764020698721021932}
-  - component: {fileID: 764020698721021931}
   - component: {fileID: 764020698721021930}
   m_Layer: 0
   m_Name: WaterTile
@@ -83,20 +82,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &764020698721021931
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 764020698721021929}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!114 &764020698721021930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -109,4 +94,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4fc790edf13b3445b7fe10552693ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  refMat: {fileID: 2100000, guid: adefeb7606871ca4f8e0cc9276542ee7, type: 2}

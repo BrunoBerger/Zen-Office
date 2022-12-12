@@ -846,7 +846,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251719868}
   m_LocalRotation: {x: 0.15266985, y: 0.8170531, z: -0.25159222, w: 0.49579978}
-  m_LocalPosition: {x: -0.062, y: 2.575, z: 3.303}
+  m_LocalPosition: {x: -2.19, y: 0.85, z: 0.75}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1076,6 +1076,7 @@ MonoBehaviour:
   meshesMeshCollection: []
   meshFilterCollection: []
   floorHeight: 0
+  verticiHeights: []
 --- !u!4 &318593113
 Transform:
   m_ObjectHideFlags: 0
@@ -1097,7 +1098,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318593111}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cb5b80cdbc905c946935d1bbdefe3768, type: 3}
   m_Name: 

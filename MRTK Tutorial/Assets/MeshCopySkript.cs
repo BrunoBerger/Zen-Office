@@ -3,6 +3,7 @@ using Microsoft.MixedReality.Toolkit;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 //using Microsoft.MixedReality.Toolkit.SpatialAwareness;
@@ -34,6 +35,7 @@ public class MeshCopySkript : MonoBehaviour
 
     float updateTimer;
     public float floorHeight;
+    public List<float> verticiHeights;
 
     // Start is called before the first frame update
     void Start()
@@ -41,6 +43,7 @@ public class MeshCopySkript : MonoBehaviour
         updateTimer = -6;
         floorHeight = float.MaxValue;
         sasReady = false;
+        verticiHeights = new List<float>();
     }
 
     // Update is called once per frame
@@ -77,6 +80,7 @@ public class MeshCopySkript : MonoBehaviour
 
     public void UpdateMesh()
     {
+        Debug.Log("TIME1 " + Time.realtimeSinceStartup);
         if (!sasReady)
         {
             Debug.Log("SAS not ready yet");
@@ -89,6 +93,7 @@ public class MeshCopySkript : MonoBehaviour
         meshCopyCollection = new GameObject[transformOpenSMO.childCount];
         for (int i = 0; i < transformOpenSMO.childCount; i++)
         {
+            Debug.Log("TIME "+i+" " + Time.realtimeSinceStartup);
             GameObject newMeshHolder = Instantiate(meshHolderPrefab, transform);
             MeshFilter meshFilter = newMeshHolder.GetComponent<MeshFilter>();
             Mesh newMesh = meshFilter.mesh;
@@ -106,17 +111,74 @@ public class MeshCopySkript : MonoBehaviour
             for (int v = 0; v < uvs.Length; v++)
             {
                 uvs[v] = new Vector2(vertices[v].x, vertices[v].z);
+
+                //neu
+                verticiHeights.Add(vertices[v].y);
+
+
                 
-                if (vertices[v].y < floorHeight)
-                {
-                    floorHeight = vertices[v].y;
-                }
+                //if (vertices[v].y < floorHeight)
+                //{
+                //    floorHeight = vertices[v].y;
+                //}
             }
-            Debug.Log("floorHeight is: " + floorHeight);
+            //Debug.Log("floorHeight is: " + floorHeight);
             newMesh.SetUVs(0, uvs);
             meshCopyCollection[i] = newMeshHolder;
             
         }
+
+        
+        
+
+
+
+        //TEST
+        /*
+        Debug.Log("TIME " + Time.realtimeSinceStartup);
+        Mesh combinedMesh = new Mesh();
+        MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
+        CombineInstance[] combine = new CombineInstance[meshFilters.Length];
+        for (int i = 1; i < meshFilters.Length; i++)
+        {
+            combine[i].mesh = meshFilters[i].sharedMesh;
+            combine[i].transform = meshFilters[i].transform.localToWorldMatrix;
+            meshFilters[i].gameObject.SetActive(false);
+        }
+        Debug.Log("TIME " + Time.realtimeSinceStartup);
+        MeshFilter newMF = meshCopyCollection[0].GetComponent<MeshFilter>();
+        //meshCopyCollection[0].GetComponent<MeshFilter>().mesh.CombineMeshes(combine, true);
+        newMF.mesh.CombineMeshes(combine, true, true);
+        Debug.Log("TIME " + Time.realtimeSinceStartup);
+        newMF.mesh.Optimize();
+        Debug.Log("TIME " + Time.realtimeSinceStartup);
+        Vector3[] vertices = newMF.mesh.vertices;
+        Vector2[] uvs = new Vector2[vertices.Length];
+
+        // Create UVs and find lowest point as the floor
+        for (int v = 0; v < uvs.Length; v++)
+        {
+            uvs[v] = new Vector2(vertices[v].x, vertices[v].z);
+
+            if (vertices[v].y < floorHeight)
+            {
+                floorHeight = vertices[v].y;
+            }
+        }
+        Debug.Log("floorHeight is: " + floorHeight);
+        newMF.mesh.SetUVs(0, uvs);
+
+        meshCopyCollection = new GameObject[] { meshCopyCollection[0] };
+        */
+        Debug.Log("TIME " + Time.realtimeSinceStartup);
+
+        //new way to set floorheight
+        float[] heights = verticiHeights.ToArray();
+        Array.Sort(heights);
+        floorHeight = heights[(int)((heights.Length - 1) * 0.05f)];
+        Debug.Log("FloorHeight: " + floorHeight);
+
+
         meshesMeshCollection = new Mesh[meshCopyCollection.Length];
         meshFilterCollection = new MeshFilter[meshCopyCollection.Length];
         for (int j = 0; j < meshCopyCollection.Length; j++)
@@ -125,18 +187,22 @@ public class MeshCopySkript : MonoBehaviour
             meshesMeshCollection[j] = meshFilterCollection[j].mesh;
         }
 
+        Debug.Log("TIME " + Time.realtimeSinceStartup);
+
         if (doesTreeSpawning && !spawnPlants.currentlySpawningTrees)
             StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
 
+        Debug.Log("TIMEafterPlants " + Time.realtimeSinceStartup);
         //start Rock spawning
         rockHolder.DeleteRocks();
-        
+        Debug.Log("TIMEafterDelrock " + Time.realtimeSinceStartup);
         rockHolder.StartRockSpawning(meshesMeshCollection);
-
+        Debug.Log("TIMEafterRock " + Time.realtimeSinceStartup);
 
 
         GetComponent<TableInterpreter>().StartTableInterpretation(floorHeight);
-
+        Debug.Log("TIME afterTableInterpr " + Time.realtimeSinceStartup);
         GetComponent<SpawnPond>().StartPondSpawning();
+        Debug.Log("TIME afterPond " + Time.realtimeSinceStartup);
     }
 }

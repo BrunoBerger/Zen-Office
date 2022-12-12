@@ -32,7 +32,7 @@ public class TableInterpreter : MonoBehaviour
     //computing vars
     List<TwoInt> currentCluster;
     ExtraClusterInfo currentExtraInfo;
-    int _clusterIndex = 1;
+    int _clusterIndex = 0;
     List<TwoInt> toCheck0;
     List<TwoInt> toCheck1;
     int currentlyCleared = 0;
@@ -492,7 +492,7 @@ public class TableInterpreter : MonoBehaviour
         //bool reachedEdge = false;
         while (currentDist>0) //MAYBE CHANGE TO 0 AND SEARCH FOR OTHER ERROER!!!!!!!!!!!!!!!!!!!!!!
         {
-            Debug.Log("current dist at pathOutFinding: " + currentDist);
+            //Debug.Log("current dist at pathOutFinding: " + currentDist);
             bool[] options = new bool[] {true,true,true,true};
             //filter out previous direction from possible directions
             if (prevDir > -1) options[prevDir] = false;
