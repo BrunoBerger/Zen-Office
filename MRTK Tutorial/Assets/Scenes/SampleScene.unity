@@ -13112,6 +13112,7 @@ GameObject:
   - component: {fileID: 2142195022}
   - component: {fileID: 2142195024}
   - component: {fileID: 2142195023}
+  - component: {fileID: 2142195025}
   m_Layer: 0
   m_Name: ScriptHolder
   m_TagString: Untagged
@@ -13219,6 +13220,18 @@ MonoBehaviour:
   meshCopyLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &2142195025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2142195017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a2563f6fd981854084cd7ac494c91d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1086726765835432
 GameObject:
   m_ObjectHideFlags: 0
