@@ -7,8 +7,8 @@ public class SpawnPond : MonoBehaviour
 {
     public GameObject water;
 
-    TableInterpreter TI;
-    MeshCopySkript meshCopySkript;
+    [SerializeField] TableInterpreter TI;
+    [SerializeField] MeshCopySkript meshCopySkript;
     List<List<TwoInt>> pathsToEdge;
     List<float> pondRadii;
     List<int> candidateIndices;
@@ -27,9 +27,9 @@ public class SpawnPond : MonoBehaviour
 
     void Start()
     {
-        TI = GetComponent<TableInterpreter>();
+        //TI = GetComponent<TableInterpreter>();
         rayInterval = TI.rayInterval;
-        meshCopySkript = GetComponent<MeshCopySkript>();
+        //meshCopySkript = GetComponent<MeshCopySkript>();
         candidateIndices = new List<int>();
         pathsToEdge = new List<List<TwoInt>>();
         pondRadii = new List<float>();
@@ -220,7 +220,7 @@ public class SpawnPond : MonoBehaviour
                             {
                                 if (tileHolder[xi,zi].clusterIndex == clusterIndex)
                                 {
-                                    Instantiate(water, new Vector3(TI.IAsF(xi), h-0.07f, TI.IAsF(zi)), Quaternion.Euler(90,180,0));
+                                    Instantiate(water, new Vector3(TI.IAsF(xi), h-0.07f, TI.IAsF(zi)), Quaternion.Euler(90,180,0), transform);
                                 }
                             }
                         }
@@ -234,5 +234,12 @@ public class SpawnPond : MonoBehaviour
         }
     }
 
+    public void DeletePonds()
+    {
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
+    }
 
 }

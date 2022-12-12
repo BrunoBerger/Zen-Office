@@ -7,6 +7,7 @@ using Random = UnityEngine.Random;
 
 public class TableInterpreter : MonoBehaviour
 {
+    public Transform visualDebugHolder;
     //layer of the copy from HoloLens' recognized Mesh
     public LayerMask meshLayer;
 
@@ -16,6 +17,7 @@ public class TableInterpreter : MonoBehaviour
     public bool DebugRaysOnEdges;
     public GameObject[] debuggingObjects;
     public GameObject heightDebugCube;
+    
 
     //settings
     [HideInInspector] public readonly float rayInterval = 0.025f;
@@ -51,6 +53,16 @@ public class TableInterpreter : MonoBehaviour
         toCheck1 = new List<TwoInt>();
         TriedToAddOnce = new bool[rayDimension,rayDimension];
         //Debug.Log("holder.length is: " + tileHolder[].Length+"    and should be: "+holderSize);
+    }
+
+    public void ClearTableInterpetation()
+    {
+
+
+        foreach (Transform child in visualDebugHolder)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 
     public void StartTableInterpretation(float floorlevel)
@@ -416,7 +428,7 @@ public class TableInterpreter : MonoBehaviour
         {
             selectIndex = tile.distRift / 2 % debuggingObjects.Length;
         }
-        Instantiate(debuggingObjects[selectIndex], new Vector3(xi * rayInterval - gridRadius, tile.h + floorLevel, zi * rayInterval - gridRadius), Quaternion.identity);
+        Instantiate(debuggingObjects[selectIndex], new Vector3(xi * rayInterval - gridRadius, tile.h + floorLevel, zi * rayInterval - gridRadius), Quaternion.identity, visualDebugHolder);
     }
 
     void VisualyDebugAll()

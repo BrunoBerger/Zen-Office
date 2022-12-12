@@ -12,6 +12,7 @@ public class MeshCopySkript : MonoBehaviour
 
     public SpawnRocks rockHolder;
     public SpawnPlants spawnPlants;
+    public SpawnPond spawnPond;
     public Material mat;
 
     public GameObject meshHolderPrefab;
@@ -92,7 +93,7 @@ public class MeshCopySkript : MonoBehaviour
         meshCopyCollection = new GameObject[transformOpenSMO.childCount];
         for (int i = 0; i < transformOpenSMO.childCount; i++)
         {
-            Debug.Log("TIME "+i+" " + Time.realtimeSinceStartup);
+            //Debug.Log("TIME "+i+" " + Time.realtimeSinceStartup);
             GameObject newMeshHolder = Instantiate(meshHolderPrefab, transform);
             MeshFilter meshFilter = newMeshHolder.GetComponent<MeshFilter>();
             Mesh newMesh = meshFilter.mesh;
@@ -169,13 +170,13 @@ public class MeshCopySkript : MonoBehaviour
 
         meshCopyCollection = new GameObject[] { meshCopyCollection[0] };
         */
-        Debug.Log("TIME " + Time.realtimeSinceStartup);
+        //Debug.Log("TIME " + Time.realtimeSinceStartup);
 
         //new way to set floorheight
         float[] heights = verticiHeights.ToArray();
         Array.Sort(heights);
         floorHeight = heights[(int)((heights.Length - 1) * 0.05f)];
-        Debug.Log("FloorHeight: " + floorHeight);
+        //Debug.Log("FloorHeight: " + floorHeight);
 
 
         meshesMeshCollection = new Mesh[meshCopyCollection.Length];
@@ -186,22 +187,23 @@ public class MeshCopySkript : MonoBehaviour
             meshesMeshCollection[j] = meshFilterCollection[j].mesh;
         }
 
-        Debug.Log("TIME " + Time.realtimeSinceStartup);
+        //Debug.Log("TIME " + Time.realtimeSinceStartup);
 
         if (doesTreeSpawning && !spawnPlants.currentlySpawningTrees)
             StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
 
-        Debug.Log("TIMEafterPlants " + Time.realtimeSinceStartup);
+        //Debug.Log("TIMEafterPlants " + Time.realtimeSinceStartup);
         //start Rock spawning
         rockHolder.DeleteRocks();
-        Debug.Log("TIMEafterDelrock " + Time.realtimeSinceStartup);
+        //Debug.Log("TIMEafterDelrock " + Time.realtimeSinceStartup);
         rockHolder.StartRockSpawning(meshesMeshCollection);
-        Debug.Log("TIMEafterRock " + Time.realtimeSinceStartup);
+        //Debug.Log("TIMEafterRock " + Time.realtimeSinceStartup);
 
-
+        GetComponent<TableInterpreter>().ClearTableInterpetation();
         GetComponent<TableInterpreter>().StartTableInterpretation(floorHeight);
-        Debug.Log("TIME afterTableInterpr " + Time.realtimeSinceStartup);
-        GetComponent<SpawnPond>().StartPondSpawning();
-        Debug.Log("TIME afterPond " + Time.realtimeSinceStartup);
+        //Debug.Log("TIME afterTableInterpr " + Time.realtimeSinceStartup);
+        spawnPond.DeletePonds();
+        spawnPond.StartPondSpawning();
+        //Debug.Log("TIME afterPond " + Time.realtimeSinceStartup);
     }
 }
