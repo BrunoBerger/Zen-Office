@@ -1,11 +1,8 @@
 using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 using Microsoft.MixedReality.Toolkit;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-//using Microsoft.MixedReality.Toolkit.SpatialAwareness;
 
 public class MeshCopySkript : MonoBehaviour
 {
