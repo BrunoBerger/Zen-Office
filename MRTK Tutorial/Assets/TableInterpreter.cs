@@ -400,33 +400,29 @@ public class TableInterpreter : MonoBehaviour
     {
         Tile tile = TileHolder[xi,zi];
         int selectIndex = 0;
-        if (visualDebugging == VisualDebugging.byCluster)
+        switch (visualDebugging)
         {
-            selectIndex = tile.clusterIndex % debuggingObjects.Length;
-        }else if (visualDebugging == VisualDebugging.byEdgeness)
-        {
-            selectIndex = tile.edgeness % debuggingObjects.Length;
-        }
-        else if (visualDebugging == VisualDebugging.byHillness)
-        {
-            selectIndex = tile.hillness % debuggingObjects.Length;
-        }
-        else if (visualDebugging == VisualDebugging.byRiftness)
-        {
-            selectIndex = tile.riftness % debuggingObjects.Length;
-        }
-
-        else if (visualDebugging == VisualDebugging.byEdgeDist)
-        {
-            selectIndex = tile.distEdge / 2 % debuggingObjects.Length;
-        }
-        else if (visualDebugging == VisualDebugging.byHillDist)
-        {
-            selectIndex = tile.distHill / 2 % debuggingObjects.Length;
-        }
-        else if (visualDebugging == VisualDebugging.byRiftDist)
-        {
-            selectIndex = tile.distRift / 2 % debuggingObjects.Length;
+            case VisualDebugging.byCluster:
+                selectIndex = tile.clusterIndex % debuggingObjects.Length;
+                break;
+            case VisualDebugging.byEdgeness:
+                selectIndex = tile.edgeness % debuggingObjects.Length;
+                break;
+            case VisualDebugging.byHillness:
+                selectIndex = tile.hillness % debuggingObjects.Length;
+                break;
+            case VisualDebugging.byRiftness:
+                selectIndex = tile.riftness % debuggingObjects.Length;
+                break;
+            case VisualDebugging.byEdgeDist:
+                selectIndex = tile.distEdge / 2 % debuggingObjects.Length;
+                break;
+            case VisualDebugging.byHillDist:
+                selectIndex = tile.distHill / 2 % debuggingObjects.Length;
+                break;
+            case VisualDebugging.byRiftDist:
+                selectIndex = tile.distRift / 2 % debuggingObjects.Length;
+                break;
         }
         Instantiate(debuggingObjects[selectIndex], new Vector3(xi * rayInterval - gridRadius, tile.h + floorLevel, zi * rayInterval - gridRadius), Quaternion.identity, visualDebugHolder);
     }

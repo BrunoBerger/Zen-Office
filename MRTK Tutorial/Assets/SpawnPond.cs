@@ -6,6 +6,7 @@ using static TableInterpreter;
 public class SpawnPond : MonoBehaviour
 {
     public GameObject water;
+    public GameObject waterfall;
 
     [SerializeField] TableInterpreter TI;
     [SerializeField] MeshCopySkript meshCopySkript;
@@ -159,8 +160,11 @@ public class SpawnPond : MonoBehaviour
 
             }
 
+            TwoInt preLastElm = pathsToEdge[i][pathsToEdge[i].Count - 2];
             TwoInt lastElm = pathsToEdge[i][pathsToEdge[i].Count-1];
             CraveHoleWithWater(brookRad, lastElm.xi, lastElm.zi, h, true, clusterIndex);
+            Vector3 toLastElmDir = new Vector3(lastElm.xi - preLastElm.xi, 0, lastElm.zi - preLastElm.zi);
+            Instantiate(waterfall, new Vector3(TI.IAsF(lastElm.xi), h - 0.07f, TI.IAsF(lastElm.zi)), Quaternion.LookRotation(toLastElmDir, Vector3.up));
 
         }
     }
@@ -171,7 +175,7 @@ public class SpawnPond : MonoBehaviour
     {
         Vector3 pos = new Vector3(TI.IAsF(middleXI), h, TI.IAsF(middleZI));
 
-        radius *= 3;
+        radius *= 2.4f;
         //float h = pos.y; //MAYBE SET WATER LEVEL LOWER LATER!!!!!!!!!
         Vector3 spherePos = pos + Vector3.up * radius / 10;
         float maxChangeY = radius * 3 / 3;
