@@ -20,9 +20,9 @@ public class TableInterpreter : MonoBehaviour
     
 
     //settings
-    [HideInInspector] public readonly float rayInterval = 0.025f;
+    [HideInInspector] public readonly float rayInterval = 0.025f; //0.025f = every 2.5cm
     [HideInInspector] public readonly int firstAbstraction = 6;
-    [HideInInspector] public readonly float gridRadius = 3;
+    [HideInInspector] public readonly float gridRadius = 3; //meter
     [HideInInspector] public int rayDimension { get; private set; }
     [HideInInspector] public float floorLevel { get; private set; }
 
@@ -30,6 +30,9 @@ public class TableInterpreter : MonoBehaviour
     [HideInInspector] public Tile[,] TileHolder { get; private set; }
     [HideInInspector] public List<List<TwoInt>> TileClusters { get; private set; }
     [HideInInspector] public List<ExtraClusterInfo> ExtraClustersInfo { get; private set; }
+    [HideInInspector] public int[,] distToObj;
+    [HideInInspector] public bool[,] isRocky;
+
 
     //computing vars
     List<TwoInt> currentCluster;
@@ -44,6 +47,8 @@ public class TableInterpreter : MonoBehaviour
     void Start()
     {
         rayDimension = (int)(2 * gridRadius / rayInterval);
+        distToObj = new int[rayDimension, rayDimension];
+        isRocky = new bool[rayDimension, rayDimension];
         TileHolder = new Tile[rayDimension, rayDimension];
         TileClusters = new List<List<TwoInt>>();
         currentCluster = new List<TwoInt>();
@@ -606,6 +611,19 @@ public class TableInterpreter : MonoBehaviour
     {
         //returned directions depending on dirInt:  0=up, 1=right, 2=down, 3=left
         return new TwoInt(dirInt == 1 ? 1 : dirInt == 3 ? -1 : 0, dirInt == 0 ? -1 : dirInt == 2 ? 1 : 0);
+    }
+
+
+    public void MarkObjSpawnDist(int xi, int zi, int radius)
+    {
+        //radius is exclusive here
+
+
+    }
+
+    public int GetObjSpawnDist(int xi, int zi)
+    {
+        return distToObj[xi, zi];
     }
 
 

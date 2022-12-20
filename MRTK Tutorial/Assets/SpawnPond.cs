@@ -231,7 +231,7 @@ public class SpawnPond : MonoBehaviour
                     }
                 }
 
-
+                TI.MarkObjSpawnDist(middleXI, middleZI, radTilescaled);
             }
             
             deformingMesh.RecalculateNormals();
