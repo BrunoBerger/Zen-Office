@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "New Object Spawn Preset", menuName = "ScriptableObjects/Create Spawn Probability")]
 public class SpawnPropabilities : ScriptableObject
@@ -22,7 +24,7 @@ public class SpawnPropabilities : ScriptableObject
     [Header("Minimum Distances (Md)")]
     [Range(1, 5)]
     public int radius=1;
-    [Range(0, 5)]
+    [Range(1, 5)]
     public int mdOtherObj = 0;
     [Range(0, 10)]
     public int mdEdge = 0;
@@ -30,6 +32,9 @@ public class SpawnPropabilities : ScriptableObject
     public int mdRift = 0;
     [Range(0, 10)]
     public int mdHill = 0;
+    [Range(0, 2)]
+    [Tooltip("0 = does only spawn on tables, 1 = does only spawn outside of tables, 2 = spawns on both kind of surfaces")]
+    public int spawnsOutsideTable = 0;
 
     [Header("tilt criteria")]
     [Range(0, 2)]
@@ -48,6 +53,36 @@ public class SpawnPropabilities : ScriptableObject
         heightRange.AdaptDependentVars();
         noisemapRange.AdaptDependentVars();
     }
+
+
+    public float GetPropability(float hFromFloor, float hFromTable, bool isOnTable, bool isRockSurface, int edgeDist, int hillDist, int riftDist, int distToObj, int xi, int zi)
+    {
+        float propability = propabilityScale;
+
+        //can only spawn on intended kind of surface
+        if ( isRockSurface && spawnsOnRocks == 0) return 0;
+        if (!isRockSurface && spawnsOnRocks == 1) return 0;
+        if (!isOnTable && spawnsOutsideTable == 0) return 0;
+        if ( isOnTable && spawnsOutsideTable == 1) return 0;
+
+        if (mdOtherObj + radius-1 > distToObj) return 0;
+        if (isOnTable)
+        {
+            if (mdEdge + radius - 1 > edgeDist) return 0;
+            if (mdHill + radius - 1 > hillDist) return 0;
+            if (mdRift + radius - 1 > riftDist) return 0;
+        }
+
+        propability *= heightRange.GetPropability(pivotsHeightOnFloor?hFromFloor:hFromTable);
+        if (propability == 0) return 0;
+
+        float noiseSample = Mathf.PerlinNoise(xi * noiseScale + noiseOffset.x, zi * noiseScale + noiseOffset.y);
+        propability *= noisemapRange.GetPropability(noiseSample);
+
+        return propability;
+    }
+
+
 }
 
 //NOTE: changes in this class should be applied to "SoftRangeVarM2P2" aswell
@@ -129,7 +164,7 @@ public class SoftRangeVar01
 
 
 //NOTE: this classe's code is almost a copy from "SoftRangeVar01". Only the ranges are different. (here Ranges go from minus2 to plus2 "M2P2" instead of 0 to 1)
-//Unluckily Unity does not provide a legit solution to set Ranges by Variables, but these different ranges are necesarry for an efficient interface here
+//Unluckily Unity does not provide a solution to set Ranges for the default inspector by Variables, but these different ranges are necesarry for an efficient interface here
 //START of almost duplicated Code
 [Serializable]
 public class SoftRangeVarM2P2
