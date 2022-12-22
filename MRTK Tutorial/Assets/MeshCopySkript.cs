@@ -14,6 +14,7 @@ public class MeshCopySkript : MonoBehaviour
     public SpawnPlants spawnPlants;
     public SpawnPond spawnPond;
     public SpawnableSpawner spawnableSpawner;
+    public SpawnLamps spawnLamps;
     public Material mat;
 
     public GameObject meshHolderPrefab;
@@ -182,6 +183,11 @@ public class MeshCopySkript : MonoBehaviour
             StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
 
         spawnableSpawner.DeleteSpawnables();
+
+        if (!spawnLamps.currentlySpawningLamps)
+            StartCoroutine(spawnLamps.GenerateLamps());
+
+
         spawnableSpawner.InitMassSpawning();
     }
 
