@@ -17,8 +17,13 @@ public class SpawnProfile : ScriptableObject
 
     [Header("Fooliage")]
     public GameObject[] bushes;
-    public GameObject[] grases;
+    public GameObject[] grasses;
 
     [Header("Rocks")]
     public GameObject[] rocks;
+
+    [Header("Floating Lamps")]
+    public GameObject LampPrefab;
+    [Range(0, 1)] public int NumberOfLamps = 10;
+    [Range(1, 4)] public float RoughFloatingLevel = 2.5f;
 }

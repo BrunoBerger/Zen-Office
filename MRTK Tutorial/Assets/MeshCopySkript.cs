@@ -14,6 +14,7 @@ public class MeshCopySkript : MonoBehaviour
     public SpawnPlants spawnPlants;
     public SpawnPond spawnPond;
     public SpawnableSpawner spawnableSpawner;
+    public SpawnLamps spawnLamps;
     public Material mat;
 
     public GameObject meshHolderPrefab;
@@ -180,6 +181,10 @@ public class MeshCopySkript : MonoBehaviour
 
         if (doesTreeSpawning && !spawnPlants.currentlySpawningTrees)
             StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
+
+
+        if (!spawnLamps.currentlySpawningLamps)
+            StartCoroutine(spawnLamps.GenerateLamps());
 
 
         spawnableSpawner.InitMassSpawning();

@@ -28,11 +28,26 @@ MonoBehaviour:
   - {fileID: 7859068361545942409, guid: dbb1288fe95d9444eb4d65597f896345, type: 3}
   - {fileID: 4483661059389355070, guid: 8c79a48c8d7163246b8691e035686c52, type: 3}
   - {fileID: 8102847651111001386, guid: 9d8abf34ce99027479742b8acee8c402, type: 3}
-  bushes: []
-  grases: []
+  bushes:
+  - {fileID: 2620719568251521071, guid: 8eae92362961a5c48a01f32ed8837cbc, type: 3}
+  - {fileID: 1081384757444797924, guid: 95f32a4d67d3d594d8ab4dfad669f4b2, type: 3}
+  - {fileID: 1668965065376570893, guid: e13597b8e5be2ce4b9d69e07db73bc87, type: 3}
+  - {fileID: 7827304443752129297, guid: 6cd215c5077817247ab1a362bc5f143f, type: 3}
+  - {fileID: 6134323851043897979, guid: 66633abffa0d497478ad7c33c4fed98c, type: 3}
+  - {fileID: 8951488763798635912, guid: f401fd2934a6aff48a96b124a50b33bd, type: 3}
+  grasses:
+  - {fileID: 6383102680848442699, guid: a0f086f316672304c901d35bc12f434d, type: 3}
+  - {fileID: 5629254864104988825, guid: 861b6dbe04fab8049a586394e9c994a3, type: 3}
+  - {fileID: 9139299975156877636, guid: 99593f34a965ce8439c35d2b08317dce, type: 3}
+  - {fileID: 3694692597833437191, guid: b8bb4f16cff730a46a205868b1822e46, type: 3}
+  - {fileID: 3028361654792151009, guid: 16cca2b945489ff4398f586597345e68, type: 3}
+  - {fileID: 8759467421804450427, guid: 7b28fd4496224dd4bb8ca7c3bd2890e9, type: 3}
   rocks:
   - {fileID: 9041915721007377642, guid: 4424833b9b1a4554ea8d0e5b79de6254, type: 3}
   - {fileID: 8534928126559993321, guid: 8733444fa7bc64a4b9b23d92ada56caf, type: 3}
   - {fileID: 2282023427223854647, guid: b7f581df6867d6f4b95101e517090f86, type: 3}
   - {fileID: 5959778637544205077, guid: b0a20ef6b2d32d24a8394b8248db3e0e, type: 3}
   - {fileID: 3355694962777940926, guid: 93dad8cbf4bdca540ba202758cf814a1, type: 3}
+  LampPrefab: {fileID: 6833078832834198321, guid: cd27d48406cdb1e4db69eb462965b589, type: 3}
+  NumberOfLamps: 10
+  RoughFloatingLevel: 1.08
