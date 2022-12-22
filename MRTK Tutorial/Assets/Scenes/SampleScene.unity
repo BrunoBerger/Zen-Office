@@ -12907,7 +12907,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trackedTargetType: 6
-  trackedHandness: 3
+  trackedHandness: 2
   trackedHandJoint: 23
   transformOverride: {fileID: 0}
   additionalOffset: {x: 0, y: 0, z: 0.03}

@@ -31,6 +31,7 @@ public class SpawnPlants : MonoBehaviour
             Destroy(obj);
         }
         placedObjects.RemoveAll(o => o == null);
+        //Util.DeleteGameObjFromList(placedObjects);
 
         //spawn trees in grid around player:
         Vector3 camPos = Camera.main.transform.position;
