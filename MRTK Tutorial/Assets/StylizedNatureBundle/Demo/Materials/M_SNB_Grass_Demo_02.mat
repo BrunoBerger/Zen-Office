@@ -1,0 +1,154 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: M_SNB_Grass_Demo_02
+  m_Shader: {fileID: 4800000, guid: f7835d26e94875f47848e4600cd0ab70, type: 3}
+  m_ShaderKeywords: _ALPHATEST_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 1
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Albedo:
+        m_Texture: {fileID: 2800000, guid: edaa1c39b8397324ebba76b2bbacba6e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BumpMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailAlbedoMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DetailNormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionRMetallicGSmoothnessB:
+        m_Texture: {fileID: 2800000, guid: af8fac321dcd5ac428c4d4efc722c78a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 9bf606c43682e9d488ea2aa0c944418f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MetallicGlossMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 2800000, guid: fba7f6da57b581840b1dc2ad3bfbd803, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _OcclusionMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ParallaxMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 9bf606c43682e9d488ea2aa0c944418f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample1:
+        m_Texture: {fileID: 2800000, guid: 3ad8079a59589074c82c1e360903a23a, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TopTexture0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _BumpScale: 1
+    - _Cutoff: 0.75
+    - _DetailNormalMapScale: 1
+    - _DirectionalShadows: 0
+    - _DirectionalTranslucency: 0.143
+    - _DstBlend: 0
+    - _EmissionPower: 0
+    - _EmissionStrength: 0
+    - _Float0: 0
+    - _Float1: 1.26
+    - _GlossMapScale: 1
+    - _Glossiness: 0
+    - _GlossyReflections: 1
+    - _GrassBrightness: 0.068
+    - _HeightBrightness: 0
+    - _HeightGradient: 0.3
+    - _HeightStartGradient: 0.1
+    - _Metallic: 0
+    - _Mode: 1
+    - _NormalPower: 1
+    - _NormalStrength: 1
+    - _OcclusionStrength: 1
+    - _Parallax: 0.02
+    - _PointLightPunchTrough: 1
+    - _PointLightTranslucency: 3
+    - _SSSColorPower: 3.7
+    - _SSSForce: 0.4
+    - _SSSPower: 1
+    - _SSSScale: 1
+    - _ShadowStrength: 0.2
+    - _Shininess: 0.1
+    - _SmoothnessTextureChannel: 0
+    - _SpecularHighlights: 1
+    - _SrcBlend: 1
+    - _SubsurfaceDistortionModifier: 0.5
+    - _TranslucencyForce: 0.4
+    - _TranslucencyLightInfluence: 0
+    - _TranslucencyModifier: 0.5
+    - _TranslucencyPower: 1
+    - _TranslucencyScale: 1
+    - _TrunkWindAmplitude: 0.03
+    - _TrunkWindPower: 0.6
+    - _UVSec: 0
+    - _WindFoliageAmplitude: 0.05
+    - _WindFoliageSpeed: 0.3
+    - _WindLeafAmplitude: 0.035
+    - _WindLeafSpeed: 0.17
+    - _WindSpeed: 0.17
+    - _WindStrength: 0.035
+    - _WindTrunkAmplitude: 0.06
+    - _WindTrunkPower: 0.6
+    - _WindTrunkSpeed: 0.3
+    - _ZWrite: 1
+    - __dirty: 0
+    m_Colors:
+    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color0: {r: 0.79033947, g: 1, b: 0.033018887, a: 0}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
+    - _FlowerInsideColor01: {r: 1, g: 0.7789562, b: 0.12735835, a: 0}
+    - _FlowerInsideColor02: {r: 1, g: 0.9507267, b: 0.6084906, a: 0}
+    - _FlowerMainColor01: {r: 1, g: 0.1816279, b: 0.1568627, a: 0}
+    - _FlowerMainColor02: {r: 1, g: 0.70334506, b: 0.15566024, a: 0}
+    - _GrassColor: {r: 0.8, g: 0.34825858, b: 0.14901939, a: 0}
+    - _GrassColorVariation: {r: 0.5264154, g: 0.7264151, b: 0.21586864, a: 0}
+    - _HeightColor: {r: 1, g: 0.49114263, b: 0.3349055, a: 1}
+    - _SSSColor: {r: 1, g: 0.9439245, b: 0.5801887, a: 0}
+    - _SSSTint: {r: 1, g: 0.99379236, b: 0.38207522, a: 0}
+    - _SpecularColor: {r: 0.3921569, g: 0.3921569, b: 0.3921569, a: 1}
+    - _TranslucencyTint: {r: 1, g: 0.96403116, b: 0.18396205, a: 0}

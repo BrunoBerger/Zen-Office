@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: M_SNB_Trees
+  m_Shader: {fileID: 4800000, guid: 4e9aa94b7854f7f4d8bf69448ee6b3be, type: 3}
+  m_ShaderKeywords: _LOD_FADE_CROSSFADE_ON _NORMALMAP
+  m_LightmapFlags: 0
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DiffuseSmoothnessA:
+        m_Texture: {fileID: 2800000, guid: e5949f3f02e8cd24e97605b8c7ed5b30, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: 06e6b2458a47542428bca89ee8a27e44, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 2800000, guid: 16d574e53541bba44a84052fa38778df, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cutoff: 0
+    - _EmissionStrength: 0
+    - _HeightBrightness: 0
+    - _HeightGradient: 1.5
+    - _HeightStartGradient: 1.25
+    - _NormalStrength: 1
+    - _SmoothnessStrength: 1
+    - _TrunkBrightness: 0.5
+    - _WindTrunkAmplitude: 0.06
+    - _WindTrunkSpeed: 0.3
+    - __dirty: 0
+    m_Colors:
+    - _TrunkColorVariation: {r: 0.30188662, g: 0.30188662, b: 0.30188662, a: 0}
