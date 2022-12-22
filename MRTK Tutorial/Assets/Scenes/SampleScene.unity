@@ -1806,10 +1806,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   permaMeshUpdate: 0
-  doesTreeSpawning: 1
+  doesTreeSpawning: 0
   rockHolder: {fileID: 575580003}
   spawnPlants: {fileID: 1758612466}
   spawnPond: {fileID: 2143061746}
+  spawnableSpawner: {fileID: 467434547}
   mat: {fileID: 2100000, guid: 059cceb0ba6e50741bfe6ec2c755d5f4, type: 2}
   meshHolderPrefab: {fileID: 4541549713160470440, guid: ab827f2322d82af42a7b2b65927ae4dd, type: 3}
   mixedRealityPlayspace: {fileID: 12967395}
@@ -2580,7 +2581,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnables:
   - {fileID: 11400000, guid: 065e1180fa51fe94dbe83dae842c2072, type: 2}
-  TI: {fileID: 0}
+  TI: {fileID: 318593116}
 --- !u!4 &467434548
 Transform:
   m_ObjectHideFlags: 0

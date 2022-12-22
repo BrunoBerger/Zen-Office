@@ -79,7 +79,7 @@ public class SpawnRocks : MonoBehaviour
 
 
 
-                    GameObject rocky = Instantiate(sp.rocks[Random.Range(0, sp.rocks.Length - 1)], tri.center+(Vector3.down*0.05f+ Vector3.down * 0.01f*tri.scaler), Quaternion.LookRotation(v2, tri.normal), transform); //DELETE *10 LATER!!!!!!!!!!!!!!!!!!!!!!!
+                    GameObject rocky = Instantiate(sp.rocks[Random.Range(0, sp.rocks.Length - 1)], tri.center/*+(Vector3.down*0.05f+ Vector3.down * 0.01f*tri.scaler)*/, Quaternion.LookRotation(v2, tri.normal), transform); //DELETE *10 LATER!!!!!!!!!!!!!!!!!!!!!!!
                     rocky.transform.localScale *= tri.scaler *3f;//MAY CHANGE *4f LATER!!!!!!!!!!!
                 }
             }

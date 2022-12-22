@@ -48,6 +48,13 @@ public class TableInterpreter : MonoBehaviour
     {
         rayDimension = (int)(2 * gridRadius / rayInterval);
         distToObj = new int[rayDimension, rayDimension];
+        for(int x=0; x < rayDimension; x++)
+        {
+            for (int y = 0; y < rayDimension; y++)
+            {
+                distToObj[x, y] = 10;
+            }
+        }
         isRocky = new bool[rayDimension, rayDimension];
         TileHolder = new Tile[rayDimension, rayDimension];
         TileClusters = new List<List<TwoInt>>();
@@ -614,10 +621,21 @@ public class TableInterpreter : MonoBehaviour
     }
 
 
-    public void MarkObjSpawnDist(int xi, int zi, int radius)
+    public void MarkObjSpawnDist(int middleXi, int middleZi, int radius)
     {
-        //radius is exclusive here
+        for(int xi = middleXi-radius -8; xi< middleXi+radius+9; xi++)
+        {
+            if (xi < 0 || xi >= rayDimension) continue;
+            for (int zi = middleZi - radius -8; zi < middleZi + radius+9; zi++)
+            {
+                if (zi < 0 || zi >= rayDimension) continue;
+                int dist = (int)Mathf.Floor(Mathf.Sqrt((xi-middleXi)* (xi - middleXi)+ (zi - middleZi)* (zi - middleZi)) + 1.5f)-radius;
+                if (dist > 9) continue;
+                if (dist < 0) dist = 0;
 
+                if (distToObj[xi, zi] > dist) distToObj[xi, zi] = dist;
+            }
+        }
 
     }
 

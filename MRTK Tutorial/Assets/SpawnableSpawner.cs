@@ -18,7 +18,7 @@ public class SpawnableSpawner : MonoBehaviour
     LayerMask meshLayer;
     //int[,] distsToObj;
 
-    public void ClearLists()
+    public void PrepareSpawnableSpawner()
     {
         dimensions = TI.rayDimension;
         rayInterval = TI.rayInterval;
@@ -33,7 +33,8 @@ public class SpawnableSpawner : MonoBehaviour
     public void InitMassSpawning()
     {
         if (spawnables.Length == 0) Debug.LogError("you did not assign SpawnPropabilities to the spawnableSpawner");
-        List<int> shuffeledSpawnableIndices = Enumerable.Range(0, spawnables.Length-1).ToList();
+        List<int> shuffeledSpawnableIndices = Enumerable.Range(0, spawnables.Length).ToList();
+        //Debug.Log("shuffled indices lenght is " + shuffeledSpawnableIndices.Count);
         bool[,] checkedTiles = new bool[dimensions, dimensions];
         //int[,] distsToObj = TI.distToObj;
         Tile[,] tileHolder = TI.TileHolder;
@@ -45,6 +46,7 @@ public class SpawnableSpawner : MonoBehaviour
                 for (int zi = 0; zi < dimensions; zi++)
                 {
                     if (zi % Mathf.Pow(2, exp) != 0) continue;
+                    //Debug.Log("check massSpawning at" + xi + "," + zi);
                     if (checkedTiles[xi, zi]) continue;
                     checkedTiles[xi, zi] = true;
                     int distToObj = TI.distToObj[xi, zi];
@@ -52,11 +54,11 @@ public class SpawnableSpawner : MonoBehaviour
 
                     RaycastHit hitInfo;
                     if (!Physics.Raycast(new Vector3(xi * rayInterval - gridRadius, floorLevel + 2, zi * rayInterval - gridRadius), Vector3.down, out hitInfo, 3, meshLayer)) continue;
-
+                    //Debug.Log("ray was shot at " + xi + "," + zi + " hitheight:" + hitInfo.point.y);
                     
                     Tile tile = tileHolder[xi, zi];
-
-                    bool isRockySurface = hitInfo.normal.y > 0.25f;
+                    //Debug.Log("after tileset");
+                    bool isRockySurface = hitInfo.normal.y < 0.25f;
                     bool onTable = tile.state == State.fine;
                     int edgeDist = tile.distEdge;
                     int hillDist = tile.distHill;
@@ -70,10 +72,13 @@ public class SpawnableSpawner : MonoBehaviour
                     shuffeledSpawnableIndices = shuffeledSpawnableIndices.OrderBy(i => Random.value).ToList();
                     for(int i = 0; i<spawnables.Length; i++)
                     {
+                        //Debug.Log("shuffle read "+i);
                         int testedI = shuffeledSpawnableIndices[i];
+                        //Debug.Log("beforeProp check");
                         float propability = spawnables[testedI].GetPropability(hFromFloor, hFromTable, onTable, isRockySurface, edgeDist, hillDist, riftDist, distToObj, xi, zi);
+                        //Debug.Log("afterProp check");
                         if (propability == 0) continue;
-                        if(propability>= Random.Range(0, 1))
+                        if(propability>= Random.Range(0.0000000001f, 1f))
                         {
                             indexOfSpawnable = testedI;
                             break;

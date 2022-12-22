@@ -12,25 +12,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4663c2c75184948b5007b23d1d4fb4, type: 3}
   m_Name: SpawnProbTest
   m_EditorClassIdentifier: 
-  propabilityScale: 0.572
+  propabilityScale: 0.569
   pivotsHeightOnFloor: 0
   heightRange:
-    lowCap: -0.2
-    lowDecay: -0.2
-    highDecay: 1.35
-    highCap: 1.35
+    lowCap: -2
+    lowDecay: -2
+    highDecay: 2
+    highCap: 2
   noisemapRange:
-    lowCap: 0.425
-    lowDecay: 0.425
-    highDecay: 0.807
-    highCap: 0.807
+    lowCap: 0
+    lowDecay: 0
+    highDecay: 1
+    highCap: 1
   noiseScale: 1
   noiseOffset: {x: 0, y: 0}
-  radius: 1
-  mdOtherObj: 0
+  radius: 3
+  mdOtherObj: 1
   mdEdge: 0
   mdRift: 0
   mdHill: 0
+  spawnsOutsideTable: 0
   spawnsOnRocks: 0
   tiltWithFloor: 0
-  objects: []
+  objects:
+  - {fileID: 422976285781115936, guid: 4b1ef93d57e2b3d448bbff69d1c24296, type: 3}
+  - {fileID: 8738487454210844930, guid: 20b08fbfe8effda42bb703a5a7b62aa0, type: 3}
+  - {fileID: 3951676973648154976, guid: b7a0a1992598b084b8aeace017f8888e, type: 3}
+  - {fileID: 3654033801181926522, guid: 1bf320e825143ad41b0b3e72b410e5e9, type: 3}
+  - {fileID: 7859068361545942409, guid: dbb1288fe95d9444eb4d65597f896345, type: 3}
+  - {fileID: 4483661059389355070, guid: 8c79a48c8d7163246b8691e035686c52, type: 3}
+  - {fileID: 8102847651111001386, guid: 9d8abf34ce99027479742b8acee8c402, type: 3}

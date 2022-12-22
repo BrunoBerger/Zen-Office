@@ -162,7 +162,7 @@ public class SpawnPond : MonoBehaviour
 
             TwoInt preLastElm = pathsToEdge[i][pathsToEdge[i].Count - 2];
             TwoInt lastElm = pathsToEdge[i][pathsToEdge[i].Count-1];
-            CraveHoleWithWater(brookRad, lastElm.xi, lastElm.zi, h, true, clusterIndex);
+            CraveHoleWithWater(brookRad*0.7f, lastElm.xi, lastElm.zi, h, true, clusterIndex);
             Vector3 toLastElmDir = new Vector3(lastElm.xi - preLastElm.xi, 0, lastElm.zi - preLastElm.zi);
             Instantiate(waterfall, new Vector3(TI.IAsF(lastElm.xi), h - 0.07f, TI.IAsF(lastElm.zi)), Quaternion.LookRotation(toLastElmDir, Vector3.up));
 

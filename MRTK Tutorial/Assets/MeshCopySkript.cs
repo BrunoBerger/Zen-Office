@@ -13,6 +13,7 @@ public class MeshCopySkript : MonoBehaviour
     public SpawnRocks rockHolder;
     public SpawnPlants spawnPlants;
     public SpawnPond spawnPond;
+    public SpawnableSpawner spawnableSpawner;
     public Material mat;
 
     public GameObject meshHolderPrefab;
@@ -108,9 +109,9 @@ public class MeshCopySkript : MonoBehaviour
             
 
             //reconstructs the mesh to keep a maximum Edgelength, which is needed to shape the pond later
-            Debug.Log("TIME before reconstruction " + Time.realtimeSinceStartup);
+            //Debug.Log("TIME before reconstruction " + Time.realtimeSinceStartup);
             newMesh = meshReconstructor.ReconstructMeshUntillDone(newMesh);
-            Debug.Log("TIME after reconstruction " + Time.realtimeSinceStartup);
+            //Debug.Log("TIME after reconstruction " + Time.realtimeSinceStartup);
             //maybe more reconstruction iterations needed
 
             Vector3[] vertices = newMesh.vertices;
@@ -165,6 +166,7 @@ public class MeshCopySkript : MonoBehaviour
 
         GetComponent<TableInterpreter>().ClearTableInterpetation();
         GetComponent<TableInterpreter>().StartTableInterpretation(floorHeight);
+        spawnableSpawner.PrepareSpawnableSpawner();
         Debug.Log("TIME afterTableInterpr " + Time.realtimeSinceStartup);
         spawnPond.DeletePonds();
         spawnPond.StartPondSpawning();
@@ -178,6 +180,9 @@ public class MeshCopySkript : MonoBehaviour
 
         if (doesTreeSpawning && !spawnPlants.currentlySpawningTrees)
             StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
+
+
+        spawnableSpawner.InitMassSpawning();
     }
 
 
