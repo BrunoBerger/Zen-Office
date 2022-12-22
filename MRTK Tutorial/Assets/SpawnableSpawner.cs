@@ -90,12 +90,20 @@ public class SpawnableSpawner : MonoBehaviour
                     SpawnPropabilities spawnable = spawnables[indexOfSpawnable];
                     if (spawnable.objects.Length == 0) Debug.LogError("you did not assign objects to Spawn to the spawnPropability"+indexOfSpawnable);
 
-                    Instantiate(spawnable.objects[Random.Range(0, spawnable.objects.Length)], new Vector3(TI.IAsF(xi), hitInfo.point.y, TI.IAsF(zi)), Quaternion.identity); //TO DO: ALLOW ROTATION WITH GROUND NORMAL
+                    Instantiate(spawnable.objects[Random.Range(0, spawnable.objects.Length)], new Vector3(TI.IAsF(xi), hitInfo.point.y, TI.IAsF(zi)), Quaternion.identity, transform); //TO DO: ALLOW ROTATION WITH GROUND NORMAL
                     TI.MarkObjSpawnDist(xi, zi, spawnable.radius);
                 }
             }
         }
 
         
+    }
+
+    public void DeleteSpawnables()
+    {
+        foreach (Transform child in transform)
+        {
+            GameObject.Destroy(child.gameObject);
+        }
     }
 }

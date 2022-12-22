@@ -47,8 +47,14 @@ public class TableInterpreter : MonoBehaviour
     void Start()
     {
         rayDimension = (int)(2 * gridRadius / rayInterval);
+        //Debug.Log("holder.length is: " + tileHolder[].Length+"    and should be: "+holderSize);
+    }
+
+    public void ClearTableInterpetation()
+    {
+        
         distToObj = new int[rayDimension, rayDimension];
-        for(int x=0; x < rayDimension; x++)
+        for (int x = 0; x < rayDimension; x++)
         {
             for (int y = 0; y < rayDimension; y++)
             {
@@ -63,13 +69,7 @@ public class TableInterpreter : MonoBehaviour
         currentExtraInfo = new ExtraClusterInfo();
         toCheck0 = new List<TwoInt>();
         toCheck1 = new List<TwoInt>();
-        TriedToAddOnce = new bool[rayDimension,rayDimension];
-        //Debug.Log("holder.length is: " + tileHolder[].Length+"    and should be: "+holderSize);
-    }
-
-    public void ClearTableInterpetation()
-    {
-
+        TriedToAddOnce = new bool[rayDimension, rayDimension];
 
         foreach (Transform child in visualDebugHolder)
         {

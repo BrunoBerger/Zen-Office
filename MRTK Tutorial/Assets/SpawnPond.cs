@@ -31,15 +31,16 @@ public class SpawnPond : MonoBehaviour
         //TI = GetComponent<TableInterpreter>();
         rayInterval = TI.rayInterval;
         //meshCopySkript = GetComponent<MeshCopySkript>();
-        candidateIndices = new List<int>();
-        pathsToEdge = new List<List<TwoInt>>();
-        pondRadii = new List<float>();
+        
     }
 
 
 
     public void StartPondSpawning()
     {
+        candidateIndices = new List<int>();
+        pathsToEdge = new List<List<TwoInt>>();
+        pondRadii = new List<float>();
         AccessTileInformation();
         Debug.Log("TIME afterPondAccessTileInfo " + Time.realtimeSinceStartup);
         FindClusterCandidates();

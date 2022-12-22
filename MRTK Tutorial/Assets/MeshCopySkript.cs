@@ -181,7 +181,7 @@ public class MeshCopySkript : MonoBehaviour
         if (doesTreeSpawning && !spawnPlants.currentlySpawningTrees)
             StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
 
-
+        spawnableSpawner.DeleteSpawnables();
         spawnableSpawner.InitMassSpawning();
     }
 

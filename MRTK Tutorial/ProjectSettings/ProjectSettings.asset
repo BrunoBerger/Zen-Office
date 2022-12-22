@@ -585,7 +585,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: CROSS_PLATFORM_INPUT
+    1: CROSS_PLATFORM_INPUT;WEATHER_MAKER_PRESENT
     4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
     7: CROSS_PLATFORM_INPUT;MOBILE_INPUT
     14: MOBILE_INPUT
