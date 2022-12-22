@@ -1,0 +1,79 @@
+You will find here the version of the package and the changes that have been made. 
+
+VERSION 1.5 26/09/2021
+
+* Fixes
+	- Particles colors were fixed by the material in HDRP (now by the particle system)
+	- Fixed Depth of Filed values in HDRP for scenes 04 and 08
+
+* Improvements
+	- URP and HDRP 10.xxx compatibility 
+	- URP Post Process for 10.xxx
+
+* New Shaders
+	- URP and Built-in shaders have been updated, the translucency is now using Amplify Shader Editor Translucency algorythm 
+
+VERSION 1.4 13/03/2021
+
+* Improvements 
+	 - URP and HDRP compatibility for 7.xx versions
+	 - Ease of use : unpack the corresponding package in the Shaders folder and that's it
+	 - Demo Scenes compatiblity update for HDRP
+
+
+VERSION 1.3 29/03/2020
+
+* Fixes
+	- Library scene : missing material fixed
+	- Demo_01 scene : rock with wrong material fixed
+	- HDRP Grass shader cull off
+
+* Improvements
+	- URP compatibility (Unity 2019)
+
+* New Shaders
+	- URP compatible shaders (unzip folder)
+
+
+VERSION 1.2 08/11/2019
+
+* Fixes
+	- LOD01 material fix (Foliage_Simple)
+	- Flowergrass color mask fix
+	- Rock_02 LOD fix
+
+* Improvements
+	- Vegetation Studio Compatibility (using the Foliage_Simple shader)
+	- SRP compatibility (Unity 2019.1, version 5.13.0)
+
+* New Prefabs
+	- 7 New flowers prefabs (groups with stems)
+
+
+* New Shaders
+	- Standard shader replaced by specular workflow
+	- Foliage_Simple
+	- SRP Shaders
+
+
+
+VERSION 1.1.1
+
+* Fix
+	- Compatibility with 2018.3 (PostProcessing / MinDrawer update)
+
+
+VERSION 1.1
+
+* Fixes
+   - Skybox material in the demo scene01 had no texture
+
+* Improvements
+   - Indirect Instancing compatibility for all vegetation related shaders
+   - 2 new demo scenes (09 and 10)
+
+* New Prefabs
+   - 4 new GrassFlower prefabs with LODs
+
+* New Shaders
+   - GrassFlower shader with two flower color variations 

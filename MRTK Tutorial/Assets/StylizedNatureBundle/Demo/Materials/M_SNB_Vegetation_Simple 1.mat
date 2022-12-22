@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: M_SNB_Vegetation_Simple 1
+  m_Shader: {fileID: 4800000, guid: 4e9aa94b7854f7f4d8bf69448ee6b3be, type: 3}
+  m_ShaderKeywords: _ALPHATEST_ON
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _DiffuseSmoothnessA:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _EmissionRMetallicGSmoothnessB:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NormalMap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureSample0:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _Cutoff: 0.75
+    - _DirectionalShadows: 0.2
+    - _EmissionStrength: 0
+    - _HeightBrightness: 0
+    - _HeightGradient: 0.3
+    - _HeightStartGradient: 0.1
+    - _NormalStrength: 1
+    - _PointLightTranslucency: 1
+    - _Shininess: 0.1
+    - _Specularity: 1.5
+    - _TranslucencyForce: 0.4
+    - _TrunkBrightness: 0.5
+    - _WindFoliageAmplitude: 0
+    - _WindFoliageSpeed: 0
+    - _WindTrunkAmplitude: 0
+    - _WindTrunkSpeed: 0
+    - __dirty: 0
+    m_Colors:
+    - _FlowerInsideColor01: {r: 1, g: 0.7789562, b: 0.12735847, a: 0}
+    - _FlowerInsideColor02: {r: 1, g: 0.9507267, b: 0.6084906, a: 0}
+    - _FlowerMainColor01: {r: 1, g: 0.9637498, b: 0.759434, a: 0}
+    - _FlowerMainColor02: {r: 1, g: 0.70334506, b: 0.15566036, a: 0}
+    - _GrassColor: {r: 0.5264154, g: 0.7264151, b: 0.21586856, a: 0}
+    - _HeightColor: {r: 0.44640553, g: 0.6981132, b: 0.13501236, a: 0}
+    - _TranslucencyTint: {r: 1, g: 0.99379236, b: 0.38207546, a: 0}
+    - _TrunkColorVariation: {r: 0, g: 0, b: 0, a: 0}
