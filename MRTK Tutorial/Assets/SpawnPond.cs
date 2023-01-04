@@ -7,6 +7,7 @@ public class SpawnPond : MonoBehaviour
 {
     public GameObject water;
     public GameObject waterfall;
+    public FishCircle fish;
 
     [SerializeField] TableInterpreter TI;
     [SerializeField] MeshCopySkript meshCopySkript;
@@ -133,7 +134,8 @@ public class SpawnPond : MonoBehaviour
 
             TwoInt firstElement = pathsToEdge[i][0];
             CraveHoleWithWater(pondRadii[i], firstElement.xi, firstElement.zi, h, true, clusterIndex);
-
+            FishCircle pondFish = Instantiate(fish, new Vector3(TI.IAsF(firstElement.xi), h-0.05f, TI.IAsF(firstElement.zi)), Quaternion.identity);
+            pondFish.Init(pondRadii[i]*1.4f);
 
             TwoInt prevElm = firstElement;
             bool spawnedSecondElm = false;
@@ -165,7 +167,7 @@ public class SpawnPond : MonoBehaviour
             TwoInt lastElm = pathsToEdge[i][pathsToEdge[i].Count-1];
             CraveHoleWithWater(brookRad*0.7f, lastElm.xi, lastElm.zi, h, true, clusterIndex);
             Vector3 toLastElmDir = new Vector3(lastElm.xi - preLastElm.xi, 0, lastElm.zi - preLastElm.zi);
-            Instantiate(waterfall, new Vector3(TI.IAsF(lastElm.xi), h - 0.07f, TI.IAsF(lastElm.zi)), Quaternion.LookRotation(toLastElmDir, Vector3.up));
+            Instantiate(waterfall, new Vector3(TI.IAsF(lastElm.xi), h - 0.065f, TI.IAsF(lastElm.zi)), Quaternion.LookRotation(toLastElmDir, Vector3.up));
 
         }
     }
@@ -225,14 +227,17 @@ public class SpawnPond : MonoBehaviour
                             {
                                 if (tileHolder[xi,zi].clusterIndex == clusterIndex)
                                 {
-                                    Instantiate(water, new Vector3(TI.IAsF(xi), h-0.07f, TI.IAsF(zi)), Quaternion.Euler(90,180,0), transform);
+                                    if (tileHolder[xi, zi].edgeness == 0)
+                                    {
+                                        Instantiate(water, new Vector3(TI.IAsF(xi), h - 0.07f, TI.IAsF(zi)), Quaternion.Euler(90, 180, 0), transform);
+                                    }
                                 }
                             }
                         }
                     }
                 }
 
-                TI.MarkObjSpawnDist(middleXI, middleZI, radTilescaled);
+                TI.MarkObjSpawnDist(middleXI, middleZI, radTilescaled,1);
             }
             
             deformingMesh.RecalculateNormals();

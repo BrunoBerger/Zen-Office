@@ -23,8 +23,8 @@ public class SpawnPropabilities : ScriptableObject
 
     [Header("Minimum Distances (Md)")]
     [Range(1, 5)]
-    public int radius=1;
-    [Range(1, 5)]
+    public int radius = 1;
+    [Range(1, 10)]
     public int mdOtherObj = 0;
     [Range(0, 10)]
     public int mdEdge = 0;

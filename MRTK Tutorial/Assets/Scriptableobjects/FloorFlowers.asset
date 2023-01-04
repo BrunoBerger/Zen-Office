@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4663c2c75184948b5007b23d1d4fb4, type: 3}
+  m_Name: FloorFlowers
+  m_EditorClassIdentifier: 
+  propabilityScale: 0.03
+  pivotsHeightOnFloor: 1
+  heightRange:
+    lowCap: -0.3
+    lowDecay: -0.3
+    highDecay: 0.15
+    highCap: 0.22
+  noisemapRange:
+    lowCap: 0
+    lowDecay: 0
+    highDecay: 0.3
+    highCap: 0.6
+  noiseScale: 1
+  noiseOffset: {x: 0, y: 0}
+  radius: 1
+  mdOtherObj: 4
+  mdEdge: 0
+  mdRift: 0
+  mdHill: 0
+  spawnsOutsideTable: 1
+  spawnsOnRocks: 0
+  tiltWithFloor: 1
+  objects:
+  - {fileID: 1599590845744296, guid: e7f7ea903260e4946b462f7fef7ab9cc, type: 3}
+  - {fileID: 1157048146395924, guid: 1bff485c090a41845b2835bab953b7ae, type: 3}
+  - {fileID: 1917298837423382, guid: 365de8fd47d5f514dae770f92b890abd, type: 3}
+  - {fileID: 1244395286725416, guid: 985f2e682793e9a45aea1ece9663ac27, type: 3}
+  - {fileID: 1242133178518690, guid: 1dcac7c0f7a6fa6469b6cbb88cc4d700, type: 3}
+  - {fileID: 1242133178518690, guid: b553fa29c749d64449121208feb40a1d, type: 3}
+  - {fileID: 1242133178518690, guid: ca8452ba9df9a584c8963e4fb1d802c0, type: 3}
+  - {fileID: 1242133178518690, guid: 73fe31e3ca73f554799c4db292b6998c, type: 3}

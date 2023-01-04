@@ -621,7 +621,7 @@ public class TableInterpreter : MonoBehaviour
     }
 
 
-    public void MarkObjSpawnDist(int middleXi, int middleZi, int radius)
+    public void MarkObjSpawnDist(int middleXi, int middleZi, int radius, int minDistToOtherObj)
     {
         for(int xi = middleXi-radius -8; xi< middleXi+radius+9; xi++)
         {
@@ -629,10 +629,10 @@ public class TableInterpreter : MonoBehaviour
             for (int zi = middleZi - radius -8; zi < middleZi + radius+9; zi++)
             {
                 if (zi < 0 || zi >= rayDimension) continue;
-                int dist = (int)Mathf.Floor(Mathf.Sqrt((xi-middleXi)* (xi - middleXi)+ (zi - middleZi)* (zi - middleZi)) + 1.5f)-radius;
-                if (dist > 9) continue;
-                if (dist < 0) dist = 0;
-
+                int dist = (int)Mathf.Floor(Mathf.Sqrt((xi-middleXi)* (xi - middleXi)+ (zi - middleZi)* (zi - middleZi)) + 1.5f)-radius; //the is measured as distance from the circle with the radius
+                if (dist > 9) continue;  //default distance is 10, so everything higher than 9 does not need to be changed
+                //if (dist < 0) dist = 0; //eveyrthing within the objects radius had the distance 0
+                if (dist < minDistToOtherObj - 1 + radius ) dist = 0; //everything within the minDistToOtherObj measured form the outer circle is also marked with the distance 0 to prevent later spawned objects from violating this distance
                 if (distToObj[xi, zi] > dist) distToObj[xi, zi] = dist;
             }
         }

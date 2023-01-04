@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4663c2c75184948b5007b23d1d4fb4, type: 3}
+  m_Name: FloorGrass
+  m_EditorClassIdentifier: 
+  propabilityScale: 0.03
+  pivotsHeightOnFloor: 1
+  heightRange:
+    lowCap: -0.3
+    lowDecay: -0.3
+    highDecay: 0.15
+    highCap: 0.22
+  noisemapRange:
+    lowCap: 0.3
+    lowDecay: 0.3
+    highDecay: 0.6
+    highCap: 1
+  noiseScale: 1
+  noiseOffset: {x: 0, y: 0}
+  radius: 5
+  mdOtherObj: 2
+  mdEdge: 0
+  mdRift: 0
+  mdHill: 0
+  spawnsOutsideTable: 1
+  spawnsOnRocks: 0
+  tiltWithFloor: 1
+  objects:
+  - {fileID: 1567072493174220, guid: d46fe0b683966bb498b91421b9a63660, type: 3}
+  - {fileID: 1567072493174220, guid: 802ddb91053708c40b6ce84c5c72d9af, type: 3}
+  - {fileID: 1567072493174220, guid: 9a097881462c7c844a0146d2e9650f4d, type: 3}
+  - {fileID: 1567072493174220, guid: 8ad63b08e05c5d245a4759d38d779623, type: 3}

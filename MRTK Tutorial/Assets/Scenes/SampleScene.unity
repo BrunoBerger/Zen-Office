@@ -2582,6 +2582,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnables:
   - {fileID: 11400000, guid: 065e1180fa51fe94dbe83dae842c2072, type: 2}
+  - {fileID: 11400000, guid: 8a4e8d64df4043b428ff3f09aba95397, type: 2}
+  - {fileID: 11400000, guid: 7c87b54df3ac5fa40bab2ffa5a4041c4, type: 2}
   TI: {fileID: 318593116}
 --- !u!4 &467434548
 Transform:
@@ -10138,16 +10140,28 @@ PrefabInstance:
       value: 23
       objectReference: {fileID: 0}
     - target: {fileID: 4700616765475120, guid: 305eef8589daf2c4e86dbc3352f398be, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4700616765475120, guid: 305eef8589daf2c4e86dbc3352f398be, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4700616765475120, guid: 305eef8589daf2c4e86dbc3352f398be, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4700616765475120, guid: 305eef8589daf2c4e86dbc3352f398be, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4700616765475120, guid: 305eef8589daf2c4e86dbc3352f398be, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.13
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4700616765475120, guid: 305eef8589daf2c4e86dbc3352f398be, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 0.4
       objectReference: {fileID: 0}
     - target: {fileID: 4700616765475120, guid: 305eef8589daf2c4e86dbc3352f398be, type: 3}
       propertyPath: m_LocalRotation.w
@@ -13319,6 +13333,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   water: {fileID: 764020698721021929, guid: 573b3f592fc43364abd37f33a9c2524a, type: 3}
   waterfall: {fileID: 8505616264095410383, guid: ae69e0c7a7262fd4a90abf0b2e034ab8, type: 3}
+  fish: {fileID: 5821006237221795737, guid: 50d3f28c44a91d14faf2b0f2bd0e7f6c, type: 3}
   TI: {fileID: 318593116}
   meshCopySkript: {fileID: 318593112}
 --- !u!4 &2143061747
@@ -13364,8 +13379,8 @@ MonoBehaviour:
   texturePropertyName: _DiffTex
   textureA_X: -0.1
   textureA_Y: -0.1
-  textureB_X: -0.15
-  textureB_Y: -0.12
+  textureB_X: 0.25
+  textureB_Y: 0.22
   speedMultiplier: 0.1
   activeColor: 0
   colorMaterial: {fileID: 2100000, guid: 460d0cd6590231c4085ac1318ac06722, type: 2}
@@ -13446,7 +13461,7 @@ Transform:
   - {fileID: 4713702016951152}
   - {fileID: 8384587994037682670}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4689247494631862
 Transform:
@@ -13641,7 +13656,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1541739880524337496, guid: cd27d48406cdb1e4db69eb462965b589, type: 3}
       propertyPath: m_RootOrder
-      value: 24
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1541739880524337496, guid: cd27d48406cdb1e4db69eb462965b589, type: 3}
       propertyPath: m_LocalPosition.x

@@ -59,7 +59,7 @@ Material:
     - _BumpScale: 1
     - _CloudEndFrame: 1
     - _CloudFrame: 0
-    - _CloudNoiseFrame: 304.5378
+    - _CloudNoiseFrame: 0
     - _CloudNoiseType: 100
     - _CloudType: 0
     - _Cutoff: 0.5
@@ -78,10 +78,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _CloudNoisePerlinParams1: {r: 5, g: 4, b: 0, a: 0}
-    - _CloudNoisePerlinParams2: {r: 1.03, g: 2.75, b: 0, a: 0}
-    - _CloudNoiseWorleyParams1: {r: 5, g: 2, b: 0.1, a: 1}
-    - _CloudNoiseWorleyParams2: {r: 1.4, g: 2.75, b: 0, a: 0}
+    - _CloudNoisePerlinParams1: {r: 6, g: 4, b: 0, a: 0}
+    - _CloudNoisePerlinParams2: {r: 1, g: 2, b: 0, a: 0}
+    - _CloudNoiseWorleyParams1: {r: 6, g: 4, b: 0, a: 1}
+    - _CloudNoiseWorleyParams2: {r: 1, g: 2, b: 0, a: 0}
     - _CloudPerlinParams: {r: 5, g: 2, b: 1, a: 1}
     - _CloudPerlinParams1: {r: 5, g: 2, b: 1, a: 1}
     - _CloudPerlinParams2: {r: 1, g: 1, b: 0, a: 0}

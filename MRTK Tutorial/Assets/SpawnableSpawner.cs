@@ -90,8 +90,19 @@ public class SpawnableSpawner : MonoBehaviour
                     SpawnPropabilities spawnable = spawnables[indexOfSpawnable];
                     if (spawnable.objects.Length == 0) Debug.LogError("you did not assign objects to Spawn to the spawnPropability"+indexOfSpawnable);
 
-                    Instantiate(spawnable.objects[Random.Range(0, spawnable.objects.Length)], new Vector3(TI.IAsF(xi), hitInfo.point.y, TI.IAsF(zi)), Quaternion.identity, transform); //TO DO: ALLOW ROTATION WITH GROUND NORMAL
-                    TI.MarkObjSpawnDist(xi, zi, spawnable.radius);
+                    Vector3 relativeUp = spawnable.tiltWithFloor ? hitInfo.normal : Vector3.up;
+
+                    //following 6 lines from elenzil at https://answers.unity.com/questions/1618126/given-a-vector-how-do-i-generate-a-random-perpendi.html (15.11.2022)
+                    float du = Vector3.Dot(relativeUp, Vector3.up);
+                    float df = Vector3.Dot(relativeUp, Vector3.forward);
+                    Vector3 v1 = Mathf.Abs(du) < Mathf.Abs(df) ? Vector3.up : Vector3.forward;
+                    Vector3 v2 = Vector3.Cross(v1, relativeUp);
+                    float degrees = Random.Range(0.0f, 360.0f);
+                    v2 = Quaternion.AngleAxis(degrees, relativeUp) * v2;
+                    Quaternion spawnRot = Quaternion.LookRotation(v2, relativeUp);
+
+                    Instantiate(spawnable.objects[Random.Range(0, spawnable.objects.Length)], new Vector3(TI.IAsF(xi), hitInfo.point.y, TI.IAsF(zi)), spawnRot, transform); //TO DO: ALLOW ROTATION WITH GROUND NORMAL
+                    TI.MarkObjSpawnDist(xi, zi, spawnable.radius, spawnable.mdOtherObj);
                 }
             }
         }
