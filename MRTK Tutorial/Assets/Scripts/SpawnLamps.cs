@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
+using Unity.Jobs;
 using UnityEngine;
 
 public class SpawnLamps : MonoBehaviour
@@ -36,9 +38,9 @@ public class SpawnLamps : MonoBehaviour
         for (int i = 0; i < sp.NumberOfLamps; i++)
         {
             var newPos = new Vector3(
-                Random.Range(-sp.treeGridSize, sp.treeGridSize),
-                sp.RoughFloatingLevel,
-                Random.Range(-sp.treeGridSize, sp.treeGridSize)
+                startPos.x + Random.Range(-sp.LampAreaSize, sp.LampAreaSize),
+                sp.RoughFloatingLevel + Random.Range(-0.2f, 0.2f),
+                 startPos.z + Random.Range(-sp.LampAreaSize, sp.LampAreaSize)
                 );
             GameObject newLamp = Instantiate(
                 original: sp.LampPrefab,
@@ -50,7 +52,6 @@ public class SpawnLamps : MonoBehaviour
 
 
         }
-        Util.TestFunc();
         currentlySpawningLamps = false;
         yield return null;
     }

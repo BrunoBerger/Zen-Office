@@ -4,11 +4,7 @@ using UnityEngine;
 
 public class Util
 {
-    public static void TestFunc()
-    {
-        Debug.Log("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-    }
-    public static void DeleteGameObjFromList(List<GameObject> listToClear)
+    public static void ClearObjects(List<GameObject> listToClear)
     {
         foreach (GameObject obj in listToClear)
         {

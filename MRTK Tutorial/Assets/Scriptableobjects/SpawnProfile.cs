@@ -24,6 +24,8 @@ public class SpawnProfile : ScriptableObject
 
     [Header("Floating Lamps")]
     public GameObject LampPrefab;
-    [Range(0, 1)] public int NumberOfLamps = 10;
-    [Range(1, 4)] public float RoughFloatingLevel = 2.5f;
+    [Range(0, 100)] public int NumberOfLamps = 10;
+    [Range(0, 3)] public float RoughFloatingLevel = 1.7f;
+    [Range(0, 3)] public float LampAreaSize = 1.7f;
+
 }
