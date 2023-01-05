@@ -25,6 +25,7 @@ public class TableInterpreter : MonoBehaviour
     [HideInInspector] public readonly float gridRadius = 3; //meter
     [HideInInspector] public int rayDimension { get; private set; }
     [HideInInspector] public float floorLevel { get; private set; }
+    [HideInInspector] public float tableHeight { get; private set; }
 
     //storage, calculated Tile infrastructure
     [HideInInspector] public Tile[,] TileHolder { get; private set; }
@@ -77,9 +78,10 @@ public class TableInterpreter : MonoBehaviour
         }
     }
 
-    public void StartTableInterpretation(float floorlevel)
+    public void StartTableInterpretation(float floorlevel, float tableheight)
     {
         floorLevel = floorlevel;
+        tableHeight = tableheight;
         //a rough grid searches for Parts of a Table. If it finds a Part, a cluster of fine tiles is spread from its position and registers correlation
         for(int xRough=0; xRough < rayDimension; xRough += firstAbstraction)
         {
@@ -623,6 +625,7 @@ public class TableInterpreter : MonoBehaviour
 
     public void MarkObjSpawnDist(int middleXi, int middleZi, int radius, int minDistToOtherObj)
     {
+        if (minDistToOtherObj == 0) return; //objects with no minimum distance to other Objects allow other Objects to be placed on top of them.
         for(int xi = middleXi-radius -8; xi< middleXi+radius+9; xi++)
         {
             if (xi < 0 || xi >= rayDimension) continue;

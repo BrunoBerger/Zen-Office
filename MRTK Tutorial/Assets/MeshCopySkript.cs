@@ -15,6 +15,7 @@ public class MeshCopySkript : MonoBehaviour
     public SpawnPond spawnPond;
     public SpawnableSpawner spawnableSpawner;
     public SpawnLamps spawnLamps;
+    public Transform tableHeightCup;
     public Material mat;
 
     public GameObject meshHolderPrefab;
@@ -34,7 +35,9 @@ public class MeshCopySkript : MonoBehaviour
     IMixedRealitySpatialAwarenessMeshObserver scriptMeshObserver;
 
     float updateTimer;
+    [HideInInspector]
     public float floorHeight;
+    [HideInInspector]
     public float tableHeight;
     public List<float> verticiHeights;
 
@@ -147,7 +150,9 @@ public class MeshCopySkript : MonoBehaviour
         float[] heights = verticiHeights.ToArray();
         Array.Sort(heights);
         floorHeight = heights[(int)((heights.Length - 1) * 0.05f)];
-        //Debug.Log("FloorHeight: " + floorHeight);
+
+        //find tableHeight
+        tableHeight = tableHeightCup.position.y;
 
 
         meshesMeshCollection = new Mesh[meshCopyCollection.Length];
@@ -166,7 +171,7 @@ public class MeshCopySkript : MonoBehaviour
         
 
         GetComponent<TableInterpreter>().ClearTableInterpetation();
-        GetComponent<TableInterpreter>().StartTableInterpretation(floorHeight);
+        GetComponent<TableInterpreter>().StartTableInterpretation(floorHeight , tableHeight);
         spawnableSpawner.PrepareSpawnableSpawner();
         Debug.Log("TIME afterTableInterpr " + Time.realtimeSinceStartup);
         spawnPond.DeletePonds();

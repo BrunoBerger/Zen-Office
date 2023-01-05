@@ -24,17 +24,29 @@ public class SpawnPropabilities : ScriptableObject
     [Header("Minimum Distances (Md)")]
     [Range(1, 5)]
     public int radius = 1;
-    [Range(1, 10)]
-    public int mdOtherObj = 0;
-    [Range(0, 10)]
-    public int mdEdge = 0;
-    [Range(0, 10)]
-    public int mdRift = 0;
-    [Range(0, 10)]
-    public int mdHill = 0;
+    //[Range(1, 10)]
+    //public int mdOtherObj = 0;
+    //[Range(0, 10)]
+    //public int mdEdge = 0;
+    //[Range(0, 10)]
+    //public int mdRift = 0;
+    //[Range(0, 10)]
+    //public int mdHill = 0;
+    public MinMaxRange distToOtherObj;
     [Range(0, 2)]
     [Tooltip("0 = does only spawn on tables, 1 = does only spawn outside of tables, 2 = spawns on both kind of surfaces")]
     public int spawnsOutsideTable = 0;
+    public MinMaxRange distToEdge;
+    public MinMaxRange distToHill;
+    public MinMaxRange distToRift;
+
+    //[Tooltip("how many of its four sides adjoin a rift")]
+    //[Range(0, 4)]
+    //public int riftness = 0;
+    //[Tooltip("how many of its four sides adjoin a hill")]
+    //[Range(0, 4)]
+    //public int hillness = 0;
+
 
     [Header("tilt criteria")]
     [Range(0, 2)]
@@ -52,10 +64,13 @@ public class SpawnPropabilities : ScriptableObject
     {
         heightRange.AdaptDependentVars();
         noisemapRange.AdaptDependentVars();
+        distToEdge.AdaptDependentVars();
+        distToHill.AdaptDependentVars();
+        distToRift.AdaptDependentVars();
     }
 
 
-    public float GetPropability(float hFromFloor, float hFromTable, bool isOnTable, bool isRockSurface, int edgeDist, int hillDist, int riftDist, int distToObj, int xi, int zi)
+    public float GetPropability(float hFromFloor, float hFromTable, bool isOnTable, bool isRockSurface, int edgeDist, int hillDist, int riftDist, int distToObj, int hillness, int riftness, int xi, int zi)
     {
         float propability = propabilityScale;
 
@@ -65,12 +80,17 @@ public class SpawnPropabilities : ScriptableObject
         if (!isOnTable && spawnsOutsideTable == 0) return 0;
         if ( isOnTable && spawnsOutsideTable == 1) return 0;
 
-        if (mdOtherObj + radius-1 > distToObj) return 0;
+        //if (mdOtherObj + radius-1 > distToObj) return 0;
+        if (!distToOtherObj.IsInRange(distToObj, radius)) return 0;
         if (isOnTable)
         {
-            if (mdEdge + radius - 1 > edgeDist) return 0;
-            if (mdHill + radius - 1 > hillDist) return 0;
-            if (mdRift + radius - 1 > riftDist) return 0;
+            //if (mdEdge + radius - 1 > edgeDist) return 0;
+            //if (mdHill + radius - 1 > hillDist) return 0;
+            //if (mdRift + radius - 1 > riftDist) return 0;
+            if (!distToEdge.IsInRange(edgeDist, radius)) return 0;
+            if (!distToHill.IsInRange(hillDist, radius)) return 0;
+            if (!distToRift.IsInRange(riftDist, radius)) return 0;
+
         }
 
         propability *= heightRange.GetPropability(pivotsHeightOnFloor?hFromFloor:hFromTable);
@@ -241,3 +261,41 @@ public class SoftRangeVarM2P2
     }
 }
 //END of almost duplicated Code
+
+
+[Serializable]
+public class MinMaxRange{
+    [Range(0, 10)]
+    public int min = 1;
+    [Tooltip("a maximum dist of 10 means open end for maximum")]
+    [Range(0, 10)]
+    public int max = 10;
+
+    int prevMin=1;
+    int prevMax=10;
+
+    public void AdaptDependentVars()
+    {
+        if (min != prevMin)
+        {
+            if (max < min) max = min;
+        }
+        else if (max != prevMax)
+        {
+            if (max < min) min = max;
+        }
+        prevMin = min;
+        prevMax = max;
+    }
+
+    public bool IsInRange(int dist, int rad)
+    {
+        bool inMax = false;
+        //bool inMin = false;
+        if (max == 10 && dist >= 10) inMax = true;
+        else if (dist <= max + rad - 1) inMax = true;
+        if (!inMax) return false;
+        if (dist  >= min + rad - 1) return true;
+        return false;
+    }
+}

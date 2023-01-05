@@ -1812,6 +1812,7 @@ MonoBehaviour:
   spawnPond: {fileID: 2143061746}
   spawnableSpawner: {fileID: 467434547}
   spawnLamps: {fileID: 1237177759}
+  tableHeightCup: {fileID: 4359496153273008}
   mat: {fileID: 2100000, guid: 059cceb0ba6e50741bfe6ec2c755d5f4, type: 2}
   meshHolderPrefab: {fileID: 4541549713160470440, guid: ab827f2322d82af42a7b2b65927ae4dd, type: 3}
   mixedRealityPlayspace: {fileID: 12967395}
@@ -2584,6 +2585,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 065e1180fa51fe94dbe83dae842c2072, type: 2}
   - {fileID: 11400000, guid: 8a4e8d64df4043b428ff3f09aba95397, type: 2}
   - {fileID: 11400000, guid: 7c87b54df3ac5fa40bab2ffa5a4041c4, type: 2}
+  - {fileID: 11400000, guid: 90144c897bb9c5d4ba20307e291ec9f2, type: 2}
   TI: {fileID: 318593116}
 --- !u!4 &467434548
 Transform:

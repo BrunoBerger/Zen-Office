@@ -17,8 +17,8 @@ MonoBehaviour:
   heightRange:
     lowCap: -0.3
     lowDecay: -0.3
-    highDecay: 0.15
-    highCap: 0.22
+    highDecay: 0.07
+    highCap: 0.1
   noisemapRange:
     lowCap: 0
     lowDecay: 0

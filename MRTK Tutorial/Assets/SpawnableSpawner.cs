@@ -24,7 +24,7 @@ public class SpawnableSpawner : MonoBehaviour
         rayInterval = TI.rayInterval;
         gridRadius = TI.gridRadius;
         floorLevel = TI.floorLevel;
-        //tableHeight = TI.tableHeight; WICHIG: SET TABLE HEIGHT HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        tableHeight = TI.tableHeight; //WICHIG: SET TABLE HEIGHT HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         meshLayer = TI.meshLayer;
         //distsToObj = new int[dimensions, dimensions];
         
@@ -63,6 +63,8 @@ public class SpawnableSpawner : MonoBehaviour
                     int edgeDist = tile.distEdge;
                     int hillDist = tile.distHill;
                     int riftDist = tile.distRift;
+                    int hillness = tile.hillness;
+                    int riftness = tile.riftness;
                     float hFromTable = hitInfo.point.y - tableHeight;
                     float hFromFloor = hitInfo.point.y - floorLevel;
 
@@ -75,7 +77,7 @@ public class SpawnableSpawner : MonoBehaviour
                         //Debug.Log("shuffle read "+i);
                         int testedI = shuffeledSpawnableIndices[i];
                         //Debug.Log("beforeProp check");
-                        float propability = spawnables[testedI].GetPropability(hFromFloor, hFromTable, onTable, isRockySurface, edgeDist, hillDist, riftDist, distToObj, xi, zi);
+                        float propability = spawnables[testedI].GetPropability(hFromFloor, hFromTable, onTable, isRockySurface, edgeDist, hillDist, riftDist, distToObj, hillness, riftness, xi, zi);
                         //Debug.Log("afterProp check");
                         if (propability == 0) continue;
                         if(propability>= Random.Range(0.0000000001f, 1f))
@@ -102,7 +104,7 @@ public class SpawnableSpawner : MonoBehaviour
                     Quaternion spawnRot = Quaternion.LookRotation(v2, relativeUp);
 
                     Instantiate(spawnable.objects[Random.Range(0, spawnable.objects.Length)], new Vector3(TI.IAsF(xi), hitInfo.point.y, TI.IAsF(zi)), spawnRot, transform); //TO DO: ALLOW ROTATION WITH GROUND NORMAL
-                    TI.MarkObjSpawnDist(xi, zi, spawnable.radius, spawnable.mdOtherObj);
+                    TI.MarkObjSpawnDist(xi, zi, spawnable.radius, spawnable.distToOtherObj.min);
                 }
             }
         }
