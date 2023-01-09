@@ -26,12 +26,20 @@ MonoBehaviour:
     highCap: 0.6
   noiseScale: 1
   noiseOffset: {x: 0, y: 0}
-  radius: 1
-  mdOtherObj: 4
-  mdEdge: 0
-  mdRift: 0
-  mdHill: 0
+  radius: 3
+  distToOtherObj:
+    min: 3
+    max: 10
   spawnsOutsideTable: 1
+  distToEdge:
+    min: 1
+    max: 10
+  distToHill:
+    min: 1
+    max: 10
+  distToRift:
+    min: 1
+    max: 10
   spawnsOnRocks: 0
   tiltWithFloor: 1
   objects:

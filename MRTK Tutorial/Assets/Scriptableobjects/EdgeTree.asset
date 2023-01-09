@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4663c2c75184948b5007b23d1d4fb4, type: 3}
   m_Name: EdgeTree
   m_EditorClassIdentifier: 
-  propabilityScale: 0.158
+  propabilityScale: 0.762
   pivotsHeightOnFloor: 0
   heightRange:
     lowCap: -0.2
@@ -26,20 +26,20 @@ MonoBehaviour:
     highCap: 1
   noiseScale: 1
   noiseOffset: {x: 0, y: 0}
-  radius: 1
+  radius: 2
   distToOtherObj:
     min: 1
     max: 10
+  spawnsOutsideTable: 0
   distToEdge:
-    min: 1
+    min: 0
     max: 10
   distToHill:
-    min: 1
+    min: 0
     max: 10
   distToRift:
-    min: 1
-    max: 10
-  spawnsOutsideTable: 0
+    min: 0
+    max: 1
   spawnsOnRocks: 0
   tiltWithFloor: 1
   objects:

@@ -21,6 +21,8 @@ public class DrawMasks : MonoBehaviour
     Transform leftThumb;
     Transform rightThumb;
 
+
+    Transform mainCamera;
     //Debug
     public float leftIndexThumbDistance;
     public float rightIndexThumbDistance;
@@ -39,6 +41,8 @@ public class DrawMasks : MonoBehaviour
     {
         if (Time.realtimeSinceStartup < 3)
             return;
+
+        mainCamera = Camera.main.transform;
 
         //Check if fingertips are near, if yes then create a new mask
         var handJointService = CoreServices.GetInputSystemDataProvider<IMixedRealityHandJointService>();
@@ -82,23 +86,59 @@ public class DrawMasks : MonoBehaviour
     IEnumerator ScaleMask(GameObject mask)
     {
         currentlyScalingMask = true;
-        Vector3 startPos = leftFingerTip.position;
-        var tempGameObject = new GameObject();
-        Transform tmpParent = tempGameObject.transform;
+        //Vector3 startPos = leftFingerTip.position;
+        //var tempGameObject = new GameObject();
+        //Transform tmpParent = tempGameObject.transform;
 
-        tmpParent.position = startPos - mask.transform.lossyScale * 0.5f;
-        mask.transform.parent = tmpParent;
-        tmpParent.position = startPos;
+        //tmpParent.position = startPos - mask.transform.lossyScale * 0.5f;
+        //mask.transform.parent = tmpParent;
+        //tmpParent.position = startPos;
 
 
         while (leftIndexThumbDistance < minTipDistance && rightIndexThumbDistance < minTipDistance)
         {
             tipHoldTime = 0; // to keep from spawning new masks at the same time
-            Vector3 vecToLeft = leftFingerTip.position - startPos;
-            Vector3 vecToRight = rightFingerTip.position - startPos;
+            //Vector3 vecToLeft = leftFingerTip.position - startPos;
+            //Vector3 vecToRight = rightFingerTip.position - startPos;
 
-            // no idea why five works perfectly
-            tmpParent.localScale = new Vector3(vecToRight.x, vecToRight.y, vecToRight.z) * 5;
+            //// no idea why five works perfectly  //answer: because the child has a scale of 0.2f
+            //tmpParent.localScale = new Vector3(vecToRight.x, vecToRight.y, vecToRight.z) * 5;
+
+            
+
+            Vector3 lp = (leftFingerTip.position + leftThumb.position) / 2;
+            Vector3 rp = (rightFingerTip.position + rightThumb.position) / 2;
+
+            Vector3 center = (lp+rp)/ 2f;
+            Vector3 headJoint = mainCamera.position + mainCamera.rotation * new Vector3(0, -0.03f, -0.075f);
+            Vector3 centerToCamera = (headJoint - center).normalized;
+
+            //left to right finger
+            Vector3 ltrf = rightFingerTip.position - leftFingerTip.position;
+
+
+            Vector3 helpDirectionRightwards = Vector3.Cross(centerToCamera, Vector3.up).normalized;
+
+            Vector3 relativeFoward = Vector3.Cross(helpDirectionRightwards, ltrf/2);
+
+            Vector3 usedUpward = -Vector3.Cross(helpDirectionRightwards, relativeFoward);
+
+            Vector3 usedRightward = ltrf / 2 - usedUpward;
+
+            //Vector3 relativeUpwards = Vector3.Cross(centerToCamera, relativeRightwards);
+
+            //Vector3 cross = Vector3.Cross(ltrf, centerToCamera);
+
+            mask.transform.localScale= new Vector3(usedRightward.magnitude * 2, usedUpward.magnitude * 2, 0.03f);
+
+            mask.transform.rotation = Quaternion.LookRotation(relativeFoward, usedUpward);
+
+            mask.transform.position = center;
+
+
+            Debug.DrawRay(center, relativeFoward, Color.blue, 0.03f);
+            Debug.DrawRay(center, usedUpward, Color.green, 0.03f);
+            Debug.DrawRay(center, usedRightward, Color.red, 0.03f);
 
             //Vector3 direction = Vector3.Cross(rightFingerTip.position, leftFingerTip.position);
             //tmpParent.LookAt(direction * 360 * Mathf.PI);
@@ -106,8 +146,8 @@ public class DrawMasks : MonoBehaviour
 
             yield return null;
         }
-        mask.transform.parent = null;
-        Destroy(tempGameObject);
+        //mask.transform.parent = null;
+        //Destroy(tempGameObject);
         currentlyScalingMask = false;
 
         yield return new WaitForSeconds(1); // to not immediatly trigger a new interaktion
