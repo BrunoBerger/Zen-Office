@@ -48,6 +48,8 @@ MonoBehaviour:
   - {fileID: 2282023427223854647, guid: b7f581df6867d6f4b95101e517090f86, type: 3}
   - {fileID: 5959778637544205077, guid: b0a20ef6b2d32d24a8394b8248db3e0e, type: 3}
   - {fileID: 3355694962777940926, guid: 93dad8cbf4bdca540ba202758cf814a1, type: 3}
-  LampPrefab: {fileID: 6833078832834198321, guid: cd27d48406cdb1e4db69eb462965b589, type: 3}
-  NumberOfLamps: 10
-  RoughFloatingLevel: 1.08
+  LampPrefab: {fileID: 1784719585827118148, guid: 25fdcca825317564bb9936ced5d8bad8, type: 3}
+  NumberOfLamps: 30
+  RoughFloatingLevel: 0.45
+  LampAreaSize: 1.63
+  LampVerticalSpread: 0.396
