@@ -14,16 +14,9 @@ public class SpawnLamps : MonoBehaviour
     void Start()
     {
         placedLamps = new List<GameObject>();
+        StartCoroutine(GenerateLamps());
+        Debug.LogWarning("DELETE LINE ABOVE ME!");
     }
-
-    //// Update is called once per frame
-    //void Update()
-    //{
-    //    foreach (GameObject lamp in placedLamps)
-    //    {
-
-    //    }
-    //}
 
     public IEnumerator GenerateLamps()
     {
@@ -39,7 +32,7 @@ public class SpawnLamps : MonoBehaviour
         {
             var newPos = new Vector3(
                 startPos.x + Random.Range(-sp.LampAreaSize, sp.LampAreaSize),
-                sp.RoughFloatingLevel + Random.Range(-0.2f, 0.2f),
+                sp.RoughFloatingLevel + Random.Range(-sp.LampVerticalSpread, sp.LampVerticalSpread),
                  startPos.z + Random.Range(-sp.LampAreaSize, sp.LampAreaSize)
                 );
             GameObject newLamp = Instantiate(
@@ -49,8 +42,6 @@ public class SpawnLamps : MonoBehaviour
                 parent: transform
                 );
             placedLamps.Add(newLamp);
-
-
         }
         currentlySpawningLamps = false;
         yield return null;
