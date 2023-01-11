@@ -13336,6 +13336,7 @@ MonoBehaviour:
   water: {fileID: 764020698721021929, guid: 573b3f592fc43364abd37f33a9c2524a, type: 3}
   waterfall: {fileID: 8505616264095410383, guid: ae69e0c7a7262fd4a90abf0b2e034ab8, type: 3}
   fish: {fileID: 5821006237221795737, guid: 50d3f28c44a91d14faf2b0f2bd0e7f6c, type: 3}
+  fishParticles: {fileID: 1117524432989935337, guid: 356ae833305b98c49adb9a0cc249bdc7, type: 3}
   TI: {fileID: 318593116}
   meshCopySkript: {fileID: 318593112}
 --- !u!4 &2143061747

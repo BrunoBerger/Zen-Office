@@ -68,6 +68,7 @@ public class TableInterpreter : MonoBehaviour
         currentCluster = new List<TwoInt>();
         ExtraClustersInfo = new List<ExtraClusterInfo>();
         currentExtraInfo = new ExtraClusterInfo();
+        _clusterIndex = 0;
         toCheck0 = new List<TwoInt>();
         toCheck1 = new List<TwoInt>();
         TriedToAddOnce = new bool[rayDimension, rayDimension];

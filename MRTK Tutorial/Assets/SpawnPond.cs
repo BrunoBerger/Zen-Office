@@ -8,6 +8,7 @@ public class SpawnPond : MonoBehaviour
     public GameObject water;
     public GameObject waterfall;
     public FishCircle fish;
+    public FishParticleControll fishParticles;
 
     [SerializeField] TableInterpreter TI;
     [SerializeField] MeshCopySkript meshCopySkript;
@@ -15,7 +16,7 @@ public class SpawnPond : MonoBehaviour
     List<float> pondRadii;
     List<int> candidateIndices;
     bool[,] isWater;
-
+    bool[,] spawnedWater;
     //settings
     int minDistToEdge = 8;
     int maxNumberOfPonds = 3;
@@ -62,6 +63,7 @@ public class SpawnPond : MonoBehaviour
         tileClusters = TI.TileClusters;
         extraClustersInfo = TI.ExtraClustersInfo;
         isWater = new bool[TI.rayDimension, TI.rayDimension];
+        spawnedWater = new bool[TI.rayDimension, TI.rayDimension];
     }
 
     void FindClusterCandidates()
@@ -128,14 +130,16 @@ public class SpawnPond : MonoBehaviour
             int clusterIndex = candidateIndices[i];
             ExtraClusterInfo cInfo = extraClustersInfo[clusterIndex];
             float h = cInfo.averageH + meshCopySkript.floorHeight;
-            float brookRad = pondRadii[i] / 2;
+            float brookRad = pondRadii[i] * 0.6f;
             float brookMinDist = brookRad / rayInterval *2;
             float secondElmToPondMinDist = pondRadii[i] * 1.5f / rayInterval;
 
             TwoInt firstElement = pathsToEdge[i][0];
             CraveHoleWithWater(pondRadii[i], firstElement.xi, firstElement.zi, h, true, clusterIndex);
-            FishCircle pondFish = Instantiate(fish, new Vector3(TI.IAsF(firstElement.xi), h-0.05f, TI.IAsF(firstElement.zi)), Quaternion.identity, transform);
-            pondFish.Init(pondRadii[i]*1.4f);
+            FishCircle pondFish = Instantiate(fish, new Vector3(TI.IAsF(firstElement.xi), h-0.085f, TI.IAsF(firstElement.zi)), Quaternion.identity, transform);
+            pondFish.Init(pondRadii[i]*1.2f-0.035f);
+            FishParticleControll fishPartic = Instantiate(fishParticles, transform);
+            fishPartic.Setup(pondFish, h - 0.07f);
 
             TwoInt prevElm = firstElement;
             bool spawnedSecondElm = false;
@@ -197,6 +201,11 @@ public class SpawnPond : MonoBehaviour
             for (int i = 0; i < originalVertices.Length; i++)
             {
                 float dist = (originalVertices[i] * meshsScale - spherePos).magnitude;
+                float heightDif = originalVertices[i].y * meshsScale - spherePos.y;
+                if (heightDif > 0)
+                {
+                    dist -= heightDif/2f;
+                }
                 if (dist < radius)
                 {
                     displacedVertices[i] = originalVertices[i] + (Vector3.down * maxChangeY * (radius - dist) / radius) / meshsScale;
@@ -204,44 +213,47 @@ public class SpawnPond : MonoBehaviour
 
             }
             deformingMesh.vertices = displacedVertices;
+            deformingMesh.RecalculateNormals();
 
-            if (withwWater)
+        }
+        if (withwWater)
+        {
+            //GameObject placedWater = Instantiate(water, pos, Quaternion.identity);
+            //placedWater.transform.localScale *= radius; //Maybe Change radius here or adapt prefab!!!!!!!!!!!!!!!
+
+            float radTileScaledFloat = radius / TI.rayInterval;
+            int radTilescaled = (int)Mathf.Round(radTileScaledFloat);
+            int maxXi = middleXI + radTilescaled;
+            int maxZi = middleZI + radTilescaled;
+
+            for (int xi = middleXI - radTilescaled; xi <= maxXi; xi++)
             {
-                //GameObject placedWater = Instantiate(water, pos, Quaternion.identity);
-                //placedWater.transform.localScale *= radius; //Maybe Change radius here or adapt prefab!!!!!!!!!!!!!!!
-                
-                float radTileScaledFloat = radius / TI.rayInterval;
-                int radTilescaled = (int)Mathf.Round(radTileScaledFloat);
-                int maxXi = middleXI + radTilescaled;
-                int maxZi = middleZI + radTilescaled;
-
-                for(int xi=middleXI-radTilescaled; xi<=maxXi; xi++)
+                for (int zi = middleZI - radTilescaled; zi <= maxZi; zi++)
                 {
-                    for (int zi = middleZI - radTilescaled; zi <= maxZi; zi++)
+                    if (spawnedWater[xi, zi]) continue;
+                    float xiDist = xi - middleXI;
+                    float ziDist = zi - middleZI;
+                    if (Mathf.Sqrt(xiDist * xiDist + ziDist * ziDist) <= radTileScaledFloat)
                     {
-                        float xiDist = xi - middleXI;
-                        float ziDist = zi - middleZI;
-                        if (Mathf.Sqrt(xiDist * xiDist + ziDist * ziDist) <= radTileScaledFloat)
-                        {
-                            if (!TI.IsOutOfBounds(xi, zi))
-                            {
-                                if (tileHolder[xi,zi].clusterIndex == clusterIndex)
-                                {
-                                    if (tileHolder[xi, zi].edgeness == 0)
-                                    {
-                                        Instantiate(water, new Vector3(TI.IAsF(xi), h - 0.07f, TI.IAsF(zi)), Quaternion.Euler(90, 180, 0), transform);
-                                    }
-                                }
-                            }
-                        }
+                        if (TI.IsOutOfBounds(xi, zi)) continue;
+                        if (tileHolder[xi, zi].clusterIndex != clusterIndex) continue;
+                        if (tileHolder[xi, zi].edgeness != 0) continue;
+                        if (tileHolder[xi, zi].state != State.fine) continue;
+
+                        spawnedWater[xi, zi] = true;
+                        Instantiate(water, new Vector3(TI.IAsF(xi), h - 0.07f, TI.IAsF(zi)), Quaternion.Euler(90, 180, 0), transform);
+
+
+
                     }
                 }
-
-                TI.MarkObjSpawnDist(middleXI, middleZI, radTilescaled,1);
             }
-            
-            deformingMesh.RecalculateNormals();
+
+            TI.MarkObjSpawnDist(middleXI, middleZI, radTilescaled, 1);
         }
+
+
+
     }
 
     public void DeletePonds()
