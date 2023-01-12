@@ -10,7 +10,7 @@ public class LampMovement : MonoBehaviour
     float myRotationStart;
     float rotSpeed;
 
-    readonly float maxYSpeed = 0.015f;
+    readonly float maxYSpeed = 0.030f;
     float ySpeed;
     float phase;
 
