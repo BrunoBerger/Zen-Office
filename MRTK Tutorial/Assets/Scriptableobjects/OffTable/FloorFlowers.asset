@@ -42,6 +42,7 @@ MonoBehaviour:
     max: 10
   spawnsOnRocks: 0
   tiltWithFloor: 1
+  spawnInfrontDesktop: 2
   objects:
   - {fileID: 1599590845744296, guid: e7f7ea903260e4946b462f7fef7ab9cc, type: 3}
   - {fileID: 1157048146395924, guid: 1bff485c090a41845b2835bab953b7ae, type: 3}

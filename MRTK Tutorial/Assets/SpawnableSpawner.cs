@@ -16,6 +16,7 @@ public class SpawnableSpawner : MonoBehaviour
     float floorLevel;
     float tableHeight;
     LayerMask meshLayer;
+    bool[,] isDesktopArea;
     //int[,] distsToObj;
 
     public void PrepareSpawnableSpawner()
@@ -26,6 +27,7 @@ public class SpawnableSpawner : MonoBehaviour
         floorLevel = TI.floorLevel;
         tableHeight = TI.tableHeight; //WICHIG: SET TABLE HEIGHT HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         meshLayer = TI.meshLayer;
+        isDesktopArea = TI.isDesktopArea;
         //distsToObj = new int[dimensions, dimensions];
         
     }
@@ -59,6 +61,7 @@ public class SpawnableSpawner : MonoBehaviour
                     Tile tile = tileHolder[xi, zi];
                     //Debug.Log("after tileset");
                     bool isRockySurface = hitInfo.normal.y < 0.25f;
+                    bool isOnDesktopArea = isDesktopArea[xi, zi];
                     bool onTable = tile.state == State.fine;
                     int edgeDist = tile.distEdge;
                     int hillDist = tile.distHill;
@@ -77,7 +80,7 @@ public class SpawnableSpawner : MonoBehaviour
                         //Debug.Log("shuffle read "+i);
                         int testedI = shuffeledSpawnableIndices[i];
                         //Debug.Log("beforeProp check");
-                        float propability = spawnables[testedI].GetPropability(hFromFloor, hFromTable, onTable, isRockySurface, edgeDist, hillDist, riftDist, distToObj, hillness, riftness, xi, zi);
+                        float propability = spawnables[testedI].GetPropability(hFromFloor, hFromTable, onTable, isRockySurface, isOnDesktopArea, edgeDist, hillDist, riftDist, distToObj, hillness, riftness, xi, zi);
                         //Debug.Log("afterProp check");
                         if (propability == 0) continue;
                         if(propability>= Random.Range(0.0000000001f, 1f))

@@ -17,7 +17,7 @@ public class TableInterpreter : MonoBehaviour
     public bool DebugRaysOnEdges;
     public GameObject[] debuggingObjects;
     public GameObject heightDebugCube;
-    
+    public Transform BackMaskHolder;
 
     //settings
     [HideInInspector] public readonly float rayInterval = 0.025f; //0.025f = every 2.5cm
@@ -33,6 +33,7 @@ public class TableInterpreter : MonoBehaviour
     [HideInInspector] public List<ExtraClusterInfo> ExtraClustersInfo { get; private set; }
     [HideInInspector] public int[,] distToObj;
     [HideInInspector] public bool[,] isRocky;
+    [HideInInspector] public bool[,] isDesktopArea;
 
 
     //computing vars
@@ -63,6 +64,7 @@ public class TableInterpreter : MonoBehaviour
             }
         }
         isRocky = new bool[rayDimension, rayDimension];
+        isDesktopArea = new bool[rayDimension, rayDimension];
         TileHolder = new Tile[rayDimension, rayDimension];
         TileClusters = new List<List<TwoInt>>();
         currentCluster = new List<TwoInt>();
@@ -134,6 +136,10 @@ public class TableInterpreter : MonoBehaviour
         //visual Debugging
         if (visualDebugging != VisualDebugging.no) VisualyDebugAll();
         if (DebugClusterInfo) VisualyDebugClusterInfo();
+
+        MarkDesktopArea();
+
+        
     }
 
     void CalcEdgeDistEtc()
@@ -329,7 +335,7 @@ public class TableInterpreter : MonoBehaviour
         if (Physics.Raycast(new Vector3(xi * rayInterval - gridRadius, floorLevel + 2, zi * rayInterval - gridRadius), Vector3.down, out hitInfo, 3, meshLayer))
         {
             //Debug.Log("try create tile at " + xi + "," + zi);
-            Tile testedTile = new Tile(hitInfo.point.y - floorLevel, xi, zi, _clusterIndex);
+            Tile testedTile = new Tile(hitInfo.point.y - tableHeight, xi, zi, _clusterIndex);
             TileHolder[xi, zi] = testedTile;
             if (testedTile.state == State.fine)
             {
@@ -648,6 +654,87 @@ public class TableInterpreter : MonoBehaviour
         return distToObj[xi, zi];
     }
 
+    void MarkDesktopArea()
+    {
+        foreach (Transform cube in BackMaskHolder)
+        {
+            Vector3 pos = cube.position;
+            Vector3 forward = cube.forward;
+            Vector3 right = cube.right;
+
+            if (Mathf.Abs(forward.y) < 1 / Mathf.Sqrt(2)) //less than 45Degree rotated upwards, so its counted as Desktop;
+            {
+                Vector2 horzFoward = new Vector2(forward.x, forward.z).normalized;
+                Vector2 horzRight = new Vector2(right.x, right.z).normalized;
+                //four points build a Square infront of Desktop to prevent unallowed spawning
+                //it has the width of the desktop and reaches 1m foward and 10cm behind the desktop;
+
+                Vector2 xzPos = new Vector2(pos.x, pos.z);
+                Vector2 pF1 = xzPos + horzRight * cube.localScale.x / 2 - horzFoward * 0.1f;
+                Vector2 pF2 = xzPos - horzRight * cube.localScale.x / 2 - horzFoward * 0.1f;
+                Vector2 pF3 = pF1 + horzFoward * 1.1f;
+                Vector2 pF4 = pF2 + horzFoward * 1.1f;
+
+                TwoInt p1 = new TwoInt(FAsI(pF1.x), FAsI(pF1.y));
+                TwoInt p2 = new TwoInt(FAsI(pF2.x), FAsI(pF2.y));
+                TwoInt p3 = new TwoInt(FAsI(pF3.x), FAsI(pF3.y));
+                TwoInt p4 = new TwoInt(FAsI(pF4.x), FAsI(pF4.y));
+
+                int biggestXi = Mathf.Max(new int[] { p1.xi, p2.xi, p3.xi, p4.xi });
+                int smallestXi = Mathf.Min(new int[] { p1.xi, p2.xi, p3.xi, p4.xi });
+                int biggestZi = Mathf.Max(new int[] { p1.zi, p2.zi, p3.zi, p4.zi });
+                int smallestZi = Mathf.Min(new int[] { p1.zi, p2.zi, p3.zi, p4.zi });
+
+                if (biggestXi > rayDimension - 1) biggestXi = rayDimension - 1;
+                if (biggestZi > rayDimension - 1) biggestZi = rayDimension - 1;
+                if (smallestXi < 0) smallestXi = 0;
+                if (smallestZi < 0) smallestZi = 0;
+
+                Vector2 p1Vec = p1.AsV2();
+                Vector2 p2Vec = p2.AsV2();
+                Vector2 p3Vec = p3.AsV2();
+                Vector2 p4Vec = p4.AsV2();
+
+                for (int xi = smallestXi; xi <= biggestXi; xi++)
+                {
+                    for (int zi = smallestZi; zi <= biggestZi; zi++)
+                    {
+                        if (PointInTriangle(new Vector2(xi, zi), p1Vec, p2Vec, p3Vec) || PointInTriangle(new Vector2(xi, zi), p2Vec, p4Vec, p3Vec)){
+                            isDesktopArea[xi, zi] = true;
+                            //Instantiate(debuggingObjects[0], new Vector3(xi * rayInterval - gridRadius, tableHeight + 0.2f, zi * rayInterval - gridRadius), Quaternion.identity, visualDebugHolder);
+                        }
+                    }
+                }
+
+            }
+            else //more than 45Degree rotated upwards, so its counted as WorkingSpace;
+            {
+                //nothing too necesarry here. Could mark something different
+            }
+        }
+    }
+
+    //the two methods "Sign()" and "PointInTriangle()" are from "Kornel Kisielewicz"
+    //at https://stackoverflow.com/questions/2049582/how-to-determine-if-a-point-is-in-a-2d-triangle (12.01.2023)
+    float Sign(Vector2 p1, Vector2 p2, Vector2 p3)
+    {
+        return (p1.x - p3.x) * (p2.y - p3.y) - (p2.x - p3.x) * (p1.y - p3.y);
+    }
+    bool PointInTriangle(Vector2 pt, Vector2 v1, Vector2 v2, Vector2 v3)
+    {
+        float d1, d2, d3;
+        bool has_neg, has_pos;
+
+        d1 = Sign(pt, v1, v2);
+        d2 = Sign(pt, v2, v3);
+        d3 = Sign(pt, v3, v1);
+
+        has_neg = (d1 < 0) || (d2 < 0) || (d3 < 0);
+        has_pos = (d1 > 0) || (d2 > 0) || (d3 > 0);
+
+        return !(has_neg && has_pos);
+    }
+
 
     public struct Tile
     {
@@ -677,7 +764,7 @@ public class TableInterpreter : MonoBehaviour
             this.zi = zi;
             //this.fromX = fromX;
             //this.fromZ = fromZ;
-            state = h < 0.65f ? State.tooLow : h < 1.0f ? State.fine : State.tooHigh;
+            state = h < -0.10f ? State.tooLow : h < 0.22f ? State.fine : State.tooHigh;
             valid = (state == State.fine);
             //distToEdge = -1;
             this.clusterIndex = clusterIndex;
@@ -700,6 +787,11 @@ public class TableInterpreter : MonoBehaviour
         {
             this.xi = xi;
             this.zi = zi;
+        }
+
+        public Vector2 AsV2()
+        {
+            return new Vector2(xi, zi);
         }
     }
 

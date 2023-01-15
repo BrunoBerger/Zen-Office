@@ -10,26 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e4663c2c75184948b5007b23d1d4fb4, type: 3}
-  m_Name: FloorGrass
+  m_Name: lowNoise
   m_EditorClassIdentifier: 
-  propabilityScale: 0.004
-  pivotsHeightOnFloor: 1
+  propabilityScale: 0.3
+  pivotsHeightOnFloor: 0
   heightRange:
-    lowCap: -0.3
-    lowDecay: -0.3
-    highDecay: 0.07
-    highCap: 0.1
+    lowCap: -0.15
+    lowDecay: 0
+    highDecay: 0.1
+    highCap: 0.3
   noisemapRange:
-    lowCap: 0.3
-    lowDecay: 0.3
-    highDecay: 0.6
-    highCap: 1
+    lowCap: 0
+    lowDecay: 0
+    highDecay: 0.29
+    highCap: 0.545
   noiseScale: 1
   noiseOffset: {x: 0, y: 0}
-  radius: 5
+  radius: 3
   distToOtherObj:
     min: 1
     max: 10
+  spawnsOutsideTable: 0
   distToEdge:
     min: 1
     max: 10
@@ -39,11 +40,10 @@ MonoBehaviour:
   distToRift:
     min: 1
     max: 10
-  spawnsOutsideTable: 1
   spawnsOnRocks: 0
-  tiltWithFloor: 1
+  tiltWithFloor: 0
+  spawnInfrontDesktop: 1
   objects:
-  - {fileID: 1567072493174220, guid: d46fe0b683966bb498b91421b9a63660, type: 3}
-  - {fileID: 1567072493174220, guid: 802ddb91053708c40b6ce84c5c72d9af, type: 3}
-  - {fileID: 1567072493174220, guid: 9a097881462c7c844a0146d2e9650f4d, type: 3}
-  - {fileID: 1567072493174220, guid: 8ad63b08e05c5d245a4759d38d779623, type: 3}
+  - {fileID: 3392043169878277744, guid: ac1c4f98044aec240ab9cb6d32ed31eb, type: 3}
+  - {fileID: 131818178101688962, guid: c0da98442a329644eb3f36753ff0b5a6, type: 3}
+  - {fileID: 2945704586085487294, guid: 435659da7231f73439a627ae001deb5d, type: 3}

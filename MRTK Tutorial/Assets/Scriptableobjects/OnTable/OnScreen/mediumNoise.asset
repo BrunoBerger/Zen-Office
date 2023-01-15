@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4663c2c75184948b5007b23d1d4fb4, type: 3}
+  m_Name: mediumNoise
+  m_EditorClassIdentifier: 
+  propabilityScale: 0.3
+  pivotsHeightOnFloor: 0
+  heightRange:
+    lowCap: -0.15
+    lowDecay: 0
+    highDecay: 0.1
+    highCap: 0.3
+  noisemapRange:
+    lowCap: 0.203
+    lowDecay: 0.378
+    highDecay: 0.689
+    highCap: 0.894
+  noiseScale: 1
+  noiseOffset: {x: 0, y: 0}
+  radius: 2
+  distToOtherObj:
+    min: 1
+    max: 10
+  spawnsOutsideTable: 0
+  distToEdge:
+    min: 1
+    max: 10
+  distToHill:
+    min: 1
+    max: 10
+  distToRift:
+    min: 1
+    max: 10
+  spawnsOnRocks: 0
+  tiltWithFloor: 1
+  spawnInfrontDesktop: 1
+  objects:
+  - {fileID: 1799165652850832, guid: a60ce8c2c0ff05641a997df273098218, type: 3}
+  - {fileID: 1931674818398512, guid: 033686cb1b875c249966e9bbcbc50697, type: 3}
+  - {fileID: 1388180861738174, guid: be043aa219a63e243bdd3a178df880b0, type: 3}
+  - {fileID: 1816743521218974, guid: ec0848eaaaba3d04db2b3f0479a3e07d, type: 3}
+  - {fileID: 1393692855044332, guid: 3b60d31026c3499429726eb70ad7cae2, type: 3}

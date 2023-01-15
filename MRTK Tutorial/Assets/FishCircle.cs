@@ -89,6 +89,7 @@ public class FishCircle : MonoBehaviour
     void StartRandomNextYAction()
     {
         float selector = Random.value;
+        if (yAction == YAction.jump) selector *= 0.75f; //prevents double jumps
 
         actionTime = 0;
         if(selector <= 0.25f)//Pause
@@ -103,7 +104,7 @@ public class FishCircle : MonoBehaviour
             usedYActionDuration = longDuration;
             usedYRange = 0.005f;
         }
-        else if (selector <= 0.5f)//shortRise
+        else if (selector <= 0.75f)//shortRise
         {
             yAction = YAction.shortRise;
             usedYActionDuration = shortDuration;

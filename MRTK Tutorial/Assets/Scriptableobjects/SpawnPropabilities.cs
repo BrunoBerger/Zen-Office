@@ -50,9 +50,13 @@ public class SpawnPropabilities : ScriptableObject
 
     [Header("tilt criteria")]
     [Range(0, 2)]
-    [Tooltip("0 = does not spanw on rocky surfaces, 1 = does only spawn on rocky surfaces, 2 = spawns on both kind of surfaces")]
+    [Tooltip("0 = does not spawn on rocky surfaces, 1 = does only spawn on rocky surfaces, 2 = spawns on both kind of surfaces")]
     public int spawnsOnRocks = 0;
     public bool tiltWithFloor = false;
+    [Space]
+    [Range(0, 2)]
+    [Tooltip("0 = does not spawn infront of a desktop, 1 = does only spawn infront of a desktop, 2 = can spawn both infront of and away from a desktop")]
+    public int spawnInfrontDesktop = 0;
 
     [Header("Spawnable Objects")]
     public GameObject[] objects;
@@ -70,13 +74,15 @@ public class SpawnPropabilities : ScriptableObject
     }
 
 
-    public float GetPropability(float hFromFloor, float hFromTable, bool isOnTable, bool isRockSurface, int edgeDist, int hillDist, int riftDist, int distToObj, int hillness, int riftness, int xi, int zi)
+    public float GetPropability(float hFromFloor, float hFromTable, bool isOnTable, bool isRockSurface, bool isInDesktopArea, int edgeDist, int hillDist, int riftDist, int distToObj, int hillness, int riftness, int xi, int zi)
     {
         float propability = propabilityScale;
 
         //can only spawn on intended kind of surface
         if ( isRockSurface && spawnsOnRocks == 0) return 0;
         if (!isRockSurface && spawnsOnRocks == 1) return 0;
+        if (isInDesktopArea && spawnInfrontDesktop == 0) return 0;
+        if (!isInDesktopArea && spawnInfrontDesktop == 1) return 0;
         if (!isOnTable && spawnsOutsideTable == 0) return 0;
         if ( isOnTable && spawnsOutsideTable == 1) return 0;
 

@@ -5,9 +5,19 @@ using UnityEngine;
 public class SpawnRocks : MonoBehaviour
 {
     [SerializeField] SpawnProfile sp;
+    [SerializeField] Transform BlackCubeHolder;
     //public MeshFilter meshFilter;
     [HideInInspector]
     public Triangle[][] trianglesListholder;
+
+
+   
+    List<Vector3> DesktopPositions;
+    List<float> DesktopsRadius;
+    List<Vector2> DesktopsXZNormal;
+
+
+
     //private float objScale;
     // Start is called before the first frame update
     void Start()
@@ -19,6 +29,7 @@ public class SpawnRocks : MonoBehaviour
 
     public void StartRockSpawning(Mesh[] meshes)
     {
+        PrepareDesktops();
         FillTriangles(meshes);
         Debug.Log("TIMEafterRockFillTriangles " + Time.realtimeSinceStartup);
         SpawnObjAtTriangles();
@@ -68,6 +79,17 @@ public class SpawnRocks : MonoBehaviour
                 if (tri.normal.y < 0.25f && tri.normal.y >-0.5f)
                 {
                     //Debug.Log("normal: " + tri.normal);
+                    Vector2 rockXZNorm = new Vector2(tri.normal.x, tri.normal.z);
+                    for(int i =0; i<DesktopsRadius.Count; i++)
+                    {
+                        if (Vector3.Distance(tri.center, DesktopPositions[i]) > tri.scaler / 3 + DesktopsRadius[i]) continue;
+                        if (Vector2.Angle(rockXZNorm, DesktopsXZNormal[i]) > 90) continue;
+                        //if this point is reached, the Rock is within the critical visual Field of a destkop and should not be spawned
+                        goto end_of_loop;
+                    }
+
+
+
 
                     //following 6 lines from elenzil at https://answers.unity.com/questions/1618126/given-a-vector-how-do-i-generate-a-random-perpendi.html (15.11.2022)
                     float du = Vector3.Dot(tri.normal, Vector3.up);
@@ -82,9 +104,28 @@ public class SpawnRocks : MonoBehaviour
                     GameObject rocky = Instantiate(sp.rocks[Random.Range(0, sp.rocks.Length - 1)], tri.center/*+(Vector3.down*0.05f+ Vector3.down * 0.01f*tri.scaler)*/, Quaternion.LookRotation(v2, tri.normal), transform); //DELETE *10 LATER!!!!!!!!!!!!!!!!!!!!!!!
                     rocky.transform.localScale *= tri.scaler *3f;//MAY CHANGE *4f LATER!!!!!!!!!!!
                 }
+            end_of_loop: { }
             }
         }
 
+    }
+
+
+    void PrepareDesktops()
+    {
+        DesktopPositions = new List<Vector3>();
+        DesktopsRadius = new List<float>();
+        DesktopsXZNormal = new List<Vector2>();
+
+        foreach(Transform cube in BlackCubeHolder)
+        {
+            if (Mathf.Abs(cube.forward.y) < 1 / Mathf.Sqrt(2))
+            {
+                DesktopPositions.Add(cube.position);
+                DesktopsRadius.Add(cube.localScale.x > cube.localScale.y ? cube.localScale.x / Mathf.Sqrt(2) : cube.localScale.y / Mathf.Sqrt(2));
+                DesktopsXZNormal.Add(new Vector2(cube.forward.x, cube.forward.z));
+            }
+        }
     }
 
 

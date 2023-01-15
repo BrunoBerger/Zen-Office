@@ -10,8 +10,10 @@ public class DrawMasks : MonoBehaviour
 {
     public bool currentlyScalingMask;
     float tipHoldTime;
-    [SerializeField, Range(0, 5)] float minTipHoldTime;
-    [SerializeField, Range(0f, 0.1f)] float minTipDistance;
+    float tipReleasedTime=0;
+   [SerializeField, Range(0, 5)] float minTipHoldTime;
+    [SerializeField, Range(0f, 0.1f)] float minThumbIndexDist;
+    [SerializeField, Range(0f, 0.1f)] float minDistBetweenHands;
 
     [SerializeField] GameObject maskPrefab;
     List<GameObject> placedMasks;
@@ -27,6 +29,7 @@ public class DrawMasks : MonoBehaviour
     public float leftIndexThumbDistance;
     public float rightIndexThumbDistance;
 
+   
 
     // Start is called before the first frame update
     void Start()
@@ -56,10 +59,28 @@ public class DrawMasks : MonoBehaviour
             rightIndexThumbDistance = Vector3.Distance(rightFingerTip.position, rightThumb.position);
             float tipDistance = Vector3.Distance(leftFingerTip.position, rightFingerTip.position);
 
-            if (tipDistance < minTipDistance)
-                tipHoldTime += Time.deltaTime;
+            Vector3 indexCenter = (leftFingerTip.position + rightFingerTip.position) *0.5f;
 
-            if (!currentlyScalingMask && tipHoldTime > minTipHoldTime)
+            Vector3 camToIndexCenter = indexCenter - mainCamera.position;
+
+            float offAngleToLookingCenter = Vector3.Angle(mainCamera.forward, camToIndexCenter);
+
+
+
+
+
+            if (tipDistance < minDistBetweenHands && offAngleToLookingCenter< 30)
+                tipHoldTime += Time.deltaTime;
+            else
+            {
+                tipHoldTime = 0;
+            }
+
+
+
+
+
+            if (!currentlyScalingMask && tipHoldTime > minTipHoldTime && leftIndexThumbDistance < minThumbIndexDist && rightIndexThumbDistance < minThumbIndexDist)
             {
                 GameObject newMask = SpawnMask();
 
@@ -93,10 +114,26 @@ public class DrawMasks : MonoBehaviour
         //tmpParent.position = startPos - mask.transform.lossyScale * 0.5f;
         //mask.transform.parent = tmpParent;
         //tmpParent.position = startPos;
+        tipReleasedTime = 0;
 
 
-        while (leftIndexThumbDistance < minTipDistance && rightIndexThumbDistance < minTipDistance)
+
+
+            bool toFlipLater = false;
+        while (tipReleasedTime < 0.15f)
         {
+
+            if(leftIndexThumbDistance < minThumbIndexDist && rightIndexThumbDistance < minThumbIndexDist)
+            {
+                tipReleasedTime = 0;
+            }
+            else
+            {
+                tipReleasedTime += Time.deltaTime;
+            }
+
+
+
             tipHoldTime = 0; // to keep from spawning new masks at the same time
             //Vector3 vecToLeft = leftFingerTip.position - startPos;
             //Vector3 vecToRight = rightFingerTip.position - startPos;
@@ -110,7 +147,7 @@ public class DrawMasks : MonoBehaviour
             Vector3 rp = (rightFingerTip.position + rightThumb.position) / 2;
 
             Vector3 center = (lp+rp)/ 2f;
-            Vector3 headJoint = mainCamera.position + mainCamera.rotation * new Vector3(0, -0.03f, -0.075f);
+            Vector3 headJoint = mainCamera.position + mainCamera.rotation * new Vector3(0, -0.10f, -0.075f);
             Vector3 centerToCamera = (headJoint - center).normalized;
 
             //left to right finger
@@ -129,11 +166,31 @@ public class DrawMasks : MonoBehaviour
 
             //Vector3 cross = Vector3.Cross(ltrf, centerToCamera);
 
+            if (Mathf.Abs(Vector3.SignedAngle(relativeFoward, centerToCamera, Vector3.up)) > 90)
+            {
+                toFlipLater = true;
+            }
+            else
+            {
+                toFlipLater = false;
+            }
+
+
+
             mask.transform.localScale= new Vector3(usedRightward.magnitude * 2, usedUpward.magnitude * 2, 0.03f);
 
             mask.transform.rotation = Quaternion.LookRotation(relativeFoward, usedUpward);
 
             mask.transform.position = center;
+
+            if (toFlipLater)
+            {
+                mask.transform.rotation *= Quaternion.Euler(0, 180, 0);
+            }
+            else
+            {
+                mask.transform.rotation *= Quaternion.Euler(0, 0, 180);
+            }
 
 
             Debug.DrawRay(center, relativeFoward, Color.blue, 0.03f);
@@ -149,6 +206,13 @@ public class DrawMasks : MonoBehaviour
         //mask.transform.parent = null;
         //Destroy(tempGameObject);
         currentlyScalingMask = false;
+        //if (toFlipLater)
+        //{
+        //    mask.transform.rotation *= Quaternion.Euler(0, 180, 0);
+        //}
+
+        
+
 
         yield return new WaitForSeconds(1); // to not immediatly trigger a new interaktion
         mask.GetComponent<NearInteractionGrabbable>().enabled = true;
