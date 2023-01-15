@@ -14,8 +14,8 @@ public class SpawnLamps : MonoBehaviour
     void Start()
     {
         placedLamps = new List<GameObject>();
-        StartCoroutine(GenerateLamps());
-        Debug.LogWarning("DELETE LINE ABOVE ME!");
+        //StartCoroutine(GenerateLamps());
+        //Debug.LogWarning("DELETE LINE ABOVE ME!");
     }
 
     public IEnumerator GenerateLamps()
