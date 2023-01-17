@@ -95,7 +95,25 @@ public class SpawnableSpawner : MonoBehaviour
                     SpawnPropabilities spawnable = spawnables[indexOfSpawnable];
                     if (spawnable.objects.Length == 0) Debug.LogError("you did not assign objects to Spawn to the spawnPropability"+indexOfSpawnable);
 
+                    
+
+                    if (spawnable.tiltWithFloor)
+                    {
+                        float normalXzLength = new Vector2(hitInfo.normal.x, hitInfo.normal.z).magnitude;
+                        float tilting = Mathf.Asin(normalXzLength); //in Radians
+                        float wantedTilt = spawnable.maxTilt * Mathf.Deg2Rad; //in Radians
+                        if (tilting > wantedTilt)
+                        {
+                            Debug.Log("tilting was " + tilting * Mathf.Rad2Deg + "should be " + spawnable.maxTilt);
+                            float wantedXzLength = Mathf.Sin(wantedTilt);
+                            float wantedYLength = Mathf.Sqrt(1 - wantedXzLength * wantedXzLength);
+                            float xzScaler = Mathf.Sin(wantedTilt) / normalXzLength;
+                            //Debug.Log("normal was: " + hitInfo.normal);
+                            hitInfo.normal = new Vector3(hitInfo.normal.x * xzScaler, wantedYLength, hitInfo.normal.z * xzScaler);
+                        }
+                    }
                     Vector3 relativeUp = spawnable.tiltWithFloor ? hitInfo.normal : Vector3.up;
+
 
                     //following 6 lines from elenzil at https://answers.unity.com/questions/1618126/given-a-vector-how-do-i-generate-a-random-perpendi.html (15.11.2022)
                     float du = Vector3.Dot(relativeUp, Vector3.up);
@@ -106,7 +124,7 @@ public class SpawnableSpawner : MonoBehaviour
                     v2 = Quaternion.AngleAxis(degrees, relativeUp) * v2;
                     Quaternion spawnRot = Quaternion.LookRotation(v2, relativeUp);
 
-                    Instantiate(spawnable.objects[Random.Range(0, spawnable.objects.Length)], new Vector3(TI.IAsF(xi), hitInfo.point.y, TI.IAsF(zi)), spawnRot, transform); //TO DO: ALLOW ROTATION WITH GROUND NORMAL
+                    Instantiate(spawnable.objects[Random.Range(0, spawnable.objects.Length)], new Vector3(TI.IAsF(xi), hitInfo.point.y + spawnable.spawnedWithOffHeight, TI.IAsF(zi)), spawnRot, transform); //TO DO: ALLOW ROTATION WITH GROUND NORMAL
                     TI.MarkObjSpawnDist(xi, zi, spawnable.radius, spawnable.distToOtherObj.min);
                 }
             }

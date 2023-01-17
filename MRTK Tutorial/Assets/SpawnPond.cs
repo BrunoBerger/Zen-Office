@@ -171,7 +171,14 @@ public class SpawnPond : MonoBehaviour
             TwoInt lastElm = pathsToEdge[i][pathsToEdge[i].Count-1];
             CraveHoleWithWater(brookRad*0.7f, lastElm.xi, lastElm.zi, h, true, clusterIndex);
             Vector3 toLastElmDir = new Vector3(lastElm.xi - preLastElm.xi, 0, lastElm.zi - preLastElm.zi);
-            Instantiate(waterfall, new Vector3(TI.IAsF(lastElm.xi), h - 0.065f, TI.IAsF(lastElm.zi)), Quaternion.LookRotation(toLastElmDir, Vector3.up), transform);
+            GameObject Waterfall = Instantiate(waterfall, new Vector3(TI.IAsF(lastElm.xi), h - 0.065f, TI.IAsF(lastElm.zi)), Quaternion.LookRotation(toLastElmDir, Vector3.up), transform);
+            float wtrfallScaler = 0.7f + pondRadii[i] * 8f;
+            Waterfall.transform.localScale *= (0.55f + pondRadii[i] * 8f);
+            Waterfall.GetComponent<AudioSource>().volume *= wtrfallScaler;
+            foreach(Transform subeffect in Waterfall.transform)
+            {
+                subeffect.localScale *= wtrfallScaler; 
+            }
 
         }
     }

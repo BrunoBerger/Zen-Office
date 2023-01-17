@@ -53,6 +53,10 @@ public class SpawnPropabilities : ScriptableObject
     [Tooltip("0 = does not spawn on rocky surfaces, 1 = does only spawn on rocky surfaces, 2 = spawns on both kind of surfaces")]
     public int spawnsOnRocks = 0;
     public bool tiltWithFloor = false;
+    [Range(0f,90f)]
+    public float maxTilt = 30f;
+    [Range (-0.02f,0.01f)]
+    public float spawnedWithOffHeight = 0f;
     [Space]
     [Range(0, 2)]
     [Tooltip("0 = does not spawn infront of a desktop, 1 = does only spawn infront of a desktop, 2 = can spawn both infront of and away from a desktop")]
