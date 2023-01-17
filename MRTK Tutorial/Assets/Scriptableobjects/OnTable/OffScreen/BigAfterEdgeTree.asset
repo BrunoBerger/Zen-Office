@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4663c2c75184948b5007b23d1d4fb4, type: 3}
+  m_Name: BigAfterEdgeTree
+  m_EditorClassIdentifier: 
+  propabilityScale: 0.13
+  pivotsHeightOnFloor: 0
+  heightRange:
+    lowCap: -0.2
+    lowDecay: -0
+    highDecay: 0
+    highCap: 0.12
+  noisemapRange:
+    lowCap: 0
+    lowDecay: 0
+    highDecay: 1
+    highCap: 1
+  noiseScale: 1
+  noiseOffset: {x: 0, y: 0}
+  radius: 4
+  distToOtherObj:
+    min: 2
+    max: 4
+  spawnsOutsideTable: 0
+  distToEdge:
+    min: 0
+    max: 10
+  distToHill:
+    min: 5
+    max: 10
+  distToRift:
+    min: 2
+    max: 3
+  spawnsOnRocks: 0
+  tiltWithFloor: 1
+  spawnInfrontDesktop: 0
+  objects:
+  - {fileID: 1433865612366838, guid: 72b937d87e1419f40861e1e6fd9b6e20, type: 3}
+  - {fileID: 1326471455938676, guid: 4796c69a742692444a4f7cb0a0933bfb, type: 3}
+  - {fileID: 1058994513901528, guid: 2e33e894187dab64f84c58a8fe9656de, type: 3}
+  - {fileID: 1612451346385694, guid: 75a540f4a19877842816aa475b928dea, type: 3}
+  - {fileID: 1789613007962534, guid: 918b542c111481d42a61e3f6f818f72e, type: 3}
+  - {fileID: 1328860748652834, guid: 03d16a5a31a751a4bb698e6d2f317e21, type: 3}
+  - {fileID: 1290985235443444, guid: c3aa9b33b2c469148a2aaaffb4202e33, type: 3}
+  - {fileID: 1588716805670618, guid: cadec034bdf9b2d42b9ad5f440ff338c, type: 3}

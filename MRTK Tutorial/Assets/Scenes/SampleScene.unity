@@ -2592,6 +2592,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 653bd2e122978c945a1d0016f9cccae4, type: 2}
   - {fileID: 11400000, guid: c63cccd30f5b747418b166fc62d8541b, type: 2}
   - {fileID: 11400000, guid: bdc0ff69922ceb845b56bb2b328b4c63, type: 2}
+  - {fileID: 11400000, guid: 98d1985e32a027c43b5e02f94b9b5cdf, type: 2}
+  - {fileID: 11400000, guid: 8bfeaa287c245004781df85ad9e338e4, type: 2}
+  - {fileID: 11400000, guid: fddf3b7d77a9fcd48a844cb99975048b, type: 2}
   TI: {fileID: 318593116}
 --- !u!4 &467434548
 Transform:
@@ -5895,9 +5898,9 @@ GameObject:
   - component: {fileID: 963194231}
   - component: {fileID: 963194230}
   - component: {fileID: 963194232}
-  - component: {fileID: 963194229}
   - component: {fileID: 963194234}
   - component: {fileID: 963194233}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera

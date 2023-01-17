@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4663c2c75184948b5007b23d1d4fb4, type: 3}
   m_Name: Butterfly
   m_EditorClassIdentifier: 
-  propabilityScale: 0.009
+  propabilityScale: 0.021
   pivotsHeightOnFloor: 0
   heightRange:
     lowCap: -2

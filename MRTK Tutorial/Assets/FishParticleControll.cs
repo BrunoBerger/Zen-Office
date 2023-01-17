@@ -5,6 +5,7 @@ using UnityEngine;
 public class FishParticleControll : MonoBehaviour
 {
     ParticleSystem ps;
+    ParticleSystem splash;
     bool setupDone = false;
     FishCircle Fish;
     Transform FishTransform;
@@ -12,7 +13,8 @@ public class FishParticleControll : MonoBehaviour
     
     void Start()
     {
-        ps = GetComponent<ParticleSystem>();
+        ps = transform.GetChild(0).GetComponent<ParticleSystem>();
+        splash = transform.GetChild(1).GetComponent<ParticleSystem>();
     }
 
     // Update is called once per frame
@@ -30,6 +32,7 @@ public class FishParticleControll : MonoBehaviour
                 if (!ps.isEmitting)
                 {
                     ps.enableEmission = true;
+                    
                 }
             }
             else
@@ -38,6 +41,11 @@ public class FishParticleControll : MonoBehaviour
                 {
                     ps.enableEmission = false;
                 }
+            }
+
+            if (Fish.splashNextFrame)
+            {
+                splash.Play();
             }
         }
     }

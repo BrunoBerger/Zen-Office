@@ -35,13 +35,14 @@ MonoBehaviour:
     min: 0
     max: 10
   distToHill:
-    min: 0
+    min: 5
     max: 10
   distToRift:
     min: 0
     max: 1
   spawnsOnRocks: 0
   tiltWithFloor: 1
+  spawnInfrontDesktop: 0
   objects:
   - {fileID: 1161697317820538, guid: 2b784fa538c6580459d5a27608ffbb49, type: 3}
   - {fileID: 1046490445959520, guid: d885a16c396752c499a6c7edbc544800, type: 3}

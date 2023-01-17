@@ -10,6 +10,8 @@ public class FishCircle : MonoBehaviour
 
     [HideInInspector]
     public bool emit = false;
+    [HideInInspector]
+    public bool splashNextFrame = false;
     float radius;
     float circlesPerSecond;
     Vector3 startPos;
@@ -48,6 +50,7 @@ public class FishCircle : MonoBehaviour
     {
         if (initialized)
         {
+            splashNextFrame = false;
             circleTime += circlesPerSecond * Time.deltaTime;
             if (circleTime > 1) circleTime -= 1;
 
@@ -77,8 +80,9 @@ public class FishCircle : MonoBehaviour
                 if (prepareHopSound && actionTime > 0.5f)
                 {
                     prepareHopSound = false;
-                    audioSource.pitch = Random.Range(0.8f, 1.0f);
+                    audioSource.pitch = Random.Range(0.7f, 1.1f);
                     audioSource.Play();
+                    splashNextFrame = true;
                 }
             }
         }

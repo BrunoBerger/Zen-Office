@@ -6,12 +6,14 @@ public class TestMeshReconstructor : MonoBehaviour
 {
     public GameObject testThing;
     // Start is called before the first frame update
+    Mesh mesh;
+
     void Start()
     {
-        Mesh mesh =  GetComponent<MeshFilter>().mesh;
+        mesh =  GetComponent<MeshFilter>().mesh;
 
         Debug.Log("time before remesh " + Time.realtimeSinceStartup);
-        mesh = GetComponent<MeshReconstructor>().ReconstructMeshUntillDone(mesh);
+        //mesh = GetComponent<MeshReconstructor>().ReconstructMeshUntillDone(mesh);
         Debug.Log("time after remesh " + Time.realtimeSinceStartup);
 
         mesh.RecalculateNormals();
@@ -37,6 +39,14 @@ public class TestMeshReconstructor : MonoBehaviour
         //}
     }
 
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            mesh = GetComponent<MeshReconstructor>().ReconstructMesh(mesh);
+        }
+    }
 
     //Was fehtl??? Es müssen auch dreiecke hinzugefügt werden, die nicht an eine linie angrenzen. JEDE LINIE BRAUCHT 2 DREIECKE!!!!
 }

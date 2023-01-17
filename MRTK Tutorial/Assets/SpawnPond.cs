@@ -249,7 +249,7 @@ public class SpawnPond : MonoBehaviour
                 }
             }
 
-            TI.MarkObjSpawnDist(middleXI, middleZI, radTilescaled, 1);
+            TI.MarkObjSpawnDist(middleXI, middleZI, (int)(radTilescaled*0.4f), 1);
         }
 
 

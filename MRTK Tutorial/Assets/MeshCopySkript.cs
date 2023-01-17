@@ -176,6 +176,7 @@ public class MeshCopySkript : MonoBehaviour
         Debug.Log("TIME afterTableInterpr " + Time.realtimeSinceStartup);
         spawnPond.DeletePonds();
         spawnPond.StartPondSpawning();
+        RecalculateMeshStuff();
         Debug.Log("TIME afterPond " + Time.realtimeSinceStartup);
 
         //start Rock spawning
@@ -198,7 +199,33 @@ public class MeshCopySkript : MonoBehaviour
 
 
 
+    public void RecalculateMeshStuff()
+    {
+        foreach(Transform child in transform)
+        {
+            MeshFilter meshFilter = child.GetComponent<MeshFilter>();
+            Mesh updateableMesh = meshFilter.mesh;
 
+            //Vector3[] vertices = updateableMesh.vertices;
+            //Vector2[] uvs = new Vector2[vertices.Length];
+
+            //for (int v = 0; v < uvs.Length; v++)
+            //{
+            //    uvs[v] = new Vector2(vertices[v].x, vertices[v].z);
+            //}
+
+            //updateableMesh.SetUVs(0, uvs);
+            updateableMesh.RecalculateNormals();
+            //meshFilter = updateableMesh;
+            child.GetComponent<MeshCollider>().sharedMesh = null;
+            child.GetComponent<MeshCollider>().sharedMesh = updateableMesh;
+
+
+
+
+        }
+
+    }
 
 
 
