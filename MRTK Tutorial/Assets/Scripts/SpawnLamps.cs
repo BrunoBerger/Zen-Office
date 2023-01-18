@@ -36,7 +36,7 @@ public class SpawnLamps : MonoBehaviour
         {
             var newPos = new Vector3(
                 startPos.x + Random.Range(-sp.LampAreaSize, sp.LampAreaSize),
-                sp.RoughFloatingLevel + Random.Range(-sp.LampVerticalSpread, sp.LampVerticalSpread),
+                startPos.y + sp.RoughFloatingLevel + Random.Range(-sp.LampVerticalSpread, sp.LampVerticalSpread),
                  startPos.z + Random.Range(-sp.LampAreaSize, sp.LampAreaSize)
                 );
             GameObject newLamp = Instantiate(

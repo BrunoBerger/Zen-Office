@@ -49,7 +49,7 @@ MonoBehaviour:
   - {fileID: 5959778637544205077, guid: b0a20ef6b2d32d24a8394b8248db3e0e, type: 3}
   - {fileID: 3355694962777940926, guid: 93dad8cbf4bdca540ba202758cf814a1, type: 3}
   LampPrefab: {fileID: 1784719585827118148, guid: 25fdcca825317564bb9936ced5d8bad8, type: 3}
-  NumberOfLamps: 30
-  RoughFloatingLevel: 0.45
-  LampAreaSize: 1.86
-  LampVerticalSpread: 0.396
+  NumberOfLamps: 20
+  RoughFloatingLevel: 0.75
+  LampAreaSize: 2.21
+  LampVerticalSpread: 0.434

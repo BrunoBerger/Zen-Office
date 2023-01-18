@@ -7697,7 +7697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sp: {fileID: 11400000, guid: 70427cecb4ddb0845b339c5b365ae9a8, type: 2}
-  meshCopySkript: {fileID: 0}
+  meshCopySkript: {fileID: 318593112}
   currentlySpawningLamps: 0
 --- !u!4 &1237177760
 Transform:
