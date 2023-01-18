@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e4663c2c75184948b5007b23d1d4fb4, type: 3}
+  m_Name: BigBuildings
+  m_EditorClassIdentifier: 
+  propabilityScale: 0
+  pivotsHeightOnFloor: 1
+  heightRange:
+    lowCap: 0
+    lowDecay: 0.2
+    highDecay: 0.8
+    highCap: 1
+  noisemapRange:
+    lowCap: 0
+    lowDecay: 0.2
+    highDecay: 0.8
+    highCap: 1
+  noiseScale: 1
+  noiseOffset: {x: 0, y: 0}
+  radius: 1
+  distToOtherObj:
+    min: 1
+    max: 10
+  spawnsOutsideTable: 2
+  distToEdge:
+    min: 1
+    max: 10
+  distToHill:
+    min: 1
+    max: 10
+  distToRift:
+    min: 1
+    max: 10
+  spawnsOnRocks: 0
+  tiltWithFloor: 0
+  maxTilt: 30
+  spawnedWithOffHeight: 0
+  spawnInfrontDesktop: 0
+  objects:
+  - {fileID: 4358255394754105606, guid: 36b85a3b46c39724dacadb9c620e70c8, type: 3}

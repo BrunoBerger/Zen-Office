@@ -2595,6 +2595,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 98d1985e32a027c43b5e02f94b9b5cdf, type: 2}
   - {fileID: 11400000, guid: 8bfeaa287c245004781df85ad9e338e4, type: 2}
   - {fileID: 11400000, guid: fddf3b7d77a9fcd48a844cb99975048b, type: 2}
+  - {fileID: 11400000, guid: a84687ff6d4f0e745a6be290663a0fe4, type: 2}
   TI: {fileID: 318593116}
 --- !u!4 &467434548
 Transform:
@@ -7696,6 +7697,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sp: {fileID: 11400000, guid: 70427cecb4ddb0845b339c5b365ae9a8, type: 2}
+  meshCopySkript: {fileID: 0}
   currentlySpawningLamps: 0
 --- !u!4 &1237177760
 Transform:
