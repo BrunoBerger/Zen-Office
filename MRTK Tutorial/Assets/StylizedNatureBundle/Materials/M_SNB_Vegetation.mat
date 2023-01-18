@@ -129,15 +129,15 @@ Material:
     - _TrunkWindAmplitude: 0.03
     - _TrunkWindPower: 0.6
     - _UVSec: 0
-    - _WindFoliageAmplitude: 0.05
-    - _WindFoliageSpeed: 0.3
+    - _WindFoliageAmplitude: 0.01
+    - _WindFoliageSpeed: 0.259
     - _WindLeafAmplitude: 0.035
     - _WindLeafSpeed: 0.17
     - _WindSpeed: 0.17
     - _WindStrength: 0.035
     - _WindTrunkAmplitude: 0.06
     - _WindTrunkPower: 0.6
-    - _WindTrunkSpeed: 0.3
+    - _WindTrunkSpeed: 0.146
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
@@ -149,3 +149,4 @@ Material:
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _SpecularColor: {r: 0.3921569, g: 0.3921569, b: 0.3921569, a: 1}
     - _TranslucencyTint: {r: 1, g: 0.96403116, b: 0.18395993, a: 0}
+  m_BuildTextureStacks: []

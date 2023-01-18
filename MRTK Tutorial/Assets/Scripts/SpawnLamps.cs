@@ -7,6 +7,7 @@ using UnityEngine;
 public class SpawnLamps : MonoBehaviour
 {
     [SerializeField] SpawnProfile sp;
+    [SerializeField] MeshCopySkript meshCopySkript;
     List<GameObject> placedLamps;
     public bool currentlySpawningLamps;
 
@@ -26,7 +27,10 @@ public class SpawnLamps : MonoBehaviour
             Destroy(obj);
         placedLamps.RemoveAll(o => o == null);
 
-        Vector3 startPos = Camera.main.transform.position;
+        Vector3 startPos = new Vector3(
+            Camera.main.transform.position.x,
+            meshCopySkript.tableHeight,
+            Camera.main.transform.position.z);
 
         for (int i = 0; i < sp.NumberOfLamps; i++)
         {

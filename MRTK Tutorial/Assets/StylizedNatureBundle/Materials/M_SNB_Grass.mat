@@ -4,8 +4,9 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
   m_Name: M_SNB_Grass
   m_Shader: {fileID: 4800000, guid: f7835d26e94875f47848e4600cd0ab70, type: 3}
   m_ShaderKeywords: _ALPHATEST_ON
@@ -126,15 +127,15 @@ Material:
     - _TrunkWindAmplitude: 0.03
     - _TrunkWindPower: 0.6
     - _UVSec: 0
-    - _WindFoliageAmplitude: 0.073
-    - _WindFoliageSpeed: 0.3
+    - _WindFoliageAmplitude: 0.033
+    - _WindFoliageSpeed: 0.335
     - _WindLeafAmplitude: 0.035
     - _WindLeafSpeed: 0.17
     - _WindSpeed: 0.17
     - _WindStrength: 0.035
-    - _WindTrunkAmplitude: 0.06
+    - _WindTrunkAmplitude: 0.166
     - _WindTrunkPower: 0.6
-    - _WindTrunkSpeed: 0.3
+    - _WindTrunkSpeed: 0.214
     - _ZWrite: 1
     - __dirty: 0
     m_Colors:
@@ -157,3 +158,4 @@ Material:
     - _SSSTint: {r: 1, g: 0.99379236, b: 0.38207522, a: 0}
     - _SpecularColor: {r: 0.3921569, g: 0.3921569, b: 0.3921569, a: 1}
     - _TranslucencyTint: {r: 1, g: 0.96403116, b: 0.18396205, a: 0}
+  m_BuildTextureStacks: []
