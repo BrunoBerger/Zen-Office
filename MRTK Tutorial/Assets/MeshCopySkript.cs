@@ -7,8 +7,10 @@ using System.Linq;
 
 public class MeshCopySkript : MonoBehaviour
 {
+    [HideInInspector]
     public bool permaMeshUpdate = false;
-    public bool doesTreeSpawning=true;
+ 
+    public bool isSimplifiedVersion = false;
 
     public SpawnRocks rockHolder;
     public SpawnPlants spawnPlants;
@@ -17,6 +19,9 @@ public class MeshCopySkript : MonoBehaviour
     public SpawnLamps spawnLamps;
     public Transform tableHeightCup;
     public Material mat;
+    public GameObject AmbientSound;
+    public GameObject AmbientParticles;
+
 
     public GameObject meshHolderPrefab;
     public GameObject mixedRealityPlayspace;
@@ -88,6 +93,9 @@ public class MeshCopySkript : MonoBehaviour
 
     public void UpdateMesh()
     {
+        AmbientSound.SetActive(!isSimplifiedVersion);
+        AmbientParticles.SetActive(!isSimplifiedVersion);
+
         Debug.Log("TIME1 " + Time.realtimeSinceStartup);
         if (!sasReady)
         {
@@ -171,30 +179,49 @@ public class MeshCopySkript : MonoBehaviour
         
 
         GetComponent<TableInterpreter>().ClearTableInterpetation();
-        GetComponent<TableInterpreter>().StartTableInterpretation(floorHeight , tableHeight);
-        spawnableSpawner.PrepareSpawnableSpawner();
-        Debug.Log("TIME afterTableInterpr " + Time.realtimeSinceStartup);
+        if (!isSimplifiedVersion)
+        {
+            GetComponent<TableInterpreter>().StartTableInterpretation(floorHeight, tableHeight);
+            spawnableSpawner.PrepareSpawnableSpawner();
+            Debug.Log("TIME afterTableInterpr " + Time.realtimeSinceStartup);
+        }
+        
         spawnPond.DeletePonds();
-        spawnPond.StartPondSpawning();
-        RecalculateMeshStuff();
-        Debug.Log("TIME afterPond " + Time.realtimeSinceStartup);
+        if (!isSimplifiedVersion)
+        {
+            spawnPond.StartPondSpawning();
+            RecalculateMeshStuff();
+            Debug.Log("TIME afterPond " + Time.realtimeSinceStartup);
+        }
 
         //start Rock spawning
         rockHolder.DeleteRocks();
         Debug.Log("TIMEafterDelrock " + Time.realtimeSinceStartup);
-        rockHolder.StartRockSpawning(meshesMeshCollection);
-        Debug.Log("TIMEafterRock " + Time.realtimeSinceStartup);
+        if (!isSimplifiedVersion)
+        {
+            rockHolder.StartRockSpawning(meshesMeshCollection);
+            Debug.Log("TIMEafterRock " + Time.realtimeSinceStartup);
+        }
 
-        if (doesTreeSpawning && !spawnPlants.currentlySpawningTrees)
-            StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
+        if (!isSimplifiedVersion)
+        {
+            spawnPlants.DeleteTrees();
+        }
+        else
+        {
+            if (!spawnPlants.currentlySpawningTrees)
+                StartCoroutine(spawnPlants.UpdateTrees(floorHeight));
+        }
+        
 
         spawnableSpawner.DeleteSpawnables();
 
-        if (!spawnLamps.currentlySpawningLamps)
-            StartCoroutine(spawnLamps.GenerateLamps());
-
-
-        spawnableSpawner.InitMassSpawning();
+        if (!isSimplifiedVersion)
+        {
+            if (!spawnLamps.currentlySpawningLamps)
+                StartCoroutine(spawnLamps.GenerateLamps());
+            spawnableSpawner.InitMassSpawning();
+        }
     }
 
 

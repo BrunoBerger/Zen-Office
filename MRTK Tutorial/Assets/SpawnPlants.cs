@@ -22,6 +22,16 @@ public class SpawnPlants : MonoBehaviour
         
     }
 
+    public void DeleteTrees()
+    {
+        //clear previous trees
+        foreach (GameObject obj in placedObjects)
+        {
+            Destroy(obj);
+        }
+        placedObjects.RemoveAll(o => o == null);
+    }
+
     public IEnumerator UpdateTrees(float floorHeight)
     {
         currentlySpawningTrees = true;
