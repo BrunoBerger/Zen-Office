@@ -152,7 +152,7 @@ Transform:
   m_Children:
   - {fileID: 963194228}
   m_Father: {fileID: 0}
-  m_RootOrder: 19
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &26828541
 GameObject:
@@ -466,7 +466,6 @@ GameObject:
   m_Component:
   - component: {fileID: 67781333}
   - component: {fileID: 67781336}
-  - component: {fileID: 67781335}
   - component: {fileID: 67781334}
   m_Layer: 0
   m_Name: TextMeshPro
@@ -586,14 +585,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!222 &67781335
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 67781332}
-  m_CullTransparentMesh: 0
 --- !u!23 &67781336
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1337,7 +1328,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3592718400668087300, guid: 375369510d9c8fd428ed10a1f6bef485, type: 3}
       propertyPath: m_RootOrder
-      value: 16
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3592718400668087300, guid: 375369510d9c8fd428ed10a1f6bef485, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1496,7 +1487,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 1, g: 0.9590944, b: 0.60754716, a: 1}
+  m_Color: {r: 1, g: 0.8980392, b: 0.6862745, a: 1}
   m_Intensity: 1
   m_Range: 10
   m_SpotAngle: 30
@@ -1555,11 +1546,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 251719868}
   m_LocalRotation: {x: 0.15266985, y: 0.8170531, z: -0.25159222, w: 0.49579978}
-  m_LocalPosition: {x: -2.19, y: 0.85, z: 0.75}
+  m_LocalPosition: {x: -2.02, y: 0.85, z: 1.08}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 394.23, y: -242.5, z: 0}
 --- !u!1 &257879334
 GameObject:
@@ -1571,7 +1562,6 @@ GameObject:
   m_Component:
   - component: {fileID: 257879335}
   - component: {fileID: 257879338}
-  - component: {fileID: 257879337}
   - component: {fileID: 257879336}
   m_Layer: 0
   m_Name: TextMeshPro
@@ -1691,14 +1681,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!222 &257879337
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 257879334}
-  m_CullTransparentMesh: 0
 --- !u!23 &257879338
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3720,7 +3702,7 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 0.7139551, g: 0.990566, b: 0.9386092, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -3777,13 +3759,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705507993}
-  m_LocalRotation: {x: 0.17426248, y: -0.32724822, z: 0.061538476, w: 0.9266899}
-  m_LocalPosition: {x: 0.74, y: -0.01, z: -0.91}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 21.3, y: -38.9, z: 0}
+  m_Father: {fileID: 963194228}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &707721143
 GameObject:
   m_ObjectHideFlags: 0
@@ -4737,7 +4719,6 @@ GameObject:
   m_Component:
   - component: {fileID: 852757243}
   - component: {fileID: 852757246}
-  - component: {fileID: 852757245}
   - component: {fileID: 852757244}
   m_Layer: 0
   m_Name: TextMeshPro
@@ -4857,14 +4838,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!222 &852757245
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 852757242}
-  m_CullTransparentMesh: 0
 --- !u!23 &852757246
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -5459,6 +5432,101 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.032, y: 0.032, z: 0.016}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &887790040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 887790044}
+  - component: {fileID: 887790043}
+  - component: {fileID: 887790042}
+  - component: {fileID: 887790041}
+  m_Layer: 0
+  m_Name: DebugLookAt
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!135 &887790041
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887790040}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!23 &887790042
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887790040}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &887790043
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887790040}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &887790044
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 887790040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 23
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &902999693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5784,7 +5852,8 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 705507995}
   m_Father: {fileID: 12967396}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7223,7 +7292,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1163471415}
   - component: {fileID: 1163471418}
-  - component: {fileID: 1163471417}
   - component: {fileID: 1163471416}
   m_Layer: 0
   m_Name: TextMeshPro
@@ -7343,14 +7411,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!222 &1163471417
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1163471414}
-  m_CullTransparentMesh: 0
 --- !u!23 &1163471418
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -7402,6 +7462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1205160574}
   - component: {fileID: 1205160573}
+  - component: {fileID: 1205160575}
   m_Layer: 0
   m_Name: MixedRealityToolkit
   m_TagString: Untagged
@@ -7436,6 +7497,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1205160575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1205160572}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71a35aab5d275f14992804f658c89f1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lookAtSphere: {fileID: 887790044}
 --- !u!1 &1225561955
 GameObject:
   m_ObjectHideFlags: 0
@@ -7806,7 +7880,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1324833996}
   - component: {fileID: 1324833999}
-  - component: {fileID: 1324833998}
   - component: {fileID: 1324833997}
   m_Layer: 0
   m_Name: TextMeshPro
@@ -7926,14 +7999,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!222 &1324833998
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1324833995}
-  m_CullTransparentMesh: 0
 --- !u!23 &1324833999
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8180,7 +8245,7 @@ Transform:
   m_Children:
   - {fileID: 593535486}
   m_Father: {fileID: 0}
-  m_RootOrder: 15
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1420314436
 GameObject:
@@ -9562,7 +9627,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8499655919597405322, guid: 24d9589008999d841a58d71c89995210, type: 3}
       propertyPath: m_RootOrder
-      value: 18
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 8499655919597405322, guid: 24d9589008999d841a58d71c89995210, type: 3}
       propertyPath: m_LocalPosition.x
@@ -9965,7 +10030,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4700616765475120, guid: 305eef8589daf2c4e86dbc3352f398be, type: 3}
       propertyPath: m_RootOrder
-      value: 22
+      value: 21
       objectReference: {fileID: 0}
     - target: {fileID: 4700616765475120, guid: 305eef8589daf2c4e86dbc3352f398be, type: 3}
       propertyPath: m_LocalScale.x
@@ -10163,7 +10228,7 @@ PrefabInstance:
       objectReference: {fileID: 1232854633}
     - target: {fileID: 6858734634425796935, guid: 4564ebd62ac88ac46b521038820b6f31, type: 3}
       propertyPath: m_RootOrder
-      value: 20
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 6858734634425796935, guid: 4564ebd62ac88ac46b521038820b6f31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -10302,7 +10367,7 @@ Transform:
   - {fileID: 2089751339}
   - {fileID: 523225251}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1735602689
 GameObject:
@@ -10942,7 +11007,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1756897291}
   - component: {fileID: 1756897294}
-  - component: {fileID: 1756897293}
   - component: {fileID: 1756897292}
   m_Layer: 0
   m_Name: TextMeshPro
@@ -11062,14 +11126,6 @@ MonoBehaviour:
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
---- !u!222 &1756897293
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1756897290}
-  m_CullTransparentMesh: 0
 --- !u!23 &1756897294
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11220,7 +11276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5042052743728363742, guid: 7b590829eaeacff49b45f5a93cfff72d, type: 3}
       propertyPath: m_RootOrder
-      value: 21
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5042052743728363742, guid: 7b590829eaeacff49b45f5a93cfff72d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -11884,7 +11940,7 @@ Transform:
   m_Children:
   - {fileID: 1882637865}
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 16
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2004127836
 GameObject:
@@ -13291,7 +13347,7 @@ Transform:
   - {fileID: 4713702016951152}
   - {fileID: 8384587994037682670}
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4689247494631862
 Transform:
@@ -13450,14 +13506,6 @@ Transform:
   m_Father: {fileID: 4650336336230748882}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!222 &575063059650435866
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8379290838853136662}
-  m_CullTransparentMesh: 0
 --- !u!224 &901999315446817836
 RectTransform:
   m_ObjectHideFlags: 0
@@ -14261,7 +14309,6 @@ GameObject:
   m_Component:
   - component: {fileID: 901999315446817836}
   - component: {fileID: 8516481460214762040}
-  - component: {fileID: 575063059650435866}
   - component: {fileID: 1375000594902259183}
   m_Layer: 0
   m_Name: Label
