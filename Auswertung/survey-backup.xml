@@ -1,0 +1,1142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE surveyProject SYSTEM "doctype.survey.dtd">
+<surveyProject version="2.4" timestamp="2023-04-30 17:08:40" program="oFb" progversion="3.4.13 1341">
+<title>MVG Projekt Evaluation</title>
+<description />
+<attributes.specific program="ofb">
+<attr id="language">ger</attr>
+</attributes.specific>
+<section>
+<title>Demographic Data</title>
+<attributes.specific program="ofb">
+<attr id="id">DD</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+<question>
+<description>Alter</description>
+<class>text</class>
+<title>Alter</title>
+<explanation />
+<inputPosition>right</inputPosition>
+<order>default</order>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+<attr id="restrictions.answered">yes</attr>
+</attributes.specific>
+<item>
+<text>Alter</text>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+</item>
+</question>
+<question>
+<description>ArErfahrung</description>
+<class>select</class>
+<title>Erfahrung mit Künstlicher Realität (AR)</title>
+<explanation />
+<inputPosition>right</inputPosition>
+<order>default</order>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+<attr id="restrictions.answered">yes</attr>
+<attr id="character">cards</attr>
+<attr id="columns">4</attr>
+</attributes.specific>
+<item>
+<text>Keine</text>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Wenig</text>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Einige</text>
+<attributes.specific program="ofb">
+<attr id="id">3</attr>
+<attr id="pos">3</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Viel</text>
+<attributes.specific program="ofb">
+<attr id="id">4</attr>
+<attr id="pos">4</attr>
+</attributes.specific>
+</item>
+</question>
+<question>
+<description>Arbeitsumgebung</description>
+<class>select</class>
+<title>Typische Arbeitsumgebung</title>
+<explanation />
+<inputPosition>right</inputPosition>
+<order>default</order>
+<attributes.specific program="ofb">
+<attr id="id">3</attr>
+<attr id="pos">3</attr>
+<attr id="restrictions.answered">yes</attr>
+<attr id="character">cards</attr>
+<attr id="columns">3</attr>
+</attributes.specific>
+<item>
+<text>Vor dem Computer</text>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Draußen</text>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Teils-Teils</text>
+<attributes.specific program="ofb">
+<attr id="id">3</attr>
+<attr id="pos">3</attr>
+</attributes.specific>
+</item>
+</question>
+<question>
+<description>Bildschirmzeit</description>
+<class>scale</class>
+<title>
+<![CDATA[Ungefähre durchschnittliche tägliche Bildschirmzeit
+]]>
+</title>
+<explanation />
+<inputPosition>right</inputPosition>
+<order>default</order>
+<attributes.specific program="ofb">
+<attr id="id">4</attr>
+<attr id="pos">4</attr>
+<attr id="scale.metrics.button">36</attr>
+<attr id="scale.display">continuous</attr>
+<attr id="displayInitial">opaque</attr>
+<attr id="scale.metrics.width">320</attr>
+<attr id="scale.metrics.height">40</attr>
+<attr id="scale.graphics.scale">oFb://slider.scale.d240h7s</attr>
+<attr id="scale.graphics.button">oFb://slider.button</attr>
+<attr id="restrictions.answered">yes</attr>
+<attr id="alignment">left</attr>
+<attr id="button.metrics.width">36</attr>
+<attr id="button.metrics.height">40</attr>
+<attr id="button.label.pos">none</attr>
+<attr id="scale.min.x">40</attr>
+<attr id="scale.max.x">280</attr>
+</attributes.specific>
+<item>
+<text>im Beruf/Studium</text>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+</item>
+<item>
+<text>in der Freizeit</text>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+</attributes.specific>
+</item>
+</question>
+<question>
+<description>Motionsickness</description>
+<class>select</class>
+<title>
+<![CDATA[Erleben Sie Motionsickness in VR/AR Umgebungen?
+]]>
+</title>
+<explanation />
+<inputPosition>right</inputPosition>
+<order>default</order>
+<residualOptions>
+<li i="0">Weiß ich nicht</li>
+</residualOptions>
+<attributes.specific program="ofb">
+<attr id="id">5</attr>
+<attr id="pos">5</attr>
+<attr id="restrictions.answered">yes</attr>
+<attr id="character">cards</attr>
+<attr id="columns">3</attr>
+</attributes.specific>
+<item>
+<text>Gar nicht</text>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Leicht </text>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Immer </text>
+<attributes.specific program="ofb">
+<attr id="id">3</attr>
+<attr id="pos">3</attr>
+</attributes.specific>
+</item>
+</question>
+</section>
+<section>
+<title>Short Stress Questionnaire</title>
+<attributes.specific program="ofb">
+<attr id="id">SS</attr>
+<attr id="pos">2</attr>
+</attributes.specific>
+<question>
+<description>AR FeelingScale</description>
+<class>scale</class>
+<title />
+<explanation />
+<inputPosition>right</inputPosition>
+<labels>
+<li i="1">Gar nicht</li>
+<li i="2">Ein Bisschen</li>
+<li i="3">Etwas</li>
+<li i="4">Stark</li>
+<li i="5">Extrem</li>
+</labels>
+<order>default</order>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+<attr id="scale.display">complete</attr>
+<attr id="displayNumbering">asc</attr>
+<attr id="numbering.start">1</attr>
+<attr id="restrictions.answered">yes</attr>
+<attr id="composition">default</attr>
+<attr id="shading">none</attr>
+</attributes.specific>
+<item>
+<text>Unzufrieden</text>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Aufmerksam</text>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Deprimiert</text>
+<attributes.specific program="ofb">
+<attr id="id">3</attr>
+<attr id="pos">3</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Traurig</text>
+<attributes.specific program="ofb">
+<attr id="id">4</attr>
+<attr id="pos">4</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Aktiv</text>
+<attributes.specific program="ofb">
+<attr id="id">5</attr>
+<attr id="pos">5</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ungeduldig</text>
+<attributes.specific program="ofb">
+<attr id="id">6</attr>
+<attr id="pos">6</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Genervt</text>
+<attributes.specific program="ofb">
+<attr id="id">7</attr>
+<attr id="pos">7</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Wütend</text>
+<attributes.specific program="ofb">
+<attr id="id">8</attr>
+<attr id="pos">8</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Irritiert</text>
+<attributes.specific program="ofb">
+<attr id="id">9</attr>
+<attr id="pos">9</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Mürrisch</text>
+<attributes.specific program="ofb">
+<attr id="id">10</attr>
+<attr id="pos">10</attr>
+</attributes.specific>
+</item>
+</question>
+<question>
+<description>AR StatementAgreement</description>
+<class>scale</class>
+<title />
+<explanation />
+<inputPosition>right</inputPosition>
+<labels>
+<li i="1">Gar nicht</li>
+<li i="2">Ein bisschen</li>
+<li i="3">Etwas</li>
+<li i="4">Stark</li>
+<li i="5">Extrem</li>
+</labels>
+<order>default</order>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+<attr id="scale.display">complete</attr>
+<attr id="displayNumbering">asc</attr>
+<attr id="numbering.start">1</attr>
+<attr id="restrictions.answered">yes</attr>
+</attributes.specific>
+<item>
+<text>Ich war entschlossen meine Leistungsziele zu erreichen</text>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich wollte bei der Aufgabe erfolgreich sein</text>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich war motiviert die Aufgabe umzusetzen</text>
+<attributes.specific program="ofb">
+<attr id="id">3</attr>
+<attr id="pos">3</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich habe versucht mich zurechtzufinden</text>
+<attributes.specific program="ofb">
+<attr id="id">4</attr>
+<attr id="pos">4</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich habe über mich selbst reflektiert</text>
+<attributes.specific program="ofb">
+<attr id="id">5</attr>
+<attr id="pos">5</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich hatte Tagträume</text>
+<attributes.specific program="ofb">
+<attr id="id">6</attr>
+<attr id="pos">6</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich fühlte mich selbstbewusst in meinen Fähigkeiten</text>
+<attributes.specific program="ofb">
+<attr id="id">7</attr>
+<attr id="pos">7</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich fühlte mich innerlich unsicher</text>
+<attributes.specific program="ofb">
+<attr id="id">8</attr>
+<attr id="pos">8</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich war besorgt darüber, was andere von mir denken</text>
+<attributes.specific program="ofb">
+<attr id="id">9</attr>
+<attr id="pos">9</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich machte mir Gedanken darüber, welchen Eindruck ich vermittle</text>
+<attributes.specific program="ofb">
+<attr id="id">10</attr>
+<attr id="pos">10</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich führte die Aufgabe kompetent aus</text>
+<attributes.specific program="ofb">
+<attr id="id">11</attr>
+<attr id="pos">11</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Grundsätzlich fühlte ich, dass ich die Dinge unter Kontrolle hatte</text>
+<attributes.specific program="ofb">
+<attr id="id">12</attr>
+<attr id="pos">12</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich dachte darüber nach, was andere bei dieser Aufgabe gemacht haben</text>
+<attributes.specific program="ofb">
+<attr id="id">13</attr>
+<attr id="pos">13</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich dachte darüber nach, wie ich mich fühlen würde, wenn man mir sagt, wie ich bei der Aufgabe abschnitt.</text>
+<attributes.specific program="ofb">
+<attr id="id">14</attr>
+<attr id="pos">14</attr>
+</attributes.specific>
+</item>
+</question>
+<question>
+<description>NonAR FeelingScale</description>
+<class>scale</class>
+<title />
+<explanation />
+<inputPosition>right</inputPosition>
+<labels>
+<li i="1">Gar nicht</li>
+<li i="2">Ein Bisschen</li>
+<li i="3">Etwas</li>
+<li i="4">Stark</li>
+<li i="5">Extrem</li>
+</labels>
+<order>default</order>
+<attributes.specific program="ofb">
+<attr id="id">3</attr>
+<attr id="pos">3</attr>
+<attr id="scale.display">complete</attr>
+<attr id="displayNumbering">asc</attr>
+<attr id="numbering.start">1</attr>
+<attr id="restrictions.answered">yes</attr>
+<attr id="composition">default</attr>
+<attr id="shading">none</attr>
+</attributes.specific>
+<item>
+<text>Unzufrieden</text>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Aufmerksam</text>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Deprimiert</text>
+<attributes.specific program="ofb">
+<attr id="id">3</attr>
+<attr id="pos">3</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Traurig</text>
+<attributes.specific program="ofb">
+<attr id="id">4</attr>
+<attr id="pos">4</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Aktiv</text>
+<attributes.specific program="ofb">
+<attr id="id">5</attr>
+<attr id="pos">5</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ungeduldig</text>
+<attributes.specific program="ofb">
+<attr id="id">6</attr>
+<attr id="pos">6</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Genervt</text>
+<attributes.specific program="ofb">
+<attr id="id">7</attr>
+<attr id="pos">7</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Wütend</text>
+<attributes.specific program="ofb">
+<attr id="id">8</attr>
+<attr id="pos">8</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Irritiert</text>
+<attributes.specific program="ofb">
+<attr id="id">9</attr>
+<attr id="pos">9</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Mürrisch</text>
+<attributes.specific program="ofb">
+<attr id="id">10</attr>
+<attr id="pos">10</attr>
+</attributes.specific>
+</item>
+</question>
+<question>
+<description>NonAR StatementAgreement</description>
+<class>scale</class>
+<title />
+<explanation />
+<inputPosition>right</inputPosition>
+<labels>
+<li i="1">Gar nicht</li>
+<li i="2">Ein bisschen</li>
+<li i="3">Etwas</li>
+<li i="4">Stark</li>
+<li i="5">Extrem</li>
+</labels>
+<order>default</order>
+<attributes.specific program="ofb">
+<attr id="id">4</attr>
+<attr id="pos">4</attr>
+<attr id="scale.display">complete</attr>
+<attr id="displayNumbering">asc</attr>
+<attr id="numbering.start">1</attr>
+<attr id="restrictions.answered">yes</attr>
+</attributes.specific>
+<item>
+<text>Ich war entschlossen meine Leistungsziele zu erreichen</text>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich wollte bei der Aufgabe erfolgreich sein</text>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich war motiviert die Aufgabe umzusetzen</text>
+<attributes.specific program="ofb">
+<attr id="id">3</attr>
+<attr id="pos">3</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich habe versucht mich zurechtzufinden</text>
+<attributes.specific program="ofb">
+<attr id="id">4</attr>
+<attr id="pos">4</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich habe über mich selbst reflektiert</text>
+<attributes.specific program="ofb">
+<attr id="id">5</attr>
+<attr id="pos">5</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich hatte Tagträume</text>
+<attributes.specific program="ofb">
+<attr id="id">6</attr>
+<attr id="pos">6</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich fühlte mich selbstbewusst in meinen Fähigkeiten</text>
+<attributes.specific program="ofb">
+<attr id="id">7</attr>
+<attr id="pos">7</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich fühlte mich innerlich unsicher</text>
+<attributes.specific program="ofb">
+<attr id="id">8</attr>
+<attr id="pos">8</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich war besorgt darüber, was andere von mir denken</text>
+<attributes.specific program="ofb">
+<attr id="id">9</attr>
+<attr id="pos">9</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich machte mir Gedanken darüber, welchen Eindruck ich vermittle</text>
+<attributes.specific program="ofb">
+<attr id="id">10</attr>
+<attr id="pos">10</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich führte die Aufgabe kompetent aus</text>
+<attributes.specific program="ofb">
+<attr id="id">11</attr>
+<attr id="pos">11</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Grundsätzlich fühlte ich, dass ich die Dinge unter Kontrolle hatte</text>
+<attributes.specific program="ofb">
+<attr id="id">12</attr>
+<attr id="pos">12</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich dachte darüber nach, was andere bei dieser Aufgabe gemacht haben</text>
+<attributes.specific program="ofb">
+<attr id="id">13</attr>
+<attr id="pos">13</attr>
+</attributes.specific>
+</item>
+<item>
+<text>Ich dachte darüber nach, wie ich mich fühlen würde, wenn man mir sagt, wie ich bei der Aufgabe abschnitt.</text>
+<attributes.specific program="ofb">
+<attr id="id">14</attr>
+<attr id="pos">14</attr>
+</attributes.specific>
+</item>
+</question>
+</section>
+<section>
+<title>User Experience Questionaire</title>
+<attributes.specific program="ofb">
+<attr id="id">UE</attr>
+<attr id="pos">3</attr>
+</attributes.specific>
+<question>
+<description>ShortUEQ</description>
+<class>polar</class>
+<title />
+<explanation />
+<headerRepeat>none</headerRepeat>
+<inputPosition>right</inputPosition>
+<order>default</order>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+<attr id="scale.display">extrema</attr>
+<attr id="displayNumbering">asc</attr>
+<attr id="numbering.start">0</attr>
+<attr id="scale.niveau">7</attr>
+<attr id="restrictions.answered">yes</attr>
+<attr id="shading">none</attr>
+<attr id="input.numbering">sym</attr>
+</attributes.specific>
+<item>
+<text>unterstützend</text>
+<suffix>behindernd</suffix>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+</attributes.specific>
+</item>
+<item>
+<text>einfach</text>
+<suffix>kompliziert</suffix>
+<attributes.specific program="ofb">
+<attr id="id">2</attr>
+<attr id="pos">2</attr>
+</attributes.specific>
+</item>
+<item>
+<text>effizient</text>
+<suffix>ineffizient</suffix>
+<attributes.specific program="ofb">
+<attr id="id">3</attr>
+<attr id="pos">3</attr>
+</attributes.specific>
+</item>
+<item>
+<text>übersichtlich</text>
+<suffix>verwirrend</suffix>
+<attributes.specific program="ofb">
+<attr id="id">4</attr>
+<attr id="pos">4</attr>
+</attributes.specific>
+</item>
+<item>
+<text>spannend</text>
+<suffix>langweilig</suffix>
+<attributes.specific program="ofb">
+<attr id="id">5</attr>
+<attr id="pos">5</attr>
+</attributes.specific>
+</item>
+<item>
+<text>interessant</text>
+<suffix>uninteressant</suffix>
+<attributes.specific program="ofb">
+<attr id="id">6</attr>
+<attr id="pos">6</attr>
+</attributes.specific>
+</item>
+<item>
+<text>originell</text>
+<suffix>konventionell</suffix>
+<attributes.specific program="ofb">
+<attr id="id">7</attr>
+<attr id="pos">7</attr>
+</attributes.specific>
+</item>
+<item>
+<text>neuartig</text>
+<suffix>herkömmlich</suffix>
+<attributes.specific program="ofb">
+<attr id="id">8</attr>
+<attr id="pos">8</attr>
+</attributes.specific>
+</item>
+</question>
+</section>
+<section>
+<title>AbschliessendeFragen</title>
+<attributes.specific program="ofb">
+<attr id="id">AB</attr>
+<attr id="pos">4</attr>
+</attributes.specific>
+</section>
+<section>
+<title>Text</title>
+<attributes.specific program="ofb">
+<attr id="id">TX</attr>
+<attr id="pos">5</attr>
+</attributes.specific>
+<question>
+<description>InfoUndEinverständnis</description>
+<class>TextContent</class>
+<title />
+<explanation />
+<inputPosition>right</inputPosition>
+<lead>
+<![CDATA[<p><span style="display:none;line-height:0;" class="sceditor-selection sceditor-ignore" id="sceditor-start-marker"> </span><span style="display:none;line-height:0;" class="sceditor-selection sceditor-ignore" id="sceditor-end-marker"></span></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="center"> <font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:14pt;" size="4"><b>„Zen Office“  Virtual augmentation generator to reduce stress in the work environment</b></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="center"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>(Deutsche Übersetzung: Virtuelle Umgebungs Generator zur Stress Reduzierung am Arbeitsplatz)</b></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-bottom:0.08in;border:none;padding:0in;" align="center"><br /> <br /></p>
+
+<h1 class="western" align="center"><a></a> Teilnehmerinformation und Einwilligungserklärung</h1>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sehr geehrte Studieninteressierte/sehr geehrter Studieninteressierter,</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sie sind herzlich dazu eingeladen, an einer Forschungsstudie teilzunehmen. Bevor Sie sich zur Teilnahme an dieser Studie entscheiden können, müssen Sie Wesen, Bedeutung und Tragweite sowie die Risiken und möglichen Nutzen kennen. Lesen Sie sich die folgenden Informationen bitte sorgfältig durch. Bei Unklarheiten oder Fragen oder wenn Sie weitere Informationen benötigen, wenden Sie sich bitte an uns. Lassen Sie sich Zeit und treffen Sie Ihre Entscheidung in Ruhe. </font></font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>Die Teilnahme an dieser Studie ist freiwillig und ein Rücktritt jederzeit ohne Angaben von Gründen möglich.</b></font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><br /></p>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><br /></p>
+
+<ol><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><b>Warum wird diese Studie durchgeführt und wie ist der Studienablauf?</b></font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><b>Mit welchen Risiken ist die Teilnahme an der Studie verbunden und welche Maßnahmen werden getroffen, um diese möglichst gering zu halten?</b></font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><b>Was geschieht mit meinen Daten?</b></font></font></font></font></p></li></ol>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><br /></p>
+
+<h2 class="western"><a></a>1. Warum wird diese Studie durchgeführt und wie ist der Studienablauf?</h2>
+
+<h3 class="western"><a></a>Ziel</h3>
+
+<p style="font-style:normal;line-height:100%;margin-bottom:0.08in;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Die Abteilung für Visual Computing an der Hochschule Bonn-Rhein-Sieg untersucht </font></font></font><font face="Arial, serif"><font style="font-size:11pt;" size="2">neuartige Feedbackformen, die über einen Körperanzug den Tastsinn ansprechen, um menschliche Bewegungen und Haltungen bei verschiedenen motorischen Aufgaben zu optimieren. Für den/die Teilnehmer/in der Studie ergibt sich kein direkter Nutzen aus der Untersuchung, das Hauptziel des Forschungsprojektes ist es jedoch, die Wahrnehmung und Interaktion des Menschen in diesen Systemen zu verbessern.</font></font></font></font></p>
+
+<h3 style="line-height:100%;margin-bottom:0.08in;" class="western"><a></a> A<b>blauf und Datensammlung</b></h3>
+
+<p style="font-style:normal;line-height:100%;margin-bottom:0.08in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sollten Sie sich für die Teilnahme bereit erklären, werden Sie in die Räumlichkeiten des Instituts für Visual Computing der Hochschule Bonn-Rhein-Sieg eingeladen. Die Studiendurchführung wird in der Regel 45 Minuten in Anspruch nehmen. </font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-bottom:0.08in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Während der Studie werden Sie Sensoren und Aktuatoren tragen, welche (eventuell) in einem Körperanzug integriert sind. Sie werden verschiedene motorische Aufgaben durchführen, in denen unterschiedliche vibrotaktile oder haptische Reize verabreicht werden. Die Reize sind schmerzlos und werden genutzt, um Ihnen Informationen zu vermitteln, die Ihnen bei der Erfüllung der motorischen Aufgabe (Durchführung einer Bewegung oder Einnahme einer Pose) helfen werden. Weiterhin werden auch visuelle oder auditive Informationen bereitgestellt, sofern dies für die Erfüllung der Aufgabe notwendig ist.</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-bottom:0.08in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Mittels optischer Sensoren oder Sensoren im Anzug werden ihre Pose und Bewegungen kontinuierlich gemessen. Zudem können Performanzdaten erhoben werden. Dies beinhaltet beispielsweise Reaktionszeit, körperliche Bewegung, sowie Muskelaktivität über Elektromyographie. </font></font></font></font></p>
+
+<h3 style="line-height:100%;margin-bottom:0.08in;" class="western"><a></a> <b>Block 1: Grundlagenstudien</b><font color="#000000"> </font></h3>
+
+<p style="font-style:normal;line-height:100%;margin-bottom:0.08in;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sollten Sie sich für die Teilnahme bereit erklären, werden Sie Feedback, das den Tastsinn anspricht, an verschiedenen Stellen am Körper verabreicht bekommen. Sie werden dazu aufgefordert, das jeweilige Feedback zu beurteilen. Auf der Basis Ihrer Bewertung wird das Feedback schrittweise angepasst, bis es Ihrer Meinung nach die optimale Stärke und Form angenommen hat.</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Nachdem das Feedback an allen Stellen angepasst wurde, werden wir Sie darum bitten, einen Fragebogen zur Studie auszufüllen.</font></font></font></font></font></p>
+
+<h3 style="line-height:100%;margin-bottom:0.08in;" class="western"><a></a> <b>Block 2: Technologiestudien</b><font color="#000000"> </font></h3>
+
+<p style="font-style:normal;line-height:100%;margin-bottom:0.08in;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sollten Sie sich für die Teilnahme bereit erklären, werden Sie verschiedene motorische Aufgaben ausführen. Während der Studie werden Sie einen Körperanzug tragen,</font></font></font><font face="Arial, serif"><font style="font-size:11pt;" size="2"> in dem Sensoren und Aktuatoren verbaut sind. Die Sensoren messen dabei Muskelaktivität und die Position und Orientierung von Körperteilen, während die Aktuatoren kurze Vibrationsreize verabreichen. </font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Die Reize sind schmerzlos und werden genutzt, um</font></font></font><font face="Arial, serif"><font style="font-size:11pt;" size="2"> Sie über mögliche Probleme bei der Durchführung der Aufgabe und deren Korrektur zu informieren.</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Nach Beendigung aller motorischen Aufgaben werden wir Sie darum bitten, einen Fragebogen zur Durchführung auszufüllen.</font></font></font></font></font></p>
+
+<h2 style="line-height:108%;" class="western"><a></a> 2. Mit welchen Risiken ist die Teilnahme an der Studie verbunden und welche Maßnahmen werden getroffen, um diese möglichst gering zu halten?</h2>
+
+<p style="font-style:normal;line-height:100%;" align="left"><br /></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Die verwendeten Methoden führen generell zu keinen gesundheitlichen Schäden oder Beeinträchtigungen. Vergangene Studien haben nur geringe Komplikationen und kaum Risiken gezeigt. Folgende Komplikationen können auftreten:</font></font></font></font></p>
+
+<ul><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Die Nutzung von taktilen Stimuli kann zu leichtem Kribbeln auf der Haut führen.</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Kraftrückkopplung kann dazu führen, dass Aktionen mit mehr Kraft ausgeführt werden müssen als normal. Dies kann zu einer schnelleren Ermüdung führen. Während der Studie kann jederzeit eine Pause eingelegt werden.</font></font></font></font></p></li></ul>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><br /></p>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Zum Infektionsschutz vor COVID-19 werden u.a. folgende Hygiene-Maßnahmen vorgenommen:</font></font></font></font></p>
+
+<ul><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Handdesinfektion beim Betreten des Versuchsraums</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Reinigung der Datenbrillen und Eingabegeräte nach jeder Studiendurchführung mit medizinischen Desinfektionstüchern und ggf. zusätzlich mittels Ultraviolett-Licht (CleanBox System)</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Einhaltung eines Mindestabstands von 1,5 m, wenn möglich</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Regelmäßige Raumdurchlüftung (mind. 10 min Stoßlüften pro Stunde)</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Tragen einer Mund-Nasen-Bedeckung bis zur Durchführung der Studie</font></font></font></font></p></li></ul>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><br /></p>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Für den Fall, dass eine ausreichende Hygiene zum Infektionsschutz vor COVID-19 nicht garantiert werden kann, werden keine Nutzerstudien durchgeführt.</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><br /></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Folgende </font></font><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>Voraussetzungen</b></font></font><font face="Arial, serif"><font style="font-size:11pt;" size="2"> sollten für die Teilnahme erfüllt werden:</font></font></font></font></p>
+
+<ul><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Mindestalter 18 Jahre</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Normale oder korrigierte Sehfähigkeit (Brille)</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Keine krankhaften Atemwegssymptome</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Keinen Kontakt zu COVID-19 Erkrankten innerhalb der letzten 14 Tage</font></font></font></font></p></li></ul>
+
+<p style="font-style:normal;line-height:100%;margin-left:0.5in;border:none;padding:0in;" align="left"><br /></p>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sie sollten aus gesundheitlichen Gründen </font></font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><u><b>nicht</b></u></font></font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><u> </u></font></font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">teilnehmen, wenn ein oder mehrere folgender Ausschlusskriterien auf Sie zutreffen:</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-left:0.5in;border:none;padding:0in;" align="left"><br /></p>
+
+<ul><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Schwangerschaft</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Tragen von Herzschrittmacher</font></font></font></font></p></li></ul>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><br /></p>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sollten Sie aufgrund der beschriebenen möglichen Risiken und Nebenwirkungen Bedenken haben, so wird die Untersuchung ebenfalls nicht durchgeführt.</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;border:none;padding:0in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sie können die Untersuchung jederzeit abbrechen, ohne dass Ihnen dadurch ein Nachteil entsteht.</font></font></font></font></font></p>
+
+<h3 style="line-height:106%;margin-bottom:0in;" class="western"><a></a> Versicherung</h3>
+
+<p style="font-style:normal;line-height:116%;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Im Rahmen der Studie wird keine Wege-Unfall-Versicherung abgeschlossen. Wege-UnfaÌˆlle sind daher </font></font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><u>nicht</u></font></font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"> versichert.</font></font></font></font></font></p>
+
+<h2 class="western"><a></a>3. Was geschieht mit meinen Daten?</h2>
+
+<h3 style="line-height:163%;margin-top:0.08in;margin-bottom:0.08in;" class="western" align="justify"><a></a> Datenschutz</h3>
+
+<ul><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Rechtsgrundlage für die Datenverarbeitung ist Ihre freiwillige Einwilligung (Art. 6 Abs. 1 Buchst. a) DSGVO).</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Der Datenschutzbeauftragte der Hochschule Bonn-Rhein-Sieg University of Applied Sciences, Herr Rainer Pieters (Telefon: +49 2241 865 102, E-Mail: rainer.pieters@h-brs.de)</font></font></font></font></p></li></ul>
+
+<h3 style="line-height:100%;margin-bottom:0in;" class="western"><a></a> Datenverarbeitung</h3>
+
+<ul><li><p style="font-style:normal;line-height:100%;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Der Verantwortliche für die Datenverarbeitung ist Prof. Dr. Ernst Kruijff (Telefon: +49 2241 865 9616, E-Mail: ernst.kruijff@h-brs.de)</font></font></font></font></p></li></ul>
+
+<p style="font-style:normal;line-height:115%;margin-left:0.5in;" align="justify"><font color="#00000a"><font color="#000000"></font></font> </p>
+
+<p style="font-style:normal;line-height:115%;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Die Daten werden zu jeder Zeit vertraulich behandelt. Die Daten werden in pseudonymisierter Form an Prof. Dr. Ernst Kruijff bzw. von ihm beauftragte Stellen zum Zweck der wissenschaftlichen Auswertung weitergeleitet. Die Auswertung hat zum Ziel, Erkenntnisse zur Interaktion des Nutzers mit den oben beschriebenen Feedbacksystemen zu gewinnen. Zugriff auf die personenbezogenen Daten haben nur die zuständigen Personen für die Leitung, Auswertung und Publikation der Studie und ihrer Ergebnisse.</font></font></font></font></font></p>
+
+<h3 class="western"><a></a> Datenerhebung, Speicherung und Weiterverarbeitung</h3>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="left"><a></a> <font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Bei der Datenerhebung werden Video- und Audiodaten, Performanzdaten (Zeit und Genauigkeit bei der Durchführung der motorischen Aufgabe), demografische Daten (Alter, Geschlecht) sowie Antworten auf Fragen zur Studiendurchführung (Online-Fragebogen Sosci) erfasst. </font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Um zu vermeiden, dass die Studienteilnehmer an ihren Stimmen erkannt werden können, werden Audiodaten einer Person unmittelbar nach ihrer Studienteilnahme durch Rauschsignale verfremdet. Bei audio-visuellen Materialien werden zur Anonymisierung zusätzlich visuelle Manipulationen durchgeführt: Die Gesichter der aufgenommenen Person werden unmittelbar nach ihrer Studienteilnahme vollständig überdeckt. </font></font></font><font face="Arial, serif"><font style="font-size:11pt;" size="2">Die demografischen Daten werden mithilfe eines Online-Fragebogens erhoben und liegen ebenfalls ausschließlich in digitaler Form vor.</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="left"><a></a> <font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Die Daten werden in digitaler Form auf einer lokalen Festplatte mit einem Backup auf einem USB-Medium pseudonymisiert und passwortgeschützt gespeichert und in einem abgeschlossenen, nicht öffentlich zugänglichen Büroraum gelagert. Bei der Pseudonymisierung werden die erhobenen Daten (demografische Daten; Antworten zur Studiendurchführung) durch einen von Ihnen selbst eingegebenen persönlichen Code verschlüsselt</font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">. </font></font></font><font face="Arial, serif"><font style="font-size:11pt;" size="2">Der persönliche Code wird anhand bestimmter Informationen gebildet, die nur Sie kennen. Erst in dieser kodierten Form werden die Daten für Forschungszwecke zur Verfügung gestellt.</font></font><font color="#ff0000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><i> </i></font></font></font><font face="Arial, serif"><font style="font-size:11pt;" size="2">Die über den Online-Fragebogen erhobenen Daten auf Sosci sind passwortgesichert und nicht öffentlich zugänglich. </font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Es wird zudem sichergestellt, dass kein öffentlicher Zugriff auf die Rechner mit den digitalen Daten möglich ist. Die Papierunterlagen (Einverständniserklärung) werden im Ordner abgeheftet und in einem abgeschlossenen, nicht öffentlich zugänglichen Büroraum gelagert. Die Analyse der Daten erfolgt im Falle statistischer Daten mit dem Softwarepaket SPSS. </font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Zugang zu den Daten haben nur Mitarbeiter der Studie. Diese Personen sind zur Verschwiegenheit verpflichtet.</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Die Daten werden bis zu 10 Jahre nach Beendigung oder Abbruch der Studie aufbewahrt. Sie werden gelöscht, wenn sie nicht mehr benötigt werden, um Studienauswertungen durchzuführen und um bereits erfolgte Auswertungen nochmals zu überprüfen oder aufzubereiten. Spätestens nach 10 Jahren werden sie gelöscht.</font></font></font></font></font></p>
+
+<h3 style="line-height:100%;margin-bottom:0.08in;border:none;padding:0in;background:transparent;" class="western" align="left"><a></a> Sind mit der Datenverarbeitung Risiken verbunden?</h3>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Bei jeder Erhebung, Speicherung, Nutzung und Übermittlung von Daten bestehen Vertraulichkeitsrisiken (z.B. die Möglichkeit, die betreffende Person zu identifizieren). Diese Risiken lassen sich nicht völlig ausschließen und steigen, je mehr Daten miteinander verknüpft werden können. Der Initiator der Studie versichert Ihnen, alles nach dem Stand der Technik Mögliche zum Schutz Ihrer Privatsphäre zu tun und Daten nur an Stellen weiterzugeben, die ein geeignetes Datenschutzkonzept vorweisen können. Medizinische Risiken sind mit der Datenverarbeitung nicht verbunden.</font></font></font></font></font></p>
+
+<h3 class="western"><a></a>Kann ich meine Einwilligung widerrufen?</h3>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sie können Ihre jeweilige Einwilligung jederzeit ohne Angabe von Gründen schriftlich oder mündlich widerrufen, ohne dass Ihnen daraus ein Nachteil entsteht. Wenn Sie Ihre Einwilligung widerrufen, werden keine weiteren Daten mehr erhoben. Die bis zum Widerruf erfolgte Datenverarbeitung bleibt jedoch rechtmäßig. </font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sie können im Fall des Widerrufs auch die Löschung Ihrer Daten verlangen.</font></font></font></font></font></p>
+
+<h3 style="line-height:100%;margin-bottom:0.08in;border:none;padding:0in;background:transparent;" class="western" align="left"><a></a> Welche weiteren Rechte habe ich bezogen auf den Datenschutz?</h3>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sie haben das Recht, vom Verantwortlichen Auskunft über die von Ihnen gespeicherten personenbezogenen Daten (einschließlich der kostenlosen Überlassung einer Kopie der Daten) zu verlangen. Ebenfalls können Sie die Berichtigung unzutreffender Daten sowie gegebenenfalls eine Übertragung der von Ihnen zur Verfügung gestellten Daten und die Einschränkung ihrer Verarbeitung verlangen. </font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Bitte wenden Sie sich im Regelfall an den Leiter der Studie Prof. Dr. Ernst Kruijff. </font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Bei Anliegen zur Datenverarbeitung und zur Einhaltung der datenschutzrechtlichen Anforderungen können Sie sich auch an folgende Datenschutzbeauftragte wenden:</font></font></font></font></font></p>
+
+<ol type="a"><li><p style="font-style:normal;line-height:108%;margin-bottom:0.11in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Datenschutzbeauftragter der Hochschule Bonn-Rhein-Sieg: Rainer.Pieters@h-brs.de </font></font></font></font></font></p></li></ol>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;border:none;padding:0in;background:transparent;" align="left"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Sie haben außerdem ein Beschwerderecht, dass Sie bei der Aufsichtsbehörde für den Datenschutz des Landes Nordrhein-Westfalen geltend machen können:</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;margin-top:0.08in;" align="justify"><font color="#00000a"><font color="#000000"></font></font> </p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>Landesbeauftragte für Datenschutz und Informationsfreiheit Nordrhein-Westfalen</b></font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Bettina Gayk</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Postfach 20 04 44<br />40102 Düsseldorf</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Kavalleriestraße 2-4<br />40213 Düsseldorf</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Telefon: 02 11/384 24-0</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">E-Mail: poststelle@ldi.nrw.de</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Homepage: <a href="https://www.ldi.nrw.de/">https://www.ldi.nrw.de</a></font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;margin-top:0.08in;" align="justify"><font color="#00000a"><font color="#000000"></font></font> </p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>Ansprechpartner für Fragen zur Studie </b></font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Wenn Sie Fragen zu dieser Studie haben, wenden Sie sich bitte an:</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Prof. Dr. Ernst Kruijff</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Grantham-Allee 20</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">53757 St. Augustin</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Tel.: +49 2241 865 9616</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:115%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2">ernst.kruijff@h-brs.de</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="left"><br /> <br /></p>
+
+<p style="font-style:normal;line-height:150%;margin-top:0.08in;margin-bottom:0.08in;" align="center"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:14pt;" size="4"><b>Einwilligungserklärung</b></font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:150%;margin-top:0.08in;margin-bottom:0.08in;" align="center"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>Titel der Studie: Haptic interfaces for human motor action and posture optimization </b></font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-bottom:0.11in;" align="center"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>(Deutsche Übersetzung: Haptische Schnittstellen für die Optimierung menschlicher Bewegungsabläufe und Körperhaltungen)</b></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><br /> <br /></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Name des Teilnehmers in Druckbuchstaben:...............................................</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><br /> <br /></p>
+
+<ul><li><p style="font-style:normal;line-height:100%;margin-top:0.08in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Ich bin von Herrn / Frau _____________________ über Wesen, Bedeutung und Tragweite der Studie sowie die sich für mich daraus ergebenden Anforderungen aufgeklärt worden. Ich habe darüber hinaus den Text der Teilnehmerinformation und dieser Einwilligungserklärung gelesen.</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;margin-top:0.08in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Ich hatte ausreichend Zeit, Fragen zu stellen und mich zu entscheiden. Aufgetretene Fragen wurden mir vom Studienleiter beantwortet.</font></font></font></font></p></li><li><p style="font-style:normal;line-height:100%;margin-top:0.08in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Ich weiß, dass ich meine freiwillige Mitwirkung jederzeit beenden kann, ohne dass mir daraus Nachteile entstehen.</font></font></font></font></p></li></ul>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Ich erkläre mich bereit, an der Studie teilzunehmen.</font></font></font></font></p>
+
+<table width="601" cellspacing="0" cellpadding="7"><colgroup><col width="585" /></colgroup><tbody><tr><td style="border:1px solid #000000;padding:0in 0.08in;" width="585" valign="top"><p style="font-style:normal;margin-top:0.08in;" align="justify"> <font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>Datenschutz:</b></font></font></font></font></p><p style="font-style:normal;margin-top:0.08in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">1. Ich willige ein, dass personenbezogene Daten über mich wie in der Informationsschrift beschrieben erhoben und in Papierform (Einwilligungserklärung) sowie auf elektronischen Datenträgern in der Hochschule Bonn-Rhein-Sieg in Räumen, die vor unautorisierten Zugang geschützt sind, aufbewahrt werden.</font></font></font></font></p><p style="font-style:normal;margin-top:0.08in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Soweit erforderlich, dürfen die erhobenen Daten pseudonymisiert (verschlüsselt) weitergegeben werden:</font></font></font></font></p><ol type="a"><li><p style="font-style:normal;margin-top:0.08in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">an Prof. Dr. Ernst Kruijff oder von diesen beauftragten Stellen zum Zweck der wissenschaftlichen Auswertung und Publikation der Studienergebnisse.</font></font></font></font></p></li><li><p style="font-style:normal;margin-top:0.08in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">im Falle unerwünschter Ereignisse: an Prof. Dr. Ernst Kruijff und an die jeweils zuständige Ethik-Kommission.</font></font></font></font></p></li></ol><ol><li><p style="font-style:normal;margin-top:0.08in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Ich bin darüber aufgeklärt worden, dass ich meine Einwilligung jederzeit widerrufen kann. Im Falle des Widerrufs werden keine weiteren Daten mehr erhoben. Ich kann in diesem Fall die Löschung der Daten verlangen</font></font><font face="Arial, serif"><font style="font-size:11pt;" size="2"><i>.</i></font></font></font></font></p></li><li><p style="font-style:normal;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Ich willige ein, dass die Daten nach Beendigung oder Abbruch der Studie bis zu 10 Jahre lang aufbewahrt werden.</font></font></font></font></p></li></ol></td></tr></tbody></table>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><br /> <br /></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Kontaktdaten des Studienleiters:</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">________________________________________________________________________</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">(Name und Vorname in Druckschrift)</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">________________________________________________________________________</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">(Adresse)</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">________________________________________________________________________</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">(Telefon/Fax)</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><br /> <br /></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>Ich willige in die Verarbeitung der genannten Daten ein.</b></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Ein Exemplar der Informationsschrift und der Einwilligungserklärung habe ich erhalten. Ein Exemplar verbleibt im Prüfzentrum.</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>Audio- und Videoaufnahme. </b></font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:108%;margin-top:0.08in;margin-bottom:0.11in;border:none;padding:0in;background:transparent;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Ich</font></font><font color="#000000"><font face="Arial, serif"><font style="font-size:11pt;" size="2"> stimme zu, dass während dem Experiment Audio- und Videoaufnahmen von mir gemacht und für das vorliegende Forschungsprojekt ausgewertet werden. Audio-visuelle Daten werden bearbeitet, sodass Stimmen und Gesichter nicht erkannt werden. Die Speicherung der Daten erfolgt pseudonymisiert über einen persönlichen Code.</font></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><br /> <br /></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2"><b>Unterschrift des Teilnehmers/der Teilnehmerin</b></font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><br /> <br /></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">_______________________________</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">(Name und Vorname in Druckschrift)</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><br /> <br /></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">_______________________________ ______________________</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">(Datum) (Unterschrift)</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><br /> <br /></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">Erklärung und Unterschrift des Studienleiters. Ich habe das Aufklärungsgespräch geführt und die Einwilligung eingeholt.</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><br /> <br /></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">_______________________________</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">(Name und Vorname in Druckschrift)</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><br /> <br /></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">_______________________________ ______________________</font></font></font></font></p>
+
+<p style="font-style:normal;line-height:100%;margin-top:0.08in;margin-bottom:0.11in;" align="justify"><font color="#00000a"><font face="Cambria, serif"><font face="Arial, serif"><font style="font-size:11pt;" size="2">(Datum) (Unterschrift)</font></font></font></font></p>
+
+<p></p>
+
+<p class="sceditor-nlf"><br /></p>]]>
+</lead>
+<order>default</order>
+<attributes.specific program="ofb">
+<attr id="id">1</attr>
+<attr id="pos">1</attr>
+<attr id="alignment">default</attr>
+</attributes.specific>
+</question>
+</section>
+<layoutTexts>
+<layoutText id="default.imprint"><txt lng="ger"><![CDATA[<a href="mailto:brunoberger.uni@gmail.com">B.A. Bruno Berger</a>, 
+Hochschule Rhein-Bonn-Sieg – 2023]]></txt></layoutText>
+</layoutTexts>
+<questionnaire>
+<title>AR zuerst</title>
+<attributes.specific program="ofb">
+<attr id="id">ArFirst</attr>
+<attr id="content">
+<![CDATA[<?xml version="1.0"?>
+<questionnaire>
+
+<!-- Seite 1 -->
+<page intID="15">
+<question id="TX01" intID="16" />
+</page>
+
+
+<!-- Seite 2 -->
+<page intID="1">
+<question id="DD01" intID="7" />
+<question id="DD02" intID="11" />
+<question id="DD03" intID="12" />
+<question id="DD04" intID="13" />
+<question id="DD05" intID="14" />
+</page>
+
+
+<!-- Seite 3 -->
+<page intID="4">
+<info>AR SSSQ</info>
+<question id="SS01" intID="5" />
+<question id="SS02" intID="6" />
+</page>
+
+
+<!-- Seite 4 -->
+<page intID="2">
+<info>Short UEQ</info>
+<question id="UE01" intID="3" />
+</page>
+
+
+<!-- Seite 5 -->
+<page intID="8">
+<info>NonAR SSSQ</info>
+<question id="SS03" intID="9" />
+<question id="SS04" intID="10" />
+</page>
+
+
+</questionnaire>]]>
+</attr>
+<attr id="goodbye">
+<![CDATA[<h1>Vielen Dank für Ihre Teilnahme!</h1>
+
+<p>Wir möchten uns ganz herzlich für Ihre Mithilfe bedanken.</p>
+
+<!-- Hier evtl. noch Zweck der Studie, Ansprechpartner, etc. -->
+ 
+<p>Ihre Antworten wurden gespeichert, Sie können das Browser-Fenster nun schließen.</p>
+
+<!-- Zusätzlicher Abstand (ggf. entfernen/anpassen) -->
+<div style="padding-bottom: 20px"></div>]]>
+</attr>
+<attr id="selection">1</attr>
+<attr id="probePreset">no</attr>
+</attributes.specific>
+</questionnaire>
+<questionnaire>
+<title>Nicht-AR zuerst</title>
+<attributes.specific program="ofb">
+<attr id="id">NonArFirst</attr>
+<attr id="content">
+<![CDATA[<?xml version="1.0"?>
+<questionnaire>
+
+<!-- Seite 1 -->
+<page intID="15">
+<question id="TX01" intID="16" />
+</page>
+
+
+<!-- Seite 2 -->
+<page intID="1">
+<info>Demographie</info>
+<question id="DD01" intID="4" />
+<question id="DD02" intID="14" />
+<question id="DD03" intID="13" />
+<question id="DD04" intID="12" />
+<question id="DD05" intID="11" />
+</page>
+
+
+<!-- Seite 3 -->
+<page intID="2">
+<info>NonAR SSSQ</info>
+<question id="SS03" intID="5" />
+<question id="SS04" intID="6" />
+</page>
+
+
+<!-- Seite 4 -->
+<page intID="3">
+<info>AR SSSQ</info>
+<question id="SS01" intID="7" />
+<question id="SS02" intID="8" />
+</page>
+
+
+<!-- Seite 5 -->
+<page intID="9">
+<question id="UE01" intID="10" />
+</page>
+
+
+</questionnaire>]]>
+</attr>
+<attr id="goodbye">
+<![CDATA[<h1>Vielen Dank für Ihre Teilnahme!</h1>
+
+<p>Wir möchten uns ganz herzlich für Ihre Mithilfe bedanken.</p>
+
+<!-- Hier evtl. noch Zweck der Studie, Ansprechpartner, etc. -->
+ 
+<p>Ihre Antworten wurden gespeichert, Sie können das Browser-Fenster nun schließen.</p>
+
+<!-- Zusätzlicher Abstand (ggf. entfernen/anpassen) -->
+<div style="padding-bottom: 20px"></div>]]>
+</attr>
+<attr id="selection">0</attr>
+<attr id="probePreset">no</attr>
+</attributes.specific>
+</questionnaire>
+</surveyProject>
