@@ -1,3 +1,24 @@
+Demographic_Keys = [
+    "DD01_01",
+    "DD02",
+    "DD03",
+    "DD04_01",
+    "DD04_02",
+    "DD05",
+    "DD06",
+    "DD07",
+]
+Demographic_Names = [
+    "Alter",
+    "ArErfahrung",
+    "Arbeitsumgebung",
+    "Bildschirmzeit im Beruf/Studium",
+    "Bildschirmzeit in der Freizeit",
+    "Cybersickness ",
+    "NaturZurEntspannung",
+    "NutzungRelaxApps",
+]
+
 StressState_Names = [
     "Unzufrieden",
     "Aufmerksam",
