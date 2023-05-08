@@ -215,8 +215,8 @@ public class DrawMasks : MonoBehaviour
 
 
         yield return new WaitForSeconds(1); // to not immediatly trigger a new interaktion
-        mask.GetComponent<NearInteractionGrabbable>().enabled = true;
-        mask.GetComponent<ObjectManipulator>().enabled = true;
+        //mask.GetComponent<NearInteractionGrabbable>().enabled = true;
+        //mask.GetComponent<ObjectManipulator>().enabled = true;
     }
 
     public void DeleteMasks()
