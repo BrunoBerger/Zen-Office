@@ -8,24 +8,27 @@ There are three major steps:
 To find more details, please refer to:
 https://github.com/yinguobing/head-pose-estimation
 """
-from argparse import ArgumentParser
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+import csv
+import time
 
 import cv2
+import numpy as np
 
 from mark_detector import MarkDetector
 from pose_estimator import PoseEstimator
 
-print(__doc__)
+# print(__doc__)
 print("OpenCV version: {}".format(cv2.__version__))
 
 # Parse arguments from user input.
-parser = ArgumentParser()
-parser.add_argument("--video", type=str, default=None,
-                    help="Video file to be processed.")
-parser.add_argument("--cam", type=int, default=None,
-                    help="The webcam index.")
+parser = ArgumentParser(usage=__doc__, formatter_class=ArgumentDefaultsHelpFormatter)
+parser.add_argument("--video", type=str, default=None, help="Video file to be processed.")
+parser.add_argument("--cam", type=int, default=None, help="The webcam index.")
+parser.add_argument("-i", "--interval", type=float, default=0.5, help="Sampling interval for logging")
+parser.add_argument("-u", "--userkey", type=str, default="", help="User Key to match survery entry")
+parser.add_argument("--nosave", action="store_true", help="Wether to save this run or not")
 args = parser.parse_args()
-
 
 if __name__ == '__main__':
     # Before estimation started, there are some startup works to do.
@@ -41,15 +44,18 @@ if __name__ == '__main__':
     # Get the frame size. This will be used by the pose estimator.
     width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
     height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
-
     # 2. Introduce a pose estimator to solve pose.
     pose_estimator = PoseEstimator(img_size=(height, width))
-
     # 3. Introduce a mark detector to detect landmarks.
     mark_detector = MarkDetector()
-
     # 4. Measure the performance with a tick meter.
     tm = cv2.TickMeter()
+
+    user_key = args.userkey
+    while len(user_key) != 4:
+        user_key = input("\nBitte 4 stelligen User-Key eintippen und mit Enter bestätigen:\n")
+
+    estimations = []
 
     # Now, let the frames flow.
     while True:
@@ -95,15 +101,36 @@ if __name__ == '__main__':
                 frame, pose[0], pose[1], color=(0, 255, 0))
 
             # Do you want to see the head axes?
-            # pose_estimator.draw_axes(frame, pose[0], pose[1])
+            pose_estimator.draw_axes(frame, pose[0], pose[1])
+
+            axisText = f"x:{pose[0][0]} | y:{pose[0][1]} | z:{pose[0][2]}"
+            cv2.putText(frame, axisText, (10, 10), cv2.FONT_HERSHEY_DUPLEX, 0.5, (0, 0, 0), 1)
+
 
             # Do you want to see the marks?
             # mark_detector.draw_marks(frame, marks, color=(0, 255, 0))
 
             # Do you want to see the facebox?
             # mark_detector.draw_box(frame, [facebox])
-
+                
+            timestamp = time.time()
+            estimations.append([timestamp, user_key, pose[0][0]])
         # Show preview.
         cv2.imshow("Preview", frame)
         if cv2.waitKey(1) == 27:
             break
+
+
+    print(f"Average FPS: {tm.getFPS():.2f}")
+
+    if not args.nosave:
+        header = ["Timestamp", "Userkey", "x-rot"]
+        if len(header) != len(estimations[0]):
+            exit("Mismatch in header and rows of CSV file")
+            
+        with open('pose.csv', 'w', newline='') as f:
+            writer = csv.writer(f, delimiter=',', quotechar='"',)
+            writer.writerow(["Timestamp", "Userkey", "x-rot"])
+            writer.writerows(estimations)
+
+        print("Saved session for", user_key)
