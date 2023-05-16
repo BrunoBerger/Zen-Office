@@ -10,6 +10,7 @@ https://github.com/yinguobing/head-pose-estimation
 """
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import csv
+from datetime import datetime
 import time
 
 import cv2
@@ -77,7 +78,7 @@ if __name__ == '__main__':
         # Step 1: Get a face from current frame.
         facebox = mark_detector.extract_cnn_facebox(frame)
 
-        pose = [[[""]*3]*2]
+        pose = [[[""]]*3]*2
         # Any face found?
         if facebox is not None:
 
@@ -141,7 +142,9 @@ if __name__ == '__main__':
         if len(header) != len(estimations[0]):
             exit("Mismatch in header and rows of CSV file")
             
-        with open('pose.csv', 'w', newline='') as f:
+        filename = "pose.csv"
+        # filename = str(user_key) + " " + datetime.now().strftime("%d-%m-%Y %H-%M-%S")
+        with open(filename, 'w', newline='') as f:
             writer = csv.writer(f, delimiter=',', quotechar='"',)
             writer.writerow(header)
             writer.writerows(estimations)
