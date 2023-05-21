@@ -31,10 +31,33 @@ parser.add_argument("-i", "--interval", type=float, default=0.2, help="Sampling 
 parser.add_argument("-u", "--userkey", type=str, default="", help="4 digit user-key to match survery entries")
 
 parser.add_argument("--nosave", action="store_true", help="To disable saving to csv file")
-# parser.add_argument("--nopreview", action="store_true", help="To disable the preview window")
+parser.add_argument("--nopreview", action="store_true", help="To disable the preview window")
 args = parser.parse_args()
 
+
+def newTaskPrompt():
+    currentTask = ""
+    ARorNonAR = ""
+    while ARorNonAR not in {"AR", "NonAR"}:
+        i = input("\nDurchlauf:\n[1] AR\n[2] NonAR\n")
+        if i == "1":
+            ARorNonAR = "AR"
+        elif i == "2":
+            ARorNonAR = "NonAR"
+
+    while currentTask not in {"Listening", "Sudoku"}:
+        i = input("Nächste Aufgabe:\n[1] für listening comprehension\n[2] für Sudoku\n")
+        if i == "1":
+            currentTask = "Listening"
+        elif i == "2":
+            currentTask = "Sudoku"
+
+    input("Drücke Enter wenn die nächste Aufgabe beginnen soll")
+    return ARorNonAR, currentTask
+
+
 if __name__ == '__main__':
+    startTime = datetime.now().strftime("%d-%m-%Y %H-%M-%S")
     # Before estimation started, there are some startup works to do.
 
     # 1. Setup the video source from webcam or video file.
@@ -61,6 +84,9 @@ if __name__ == '__main__':
 
     estimations = []
     last_save_timestamp = time.time()
+    ARorNonAR, currentTask = newTaskPrompt()
+    dummyFrame = cv2.imread("assets/TrackingActive.png")
+    goToConsoleFrame = cv2.imread("assets/ToConsole.png")
 
     # Now, let the frames flow.
     print("[Started tracking head]")
@@ -80,8 +106,7 @@ if __name__ == '__main__':
 
         pose = [[[""]]*3]*2
         # Any face found?
-        if facebox is not None:
-
+        if facebox:
             # Step 2: Detect landmarks. Crop and feed the face area into the
             # mark detector.
             x1, y1, x2, y2 = facebox
@@ -103,47 +128,67 @@ if __name__ == '__main__':
             # All done. The best way to show the result would be drawing the
             # pose on the frame in realtime.
 
-            # Do you want to see the pose annotation?
-            pose_estimator.draw_annotation_box(
-                frame, pose[0], pose[1], color=(0, 255, 0))
-
-            # Do you want to see the head axes?
-            pose_estimator.draw_axes(frame, pose[0], pose[1])
+            if not args.nopreview:
+                # Do you want to see the pose annotation?
+                pose_estimator.draw_annotation_box(
+                    frame, pose[0], pose[1], color=(0, 255, 0))
+                # Do you want to see the head axes?
+                pose_estimator.draw_axes(frame, pose[0], pose[1])
+                # Do you want to see the marks?
+                # mark_detector.draw_marks(frame, marks, color=(0, 255, 0))
+                # Do you want to see the facebox?
+                # mark_detector.draw_box(frame, [facebox])  
+            else:
+                frame = dummyFrame
 
             axisText = f"x:{pose[0][0]} | y:{pose[0][1]} | z:{pose[0][2]}"
             cv2.putText(frame, axisText, (10, 10), cv2.FONT_HERSHEY_DUPLEX, 0.5, (0, 0, 0), 1)
 
-            # Do you want to see the marks?
-            # mark_detector.draw_marks(frame, marks, color=(0, 255, 0))
-
-            # Do you want to see the facebox?
-            # mark_detector.draw_box(frame, [facebox])
+        if args.nopreview:
+            frame = dummyFrame
 
         now_timestamp = time.time()
         if (now_timestamp - last_save_timestamp) > args.interval:
             # print(now_timestamp - last_save_timestamp)
-            estimations.append([now_timestamp, user_key,
+            estimations.append([now_timestamp, 
+                                user_key, 
+                                datetime.now().strftime("%d-%m-%Y %H-%M-%S"),
+                                ARorNonAR, currentTask,
                                 pose[0][0][0], pose[0][1][0], pose[0][2][0], 
                                 pose[1][0][0], pose[1][1][0], pose[1][2][0] ])
             last_save_timestamp = now_timestamp
 
         # Show preview.
         cv2.imshow("Preview", frame)
-        if cv2.waitKey(1) == 27:
+        keypress = cv2.waitKey(1)
+        if keypress == 27: # ESC
             break
+        if keypress == 13: # Return
+            # cv2.destroyAllWindows()
+            frame = goToConsoleFrame
+            cv2.imshow("Preview", frame)
+            try:
+                ARorNonAR, currentTask = newTaskPrompt()
+            except KeyboardInterrupt:
+                print("[Manually stopped run]")
+                break
 
-    print("[Stopped tracking head]")
+    print("[Stopped session]")
     print(f"Average FPS: {tm.getFPS():.2f}")
 
     if not args.nosave:
-        header = ["Timestamp", "Userkey", "rotX", "rotY", "rotZ", "posX", "posY", "posZ"]
+        
+        header = ["Timestamp", "Userkey", "TimeStr", 
+                  "ARorNonAR", "Tasktype",
+                  "rotX", "rotY", "rotZ", 
+                  "posX", "posY", "posZ"]
         if len(estimations) <= 0:
             exit("No poses logged! Won't create file")
         if len(header) != len(estimations[0]):
             exit("Mismatch in header and rows of CSV file")
             
-        filename = "pose.csv"
-        # filename = str(user_key) + " " + datetime.now().strftime("%d-%m-%Y %H-%M-%S")
+        # filename = "data/example_data.csv"
+        filename = "data/" + str(user_key) + " " + startTime + ".csv"
         with open(filename, 'w', newline='') as f:
             writer = csv.writer(f, delimiter=',', quotechar='"',)
             writer.writerow(header)

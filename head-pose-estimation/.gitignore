@@ -1,5 +1,6 @@
 .vscode
 *.csv
+!data/example_data.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
