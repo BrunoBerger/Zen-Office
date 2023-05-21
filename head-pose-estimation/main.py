@@ -32,10 +32,14 @@ parser.add_argument("-u", "--userkey", type=str, default="", help="4 digit user-
 
 parser.add_argument("--nosave", action="store_true", help="To disable saving to csv file")
 parser.add_argument("--nopreview", action="store_true", help="To disable the preview window")
+parser.add_argument("--notasks", action="store_true", help="To disable switching between tasks")
+
 args = parser.parse_args()
 
 
 def newTaskPrompt():
+    if args.notasks:
+        return "na", "na"
     currentTask = ""
     ARorNonAR = ""
     while ARorNonAR not in {"AR", "NonAR"}:
@@ -89,7 +93,7 @@ if __name__ == '__main__':
     goToConsoleFrame = cv2.imread("assets/ToConsole.png")
 
     # Now, let the frames flow.
-    print("[Started tracking head]")
+    print("[Started session]")
     while True:
 
         # Read a frame.
@@ -170,14 +174,12 @@ if __name__ == '__main__':
             try:
                 ARorNonAR, currentTask = newTaskPrompt()
             except KeyboardInterrupt:
-                print("[Manually stopped run]")
                 break
 
     print("[Stopped session]")
     print(f"Average FPS: {tm.getFPS():.2f}")
 
     if not args.nosave:
-        
         header = ["Timestamp", "Userkey", "TimeStr", 
                   "ARorNonAR", "Tasktype",
                   "rotX", "rotY", "rotZ", 
