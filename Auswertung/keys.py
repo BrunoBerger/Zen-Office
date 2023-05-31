@@ -28,8 +28,6 @@ Demographic = Prodict(
     ]
 )
 
-
-
 SSSQ = Prodict(
     Scale = Prodict(
         Names = [
