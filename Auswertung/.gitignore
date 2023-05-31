@@ -1,4 +1,10 @@
 .vscode/
+*.csv
+*.csv.broken
+
+!example.csv
+!ListeDerVariablen.csv
+!ListeDerAntwortCodes.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
