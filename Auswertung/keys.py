@@ -264,5 +264,14 @@ EmotionScales = Prodict(
 )
 
 if __name__ == "__main__":
-    print("Test:")
-    print(EmotionScales.AR.Zwischen)
+    print("Testing dics")
+    try:
+        Demographic.Names
+        SSSQ.Scale.AR.Listen_Keys
+        ShortUserExpQ.Names_left
+        AbschließendeFragen.Keys
+        EmotionScales.AR.Zwischen
+    except KeyError as e:
+        print("Error in one of the dictionaries:", e)
+        exit(1)
+    print("No errors")
