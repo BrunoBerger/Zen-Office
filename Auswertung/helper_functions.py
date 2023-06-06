@@ -7,8 +7,8 @@ import numpy as np
 
 from keys import *
 
-TABLEAU_COLORS = list(mcolors.TABLEAU_COLORS)
-CSS4_COLORS = list(mcolors.CSS4_COLORS.keys())
+TABLEAU_COLORS = list(mcolors.TABLEAU_COLORS) # type: ignore
+CSS4_COLORS = list(mcolors.CSS4_COLORS.keys()) # type: ignore
 
 def makeBoxPlot(data, labels, title, rot=50, ylabel="Trifft zu", save=False, show=True):
     plt.figure()
@@ -46,7 +46,7 @@ def groupedBoxPlots(datasets,
         bp = plt.boxplot(
             np.array(data), 
             sym='', 
-            whis=[0, 100], 
+            whis=[0, 100],  # type: ignore
             labels=labels, 
             patch_artist=True,
             positions=positions,

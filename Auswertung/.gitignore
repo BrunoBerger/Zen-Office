@@ -1,6 +1,7 @@
 .vscode/
 *.csv
 *.csv.broken
+sweat/
 
 !example.csv
 !ListeDerVariablen.csv
