@@ -226,7 +226,7 @@ EmotionScales = Prodict(
             "EM02_05",
             "EM02_06",
         ],
-        Nacher = [
+        Nachher = [
             "EM03_01",
             "EM03_02",
             "EM03_03",
@@ -252,7 +252,7 @@ EmotionScales = Prodict(
             "EM05_05",
             "EM05_06",
         ],
-        Nacher = [
+        Nachher = [
             "EM06_01",
             "EM06_02",
             "EM06_03",
