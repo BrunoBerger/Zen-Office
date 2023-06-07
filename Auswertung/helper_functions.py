@@ -61,7 +61,8 @@ def groupedBoxPlots(datasets,
 
 
     # Titles
-    plt.title(title + ", n=" + str(n))
+    # plt.title(title + ", n=" + str(n))
+    plt.title(title)
     plt.ylabel('1 to 5 Scale')
     plt.xlabel('Question')
     # Axis ticks and labels
