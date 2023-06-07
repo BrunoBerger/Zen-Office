@@ -2,6 +2,8 @@
 *.csv
 *.csv.broken
 sweat/
+tmp/
+figures/
 
 !example.csv
 !ListeDerVariablen.csv
