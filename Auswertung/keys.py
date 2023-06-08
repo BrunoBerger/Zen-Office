@@ -20,11 +20,12 @@ Demographic = Prodict(
         "Arbeitsumgebung",
         "Bildschirmzeit im Beruf/Studium",
         "Bildschirmzeit in der Freizeit",
-        "Cybersickness ",
+        "Cybersickness",
         "NaturZurEntspannung",
         "NutzungRelaxApps",
         "WennJaWelcheApps",
         "UserID",
+        "Geschlecht"
     ]
 )
 
