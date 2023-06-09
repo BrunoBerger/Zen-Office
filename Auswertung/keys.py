@@ -103,7 +103,14 @@ SSSQ = Prodict(
             "Ich war motiviert die Aufgabe umzusetzen",
             "Ich führte die Aufgabe kompetent aus",
             "Grundsätzlich fühlte ich, dass ich die Dinge unter Kontrolle hatte",
-        ],   
+        ],
+        Names_e = [
+            "I was committed to attaining my performance goals",
+            "I wanted to be succeed on the task",
+            "I was motivated to do the task",
+            "I performed proficiently on this task",
+            "Generally, I felt in control of things",
+        ],
         AR = Prodict(
             Listen_Keys = [
                 "SS02_01",

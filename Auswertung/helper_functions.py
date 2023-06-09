@@ -9,6 +9,8 @@ from keys import *
 
 TABLEAU_COLORS = list(mcolors.TABLEAU_COLORS) # type: ignore
 CSS4_COLORS = list(mcolors.CSS4_COLORS.keys()) # type: ignore
+COL_2v2 = ["darkcyan", "cyan", "gold", "yellow"]
+COL_3v3 = ["steelblue", "darkcyan", "cyan", "darkorange", "orange", "gold"]
 
 def makeBoxPlot(data, labels, title, rot=50, ylabel="Trifft zu", save=False, show=True):
     plt.figure()
@@ -26,9 +28,12 @@ def makeBoxPlot(data, labels, title, rot=50, ylabel="Trifft zu", save=False, sho
 def groupedBoxPlots(datasets, 
                     groups, 
                     labels=None, 
-                    title="Default title", 
+                    title="Default title",
+                    ylabel="1 to 5 Scale",
                     rot=50,
                     width=0.6,
+                    min=None,
+                    max=None,
                     colours = TABLEAU_COLORS,
                     n=None,
                     ):
@@ -63,7 +68,7 @@ def groupedBoxPlots(datasets,
     # Titles
     # plt.title(title + ", n=" + str(n))
     plt.title(title)
-    plt.ylabel('1 to 5 Scale')
+    plt.ylabel(ylabel)
     plt.xlabel('Question')
     # Axis ticks and labels
     plt.xticks(np.arange(len(list(datasets[0]))) + 1, rotation=rot)
@@ -72,6 +77,8 @@ def groupedBoxPlots(datasets,
     plt.subplots_adjust(right=0.98)
     # Change the limits of the x-axis
     plt.xlim([0.5, len(list(datasets[0])) + 0.5])
+    if min or max:
+        plt.ylim(min, max)
     # Legend
     legend_elements = []
     for i in range(len(datasets)):
