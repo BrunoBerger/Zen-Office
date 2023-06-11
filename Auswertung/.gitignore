@@ -4,6 +4,8 @@
 sweat/
 tmp/
 figures/
+tasks/
+survey/
 
 !example.csv
 !ListeDerVariablen.csv

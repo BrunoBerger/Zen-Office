@@ -7,10 +7,16 @@ import numpy as np
 
 from keys import *
 
+
+figureSavePath = "figures/"
+
 TABLEAU_COLORS = list(mcolors.TABLEAU_COLORS) # type: ignore
 CSS4_COLORS = list(mcolors.CSS4_COLORS.keys()) # type: ignore
 COL_2v2 = ["darkcyan", "cyan", "gold", "yellow"]
 COL_3v3 = ["steelblue", "darkcyan", "cyan", "darkorange", "orange", "gold"]
+
+def COL_2Groups(nInEachGroup):
+    return [*['tab:blue']*nInEachGroup, *['tab:orange']*nInEachGroup]
 
 def makeBoxPlot(data, labels, title, rot=50, ylabel="Trifft zu", save=False, show=True):
     plt.figure()
@@ -28,19 +34,25 @@ def makeBoxPlot(data, labels, title, rot=50, ylabel="Trifft zu", save=False, sho
 def groupedBoxPlots(datasets, 
                     groups, 
                     labels=None, 
-                    title="Default title",
+                    title="",
                     ylabel="1 to 5 Scale",
+                    xlabel="Question",
                     rot=50,
                     width=0.6,
                     min=None,
                     max=None,
                     colours = TABLEAU_COLORS,
                     n=None,
+                    meanMarkerSize=0,
+                    doubleX=False,
+                    save=False,
                     ):
     if not labels:
         labels=list(datasets[0])
     if not n:
         n = len(datasets[0])
+    fig, ax = plt.subplots()
+
 
     # Set x-positions for boxes
     x_pos_range = np.arange(len(datasets)) / (len(datasets) - 1)
@@ -55,7 +67,12 @@ def groupedBoxPlots(datasets,
             labels=labels, 
             patch_artist=True,
             positions=positions,
-            widths=width / len(datasets), 
+            widths=width / len(datasets),
+            showmeans=True,
+            meanprops={'marker':'o',
+                       'markerfacecolor':'white', 
+                       'markeredgecolor':'black',
+                       'markersize':meanMarkerSize},
         )
         # Fill the boxes with colours (requires patch_artist=True)
         k = i % len(colours)
@@ -63,13 +80,29 @@ def groupedBoxPlots(datasets,
             box.set(facecolor=colours[k])
         # Make the median lines more visible
         plt.setp(bp['medians'], color='black')
+    
+
+
+
+    if doubleX:
+        ax2 = ax.twiny()
+        ax2.set_xlim(ax.get_xlim())
+        ax2.set_xticks(ax.get_xticks())
+        ax2.set_xticklabels(labels=ShortUserExpQ.Names_right, rotation=rot)
+
+        if not save:
+            ax.set_xlabel('Left hand side')
+            ax2.set_xlabel("Right hand side")
+
+
+
 
 
     # Titles
     # plt.title(title + ", n=" + str(n))
     plt.title(title)
     plt.ylabel(ylabel)
-    plt.xlabel('Question')
+    plt.xlabel(xlabel)
     # Axis ticks and labels
     plt.xticks(np.arange(len(list(datasets[0]))) + 1, rotation=rot)
     plt.minorticks_on()
@@ -88,22 +121,28 @@ def groupedBoxPlots(datasets,
     plt.legend(handles=legend_elements, fontsize=8)
     # Straight lines
     plt.grid(linestyle="--", linewidth=0.3)
-
+    if save:
+        plt.savefig(figureSavePath+title, dpi=300, bbox_inches="tight")
     plt.show()
 
 
-def dualAxisUeqBoxplot(data, title):
+def dualAxisUeqBoxplot(data, title, save=False):
     rot = 40
     fig, ax = plt.subplots()
     ax.boxplot(x=data)
-    ax.set_xlabel('Left hand side')
     ax.set_ylabel('1-7 scale')
-    ax.set_title("Short User Experience Questionaire | " + title + ", n=" + str(len(data)))
     ax.set_xticklabels(labels=ShortUserExpQ.Names_left, rotation=rot)
 
     ax2 = ax.twiny()
     ax2.set_xlim(ax.get_xlim())
     ax2.set_xticks(ax.get_xticks())
     ax2.set_xticklabels(labels=ShortUserExpQ.Names_right, rotation=rot)
-    ax2.set_xlabel("Right hand side")
+
+    if not save:
+        ax.set_xlabel('Left hand side')
+        ax.set_title("Short User Experience Questionaire | " + title + ", n=" + str(len(data)))
+        ax2.set_xlabel("Right hand side")
+
+    if save:
+        plt.savefig("figures/UQE-"+title, dpi=300, bbox_inches="tight")
     plt.show()

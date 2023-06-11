@@ -29,6 +29,15 @@ Demographic = Prodict(
     ]
 )
 
+Tasks = Prodict(
+    Keys = [
+        "AR_Listen_Perf",
+        "NonAR_Listen_Perf",
+        "AR_Sudoku_Perf",
+        "NonAR_Sudoku_Perf",
+    ]
+)
+
 SSSQ = Prodict(
     Scale = Prodict(
         Names = [
