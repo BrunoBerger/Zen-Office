@@ -10,6 +10,7 @@ from keys import *
 
 figureSavePath = "figures/"
 
+# refer to https://matplotlib.org/stable/gallery/color/named_colors.html for all available colors
 TABLEAU_COLORS = list(mcolors.TABLEAU_COLORS) # type: ignore
 CSS4_COLORS = list(mcolors.CSS4_COLORS.keys()) # type: ignore
 COL_2v2 = ["darkcyan", "cyan", "gold", "yellow"]
