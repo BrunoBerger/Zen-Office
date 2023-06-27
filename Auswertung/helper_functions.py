@@ -18,6 +18,8 @@ COL_3v3 = ["steelblue", "darkcyan", "cyan", "darkorange", "orange", "gold"]
 
 def COL_2Groups(nInEachGroup):
     return [*['tab:blue']*nInEachGroup, *['tab:orange']*nInEachGroup]
+def alt_COL_2Groups(nInEachGroup):
+    return [*['palevioletred']*nInEachGroup, *['mediumturquoise']*nInEachGroup]
 
 def makeBoxPlot(data, labels, title, rot=50, ylabel="Trifft zu", save=False, show=True):
     plt.figure()
@@ -40,6 +42,8 @@ def groupedBoxPlots(datasets,
                     xlabel="Question",
                     rot=50,
                     width=0.6,
+                    gapInGroup=0.5,
+                    offsetFromLef=0.75,
                     min=None,
                     max=None,
                     colours = TABLEAU_COLORS,
@@ -47,6 +51,7 @@ def groupedBoxPlots(datasets,
                     meanMarkerSize=0,
                     doubleX=False,
                     save=False,
+                    dpi=300,
                     ):
     if not labels:
         labels=list(datasets[0])
@@ -57,7 +62,8 @@ def groupedBoxPlots(datasets,
 
     # Set x-positions for boxes
     x_pos_range = np.arange(len(datasets)) / (len(datasets) - 1)
-    x_pos = (x_pos_range * 0.5) + 0.75
+    # x_pos = (x_pos_range * 0.5) + 0.75
+    x_pos = (x_pos_range * gapInGroup) + offsetFromLef
     # Plot
     for i, data in enumerate(datasets):
         positions = [x_pos[i] + j * 1 for j in range(len(data.T))]
@@ -83,8 +89,6 @@ def groupedBoxPlots(datasets,
         plt.setp(bp['medians'], color='black')
     
 
-
-
     if doubleX:
         ax2 = ax.twiny()
         ax2.set_xlim(ax.get_xlim())
@@ -96,12 +100,8 @@ def groupedBoxPlots(datasets,
             ax2.set_xlabel("Right hand side")
 
 
-
-
-
     # Titles
     # plt.title(title + ", n=" + str(n))
-    plt.title(title)
     plt.ylabel(ylabel)
     plt.xlabel(xlabel)
     # Axis ticks and labels
@@ -123,7 +123,9 @@ def groupedBoxPlots(datasets,
     # Straight lines
     plt.grid(linestyle="--", linewidth=0.3)
     if save:
-        plt.savefig(figureSavePath+title, dpi=300, bbox_inches="tight")
+        plt.savefig(figureSavePath+title, dpi=dpi, bbox_inches="tight")
+    else:
+        plt.title(title)
     plt.show()
 
 
