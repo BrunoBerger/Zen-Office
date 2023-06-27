@@ -280,6 +280,49 @@ EmotionScales = Prodict(
     )
 )
 
+All_Keys = [
+    *SSSQ.Scale.AR.Listen_Keys,
+    *SSSQ.Scale.AR.Sudoku_Keys,
+    *SSSQ.StatementAgreement.AR.Listen_Keys,
+    *SSSQ.StatementAgreement.AR.Sudoku_Keys,
+    *SSSQ.Scale.NonAR.Listen_Keys,
+    *SSSQ.Scale.NonAR.Sudoku_Keys,
+    *SSSQ.StatementAgreement.NonAR.Listen_Keys,
+    *SSSQ.StatementAgreement.NonAR.Sudoku_Keys,
+    *EmotionScales.AR.Vorher,
+    *EmotionScales.AR.Zwischen,
+    *EmotionScales.AR.Nachher,
+    *EmotionScales.NonAR.Vorher,
+    *EmotionScales.NonAR.Zwischen,
+    *EmotionScales.NonAR.Nachher,
+    *ShortUserExpQ.Keys,
+    *AbschließendeFragen.Keys,
+    *Tasks.Keys,
+]
+AR_Keys = [
+    *SSSQ.Scale.AR.Listen_Keys,
+    *SSSQ.Scale.AR.Sudoku_Keys,
+    *SSSQ.StatementAgreement.AR.Listen_Keys,
+    *SSSQ.StatementAgreement.AR.Sudoku_Keys,
+    *EmotionScales.AR.Vorher,
+    *EmotionScales.AR.Zwischen,
+    *EmotionScales.AR.Nachher,
+    "AR_Listen_Perf", "AR_Sudoku_Perf",
+]
+NonAR_Keys = [
+    *SSSQ.Scale.NonAR.Listen_Keys,
+    *SSSQ.Scale.NonAR.Sudoku_Keys,
+    *SSSQ.StatementAgreement.NonAR.Listen_Keys,
+    *SSSQ.StatementAgreement.NonAR.Sudoku_Keys,
+    *EmotionScales.NonAR.Vorher,
+    *EmotionScales.NonAR.Zwischen,
+    *EmotionScales.NonAR.Nachher,
+    "NonAR_Listen_Perf", "NonAR_Sudoku_Perf",
+]
+
+
+
+
 if __name__ == "__main__":
     print("Testing dics")
     try:
