@@ -25,8 +25,21 @@ Demographic = Prodict(
         "NutzungRelaxApps",
         "WennJaWelcheApps",
         "UserID",
-        "Geschlecht"
-    ]
+        "Geschlecht",
+    ],
+    Names_EN = [
+        "Age",
+        "Experience with AR",
+        "Work environment",
+        "Screentime at work",
+        "Screentime in freetime",
+        "Cybersickness",
+        "Nature for relaxation",
+        "Use of relaxation apps",
+        "If yes, which?",
+        "UserID",
+        "Gender",
+    ],
 )
 
 Tasks = Prodict(
@@ -51,6 +64,18 @@ SSSQ = Prodict(
             "Wütend",
             "Irritiert",
             "Mürrisch",
+        ],
+        Names_EN = [
+            "Dissatisfied",
+            "Alert",
+            "Deprimiert ",
+            "Sad",
+            "Active",
+            "Impatient",
+            "Annoyed",
+            "Angry",
+            "Irritated",
+            "Grouchy",
         ],
         AR = Prodict(
             Listen_Keys = [
@@ -113,9 +138,9 @@ SSSQ = Prodict(
             "Ich führte die Aufgabe kompetent aus",
             "Grundsätzlich fühlte ich, dass ich die Dinge unter Kontrolle hatte",
         ],
-        Names_e = [
+        Names_EN = [
             "I was committed to attaining my performance goals",
-            "I wanted to be succeed on the task",
+            "I wanted to succeed on the task",
             "I was motivated to do the task",
             "I performed proficiently on this task",
             "Generally, I felt in control of things",
@@ -176,6 +201,26 @@ ShortUserExpQ = Prodict(
         "originell",
         "neuartig",
     ],
+    Names_left_EN = [
+        "obstructive",
+        "complicated",
+        "inefficient",
+        "confusin",
+        "boring",
+        "not interesting",
+        "conventional",
+        "usual",
+    ],
+    Names_right_EN = [
+        "supportive",
+        "easy",
+        "efficient",
+        "clear",
+        "exciting",
+        "interesting",
+        "inventive",
+        "leading edge",
+    ],
     Keys = [
         "UE01_01",
         "UE01_02",
@@ -214,6 +259,19 @@ AbschließendeFragen = Prodict(
         "Durch die virtuelle Umgebung fühlte ich mich entspannter",
         "Ich könnte mir vorstellen diese Anwendung zum Arbeiten zu nutzen",
         "Ich könnte mir vorstellen eine solche Anwendung in Zukunft zu nutzen, wenn bestimmte Aspekte verbessert werden",
+    ],
+    Names_EN = [
+        "I was excited to try an augmented reality experience",
+        "I experienced nausea due to the holographic projection (Cyber Sickness)",
+        "The limited field of view interfered with my immersion",
+        "Wearing the device was unpleasant",
+        "I had the feeling of being in the virtual environment",
+        "I payed attention to the virtual environment while performing the tasks",
+        "The virtual environment disturbed my concentration",
+        "I felt closed to nature due to the virtual envrionment",
+        "I felt more relaxed due to the virutal environment",
+        "I could imagine using this application for work in the future",
+        "I could imagine using this application for work in the future, if some aspects are improved",
     ]
 )
 
@@ -225,6 +283,14 @@ EmotionScales = Prodict(
         "Überraschung",
         "Wut",
         "Ekel",
+    ],
+    Names_ED = [
+        "Happiness",
+        "Sadness",
+        "Fear",
+        "Surprise",
+        "Anger",
+        "Disgust",
     ],
     AR = Prodict(
         Vorher = [

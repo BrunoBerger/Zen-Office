@@ -132,6 +132,7 @@ def groupedBoxPlots(datasets,
 def dualAxisUeqBoxplot(data, title, save=False):
     rot = 40
     fig, ax = plt.subplots()
+    ax.set_ylim(0.8, 7.2)
     ax.boxplot(x=data)
     ax.set_ylabel('1-7 scale')
     ax.set_xticklabels(labels=ShortUserExpQ.Names_left, rotation=rot)
